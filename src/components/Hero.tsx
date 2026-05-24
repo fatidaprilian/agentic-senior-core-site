@@ -5,12 +5,12 @@ const coreRulesList = [
   {
     title: 'Scope-Aware Rules',
     description: 'Loads only the instruction layers matching the active project surface, maximizing token and context efficiency.',
-    icon: <Layers size={20} />
+    icon: <Layers size={24} />
   },
   {
     title: 'Evidence-Preserving Trails',
     description: 'Maintains absolute proof and reasoning logs permanently attached to every codebase modification.',
-    icon: <FileCheck size={20} />
+    icon: <FileCheck size={24} />
   }
 ];
 

@@ -264,17 +264,21 @@ button {
 
 .brand-mark {
   color: var(--color-stamp-approve);
+  display: block;
+  flex-shrink: 0;
 }
 
 .brand-text {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .brand-name {
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 800;
+  line-height: 1.1;
 }
 
 .brand-sub {
@@ -282,6 +286,8 @@ button {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-sub);
+  line-height: 1.1;
+  margin-top: 2px;
 }
 
 .nav-links {
@@ -305,6 +311,61 @@ button {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-main);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  background: var(--bg-base);
+  border-color: var(--color-stamp-approve);
+  color: var(--color-stamp-approve);
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.icon-link svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.icon-link:hover {
+  transform: translateY(-2px);
+  color: var(--color-stamp-approve);
 }
 
 /* Archival Manila Folder Grid Structure (Hero) */
@@ -494,15 +555,14 @@ button {
 }
 
 .proof-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  background: transparent;
+  width: 24px;
+  height: 24px;
   color: var(--color-stamp-approve);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed var(--border-main);
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .proof-title {
@@ -692,10 +752,14 @@ button {
   color: var(--bg-base);
   min-height: 300px;
   background-color: var(--ink-primary);
+  overflow-x: hidden;
+  word-break: break-word;
 }
 
 .terminal-line {
   margin-block-end: 14px;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
 
 .terminal-input {
@@ -864,5 +928,43 @@ button {
 
   .terminal-cursor {
     animation: none !important;
+  }
+}
+
+/* Extra Compact Responsiveness for Mobile Screens (FE-008) */
+@media (max-width: 480px) {
+  .navbar-inner {
+    padding-inline: 12px;
+    height: 72px;
+  }
+
+  .page {
+    padding-block-start: 80px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .nav-actions .btn {
+    display: none;
+  }
+
+  .command-body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 }
