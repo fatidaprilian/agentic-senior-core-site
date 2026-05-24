@@ -59,7 +59,7 @@ export default function Hero() {
 
           <motion.p variants={itemVariants} className="text-lead">
             A multi-layered workspace oversight tool that enforces architecture, security, 
-            and test discipline across Cursor, Windsurf, Claude Code, and Gemini.
+            and test discipline across Cursor, Windsurf, Claude Code, Gemini and Any IDE.
           </motion.p>
 
           <motion.div variants={itemVariants} className="cta-row">
