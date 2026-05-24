@@ -2,52 +2,53 @@ import { motion } from 'framer-motion';
 
 const featureList = [
   {
-    code: 'F-01',
-    title: 'Dynamic Scope Filtering',
-    description: 'Loads only the rule files required by the current task surface and hides the rest to minimize context noise.',
+    code: 'I',
+    title: 'Dynamic Filtering',
+    description: 'Only the essential rule files required by the current task surface are loaded. Context noise is utterly eliminated.',
   },
   {
-    code: 'F-02',
-    title: 'Oversight Evidence Trail',
-    description: 'Preserves the complete reasoning trail and rule check history permanently inside your workspace.',
+    code: 'II',
+    title: 'Evidence Trail',
+    description: 'The complete reasoning trail and strict rule check history are permanently preserved as an immutable ledger.',
   },
   {
-    code: 'F-03',
-    title: 'Unified Checklist Gates',
-    description: 'Enforces strict architecture, security, UI design, and testing checklists automatically before any commit.',
+    code: 'III',
+    title: 'Unified Gates',
+    description: 'Architecture, security, UI design, and testing checklists are automatically enforced prior to any commit.',
   },
   {
-    code: 'F-04',
-    title: 'Compact Token Memory',
-    description: 'Optimizes code logs while preserving core context, maximizing token and context window efficiency.',
+    code: 'IV',
+    title: 'Token Memory',
+    description: 'Code logs are structurally optimized while preserving core context, maximizing true window efficiency.',
   }
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="section section-band" aria-label="Product Features Ledger">
+    <section id="features" style={{ paddingBlock: '60px', width: '100%' }} aria-label="Product Features">
       <div className="container">
-        <div className="section-head">
-          <h2 className="heading-lg">Verification & Oversight Ledger</h2>
-          <p className="text-lead">
-            Every rule capability is structured as a verifiable gate you can audit, not a promise you must trust.
+        <div style={{ marginBottom: '80px', maxWidth: '800px', textAlign: 'center', marginInline: 'auto' }}>
+          <h2 className="heading-lg" style={{ marginBottom: '40px' }}>OVERSIGHT</h2>
+          <div className="gold-line"></div>
+          <p className="text-lead" style={{ marginInline: 'auto' }}>
+            Every capability is structured as a verifiable gate. <br/> A masterpiece of friction-less control.
           </p>
         </div>
 
-        <div className="evidence-ledger">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px' }}>
           {featureList.map((item, index) => (
             <motion.article
               key={item.code}
-              className="evidence-row"
-              initial={{ opacity: 0, scale: 0.98, rotate: -0.4 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: index * 0.05, duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+              className="exhibition-plate"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ delay: index * 0.2, duration: 1.5, ease: 'easeOut' }}
             >
-              <div className="evidence-code">{item.code} // FEATURE</div>
+              <div className="eyebrow" style={{ marginBottom: '24px', color: 'var(--color-accent)' }}>CHAPTER {item.code}</div>
               <div>
-                <h3 className="heading-md">{item.title}</h3>
-                <p className="text-body" style={{ marginBlockStart: '8px' }}>{item.description}</p>
+                <h3 className="heading-md" style={{ marginBottom: '24px' }}>{item.title}</h3>
+                <p className="text-body" style={{ maxWidth: '300px', marginInline: 'auto' }}>{item.description}</p>
               </div>
             </motion.article>
           ))}

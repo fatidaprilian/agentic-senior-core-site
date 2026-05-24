@@ -1,95 +1,58 @@
-# Design Intent and Product Personality
+# Agentic-Senior-Core Site Design
 
-The visual identity is anchored on a **Museum Custody Ledger and Conservation Inspection Report**. We treat rule packs and instructions not as generic marketing bullet points, but as audited archival artifacts inside a strict custody chain. Every line of code, config file, or validation rule is a conservation item: recorded, analyzed, and stamped with wax seals of provenance.
+This document describes the design language, token architecture, and implementation rationale for the Agentic-Senior-Core site, following a **Fine Art Editorial & Gallery** concept (inspired by luxury/artistic sites like Dervish Ebru Art). The primary aesthetic focuses on classic, highly spaced serif typography, deep fluid backgrounds, and extremely fine gold/copper accents.
 
-Confidence comes from absolute accountability, ink records, and wax seals, rather than polished SaaS gradient blobs.
+## 1. Design Intent and Product Personality
+The product enforces strict instruction compliance, but its presentation here is elevated to an art form. It treats strict rules not as a machine constraint, but as a carefully curated *Masterpiece*. We completely reject "tech SaaS" or "Apple OS" glassmorphism looks in favor of a timeless, archival gallery presentation.
 
-# Audience and Use-Context Signals
+## 2. Audience and Use-Context Signals
+*   **Audience**: Engineering leads who appreciate extreme craftsmanship and timeless design.
+*   **Context**: A moment of calm, focused reading and contemplation before installation.
+*   **Tone**: Luxury, timeless, authoritative, and deeply artistic.
 
-Technical evaluators (Principal Engineers and AI operators) arrive seeking an immediate install decision. They need proof that the rules enforce tight discipline across their AI tools. The copy and structural elements must convey absolute authority, archival permanence, and structured rigor.
+## 3. Visual Direction and Distinctive Moves
+*   **Backgrounds**: 
+    *   **Light Mode**: Warm ivory / parchment paper feeling, representing an ancient art catalog.
+    *   **Dark Mode**: Deep, dark, immersive tones (Dark Forest Green/Rich Black) mimicking a fluid canvas or marbling art.
+*   **Text/Accents**:
+    *   **Light Mode**: Deep copper or dark brown-gold.
+    *   **Dark Mode**: Pale Gold/Champagne (`#d4af37` or similar).
+*   **Signature Motion**: Extremely slow, languid fades. No bouncy springs.
+*   **Anti-Pattern Rejection**: No thick borders, no glassmorphism bubbles, no pure white SaaS backgrounds, no chunky tech sans-serifs for headings.
 
-# Visual Direction and Distinctive Moves
+## 4. Color, Typography, Spacing, and Density Decisions
+*   **Typography**:
+    *   **Display/Headings**: `Cinzel` or `Cormorant Garamond`, all-caps or title case with extremely wide letter-spacing (`0.15em` to `0.3em`).
+    *   **Data/Readouts**: `JetBrains Mono` for terminal code blocks, styled minimally.
+    *   **Body**: A highly legible, thin sans-serif (`Inter` or `Montserrat` at thin weights) to contrast the ornate serifs.
+*   **Density**: Extremely sparse and centered. Negative space is the primary design tool.
+*   **Spacing**: Symmetrical, centered layouts with thin 1px separator lines.
 
-- **Archival Manila Sleeve Grid**: A primary structural grid mimicking a folded, heavy-stock manila ledger sleeve.
-- **Wax Custody Seals**: Interactive status stamps (drops with inertia tilt and settle) encoding validation results.
-- **Accession Receipt Runbook**: An installation guide styled as an official print receipt with accession numbers and ink stamps.
-- **Provenance Annotation Margins**: Margin annotation cards displaying specific rule logs aligned with the main narrative sections.
+## 5. Token Architecture and Alias Strategy
+*   `--bg-base`: Warm Ivory (Light) / Deep Rich Dark (Dark).
+*   `--text-primary`: Dark Copper (Light) / Pale Gold (Dark).
+*   `--text-muted`: Faded Brown (Light) / Dimmed Gold/Olive (Dark).
+*   `--border-fine`: Thin Copper/Gold border.
 
-## Motion/Palette Decision
-- **Motion**: Tactile sliding-drawers on folder reveal; heavy dropping wax stamps that settle with rotational tilt.
-- **Palette**: Manila paper base (`oklch(0.95 0.02 85)`), graphite writing ink (`oklch(22% 0.01 240)`), vermillion wax seal (`oklch(58% 0.18 35)`), and conservation green (`oklch(60% 0.14 145)`). No gradients or neon glowing elements.
+## 6. Responsive Recomposition Plan
+*   **Mobile**: Centered typography scales down gracefully. Lines remain thin.
+*   **Desktop**: Expansive centering, allowing the background to breathe.
 
-# Color, Typography, Spacing, and Density Decisions
+## 7. Motion, Interaction, and Feedback Rules
+*   **Hover States**: Subtle opacity shifts or very slow color transitions. No physical "lifting" or bouncy scaling.
+*   **Reveal**: Slow, 1.5-second opacity fades as elements enter the viewport.
 
-- **Color**:
-  - Warm Manila Stock (`--base-stock`): `oklch(0.95 0.02 85)`
-  - Graphite Archival Ink (`--ink-primary`): `oklch(0.22 0.01 240)`
-  - Vermillion Wax Stamp (`--stamp-vermillion`): `oklch(0.58 0.18 35)`
-  - Conservation Green (`--stamp-conservation`): `oklch(0.60 0.14 145)`
-  - Amber Caution Seal (`--stamp-caution`): `oklch(0.75 0.15 75)`
-  - Neutral Archival Folder Border: `oklch(0.85 0.01 90)`
-  - *Gamut Safeguard (OKLCH Compatibility):* Although OKLCH is Baseline supported in all 2023+ browsers, we will define native RGB/Hex fallbacks directly before OKLCH custom properties and use `@supports` bounds to insulate older renderers from gamut-mapping clipping faults.
-- **Typography**:
-  - *Authority Display*: Playfair Display (Serif) or EB Garamond. Gives a premium classic catalog feel.
-  - *Evidence Logs*: Courier Prime (Slab typewriter) for logs, checklist evidence, and status lines.
-  - *Accession Codes*: Technical Mono (JetBrains Mono) for CLI commands, variables, and code paths.
-  - *Fluid Scaling Sizing:* To satisfy WCAG 2.2 AA manual text zoom accessibility, we strictly avoid plain viewport-only sizing (e.g. `2.5vw`). Sizing formulas will mix relative `rem` units inside preferred limits: e.g. `clamp(1rem, 2.5vw + 1rem, 2.5rem)`.
-- **Spacing**:
-  - 4px grid base with 8/12/16/24/32/48/64 multiples. Dense ledger rows nested within highly spacious, generous folder margins.
-- **Density**:
-  - Variable density. Generous negative margins in sections to isolate the manila folder silhouette, highly compact lines within ledger rows.
+## 8. Component Language, States, and Morphology
+*   **Cards**: Replaced by transparent "Exhibition Plates" with a single fine top or bottom border.
+*   **Buttons**: Transparent backgrounds with a solid fine border and wide-tracked serif text.
+*   **Navbar/Footer**: Centered, minimal, acting as subtle framing devices at the top and bottom of the canvas.
 
-# Token Architecture and Alias Strategy
+## 9. Accessibility Non-Negotiables
+*   WCAG 2.2 AA contrast minimums.
+*   Legible body text sizes despite the "fine art" styling.
 
-Semantic tokens strictly alias back to our Museum Custody anchor:
-- `color-surface-folder-base` -> `--base-stock`
-- `color-text-archival-ink` -> `--ink-primary`
-- `color-border-folder-crease` -> `--neutral-border`
-- `color-stamp-approved` -> `--stamp-conservation`
-- `color-stamp-failed` -> `--stamp-vermillion`
-
-No raw hex codes or physical-direction layout rules allowed.
-
-# Responsive Recomposition Plan
-
-| Viewport | Folder Recomposition | Ledger Layout | Accession CTA Placement |
-| --- | --- | --- | --- |
-| **Mobile** | Single-page folder card, tabs stack vertically at top. | Single-column records with margin slips moved under parent blocks. | Registration Receipt anchored at top fold. |
-| **Tablet** | Folded layout showing tab indices on left edge. | Two-column grid, margin slips compressed. | Receipt block remains floating on bottom fold. |
-| **Desktop** | Expansive Manila sleeve with full index tab lanes on left. | Wide ledger rows with inline margin provenance annotations on right. | Large accession command slab placed in the primary focus fold. |
-
-# Motion, Interaction, and Feedback Rules
-
-- **Accession Slip Reveal**: On page load, the manila sleeve slides up (`y: 40px` to `0px` with a custom cubic-bezier `[0.16, 1, 0.3, 1]` over `450ms`).
-- **Wax Seal drop + settle**: Wax stamps scale down from `1.15` to `1.0` with a rotational swing `[-3deg to 0deg]` mimicking a heavy imprint hammer drop with `framer-motion` spring dynamics.
-- **Reduced Motion**: Swap scale/rotate transformations with clean opacity crossfades.
-
-# Component Language, States, and Morphology
-
-- **ManilaSleeve (Hero)**: A framed folder block with tab indicators (`Accession 24.05`).
-- **AccessionReceipt (Installation)**: An overlay container mimicking an accession ledger entry.
-- **ProvenanceLedger (Features)**: Alternating rows listing rule clauses with verification checkbox inputs.
-- **WaxSeal (Verdict Stamps)**: Round/rectangular textured stamp badges overlaying text blocks.
-- **EvidencePlayback (Terminal)**: A dark-slate index tray housing typewriter terminal playback logs.
-
-# Source Boundaries and Context Hygiene
-
-- **Continuity Ledger**: `Flight progress strip rack` and `Galley proof sheet with margin corrections` are blocklisted from visual styles to prevent design repetition.
-- **Authority Floor**: Stricter governance files in `.agent-context/` outrank standard Vite/React project defaults.
-
-# Accessibility Non-Negotiables
-
-- **Contrast Floor**: All text-on-background pairs (e.g. Graphite text on Manila base, Vermillion stamp overlay) satisfy WCAG 2.2 AA (minimum 4.5:1 ratio).
-- **Interactive Targets**: Custom styled tabs and command buttons provide a minimum touch size of `44px` and custom focus-visible borders.
-- **State Semantics**: Non-visual screenreaders receive `aria-live` status announcements when the terminal playback changes verification states.
-
-# Anti-Patterns to Avoid
-
-- No floating blobs or glowing backgrounds.
-- No SaaS grid lines, neon code highlights, or centered hero templates.
-- No placeholder copy, testing labels, or default Inter font styles.
-- No flat components lacking spatial hierarchy or wax seal depth.
-
-# Implementation Notes for Future UI Tasks
-
-Ensure that any secondary interface components (e.g. secondary links, inline code snippets) utilize custom Courier Prime and EB Garamond styling. Never default to browser-safe sans-serif without explicit brand aliases.
+## 10. Anti-Patterns to Avoid
+*   "Apple-like" Glassmorphic blurs or rounded chunky cards.
+*   Animated floating mesh backgrounds.
+*   Default tech-blue accent colors.
+*   Left-aligned dense text blocks (prefer centered poetry-style alignment).

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { Archive, Copy, Check } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 
-const SetupCodeBlock = ({ command, label }: { command: string, label: string }) => {
+const ArtSetupCodeBlock = ({ command, label }: { command: string, label: string }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -12,17 +12,39 @@ const SetupCodeBlock = ({ command, label }: { command: string, label: string }) 
   };
 
   return (
-    <div className="command-strip" aria-label={`CLI Command for ${label}`}>
-      <div className="command-header">
-        <span className="command-label">{label}</span>
-      </div>
-      <div className="command-body">
-        <div className="command-code">
-          <Archive size={16} className="command-icon" aria-hidden="true" />
-          <code>{command}</code>
-        </div>
-        <button onClick={handleCopy} className="icon-button" aria-label="Copy Command Code">
-          {copied ? <Check size={18} style={{ color: 'var(--color-stamp-approve)' }} /> : <Copy size={18} />}
+    <div className="exhibition-plate" style={{ borderTop: label === 'II. MANAGED UPGRADES' ? 'none' : '1px solid var(--border-fine)' }}>
+      <div className="eyebrow" style={{ marginBottom: '24px', color: 'var(--color-accent)' }}>{label}</div>
+      <div className="art-terminal" style={{ 
+        padding: '24px', 
+        background: 'transparent', 
+        border: 'none', 
+        borderBottom: '1px solid var(--border-fine)', 
+        maxWidth: '460px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '16px'
+      }}>
+        <code>{command}</code>
+        <button 
+          onClick={handleCopy} 
+          aria-label="Copy Command" 
+          title="Copy to clipboard"
+          style={{ 
+            color: 'var(--text-muted)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            width: '32px', 
+            height: '32px', 
+            border: '1px solid var(--border-fine)',
+            borderRadius: '0',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+        >
+          {copied ? <Check size={16} /> : <Copy size={16} />}
         </button>
       </div>
     </div>
@@ -31,51 +53,31 @@ const SetupCodeBlock = ({ command, label }: { command: string, label: string }) 
 
 export default function Installation() {
   return (
-    <section id="install" className="section section-band" aria-label="Installation Registry">
-      <div className="container">
+    <section id="install" className="section" style={{ paddingBlock: '60px', width: '100%' }} aria-label="Installation Guide">
+      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        
         <motion.div
-          className="runbook-shell"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
+          style={{ width: '100%', maxWidth: '800px', textAlign: 'center' }}
         >
-          <div className="runbook-summary">
-            <h2 className="heading-lg">Installation & Upgrades</h2>
-            <p className="text-lead">
-              Initialize the oversight rule pack, then keep it current with managed upgrades.
-            </p>
-          </div>
+          <h2 className="heading-lg" style={{ marginBottom: '40px' }}>ACCESSION</h2>
+          <div className="gold-line"></div>
+          <p className="text-lead" style={{ marginBottom: '60px' }}>
+            Initialize the rule pack with a single command.
+          </p>
 
-          <div className="runbook-steps">
-            <div className="runbook-step">
-              <SetupCodeBlock
-                label="Step 1: Initialize Workspace Rules"
-                command="npx @ryuenn3123/agentic-senior-core init"
-              />
-              <p className="text-body" style={{ marginBlockStart: '8px' }}>
-                Creates <code>AGENTS.md</code>, import bridges, checklists, policies, state files, and the <code>.agent-context/</code> rules catalog automatically. Token optimization is enabled by default.
-              </p>
-            </div>
-
-            <div className="runbook-step">
-              <SetupCodeBlock
-                label="Step 2: Managed Upgrades"
-                command="npx @ryuenn3123/agentic-senior-core upgrade --yes"
-              />
-              <p className="text-body" style={{ marginBlockStart: '8px' }}>
-                Updates to the latest official rules while preserving all your custom, user-owned instructions safely.
-              </p>
-            </div>
-
-            <div className="runbook-options">
-              <h3 className="heading-md">Setup Options</h3>
-              <ul className="option-list">
-                <li>Add <code>--mcp-template</code> to generate MCP workspace configs for VS Code.</li>
-                <li>Add <code>--no-token-optimize</code> if you prefer to disable compact natural model instructions.</li>
-                <li>Add <code>--local-only</code> to ignore instructions in <code>.gitignore</code> so they are not pushed to remote repositories.</li>
-              </ul>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <ArtSetupCodeBlock
+              label="I. INITIALIZE WORKSPACE"
+              command="npx @ryuenn3123/agentic-senior-core init"
+            />
+            <ArtSetupCodeBlock
+              label="II. MANAGED UPGRADES"
+              command="npx @ryuenn3123/agentic-senior-core upgrade"
+            />
           </div>
         </motion.div>
       </div>

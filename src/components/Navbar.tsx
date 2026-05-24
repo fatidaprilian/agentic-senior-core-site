@@ -11,10 +11,8 @@ export default function Navbar() {
     <nav className="navbar" aria-label="Main Navigation">
       <div className="container navbar-inner">
         <div className="brand">
-          <img className="brand-mark" src="/logo.png" alt="Agentic Senior Core" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
           <div className="brand-text">
-            <span className="brand-name">Agentic Senior Core</span>
-            <span className="brand-sub">Strict Rule Pack</span>
+            <span className="brand-name">A. S. C.</span>
           </div>
         </div>
         
@@ -28,17 +26,14 @@ export default function Navbar() {
         <div className="nav-actions">
           <ThemeToggle />
           <a
-            className="icon-link"
             href="https://github.com/fatidaprilian/Agentic-Senior-Core"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Agentic Senior Core on GitHub Repository"
+            aria-label="GitHub Repository"
             title="GitHub Repository"
+            style={{ display: 'flex', alignItems: 'center', color: 'var(--text-muted)' }}
           >
-            <GithubIcon size={20} />
-          </a>
-          <a href="#install" className="btn btn-primary btn-small" title="Begin Installation">
-            Get Started
+            <GithubIcon size={18} />
           </a>
         </div>
       </div>

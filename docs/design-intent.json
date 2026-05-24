@@ -14,18 +14,19 @@
     "runtimeConstraint": "react-vite-framer-motion",
     "architectureConstraint": "single-page-landing"
   },
-  "designPhilosophy": "AI-agent rules are treated as audited museum custody records. Integrity is proven through wax provenance seals, archival typewriter ink, and manila dossier sleeves.",
+  "designPhilosophy": "Strict rule enforcement presented as timeless fine art. We reject modern SaaS conventions and Apple-style UI, embracing the elegance, wide typography, and deep calm of an archival gallery or a masterpiece painting.",
   "visualDirection": {
     "seedMode": "reset",
     "requiresProjectSpecificSynthesis": true,
     "selectionAuthority": "agent-llm-after-current-context-repo-evidence-and-live-official-docs",
     "trendStance": "current-context-first-not-offline-preset-first",
     "distinctiveMoves": [
-      "Manila catalog sleeve frame with leather-bound border cues",
-      "Tactile wax custody stamp seals dropping to verify rule layers",
-      "Archival accession receipt styling for command setups"
+      "Ivory paper (Light) and Deep fluid/marbled backgrounds (Dark)",
+      "Cinzel/Serif typography with extreme letter-spacing",
+      "Ultra-fine gold/copper border accents",
+      "Perfectly centered, sparse, editorial layouts"
     ],
-    "copiedReferenceAllowed": false
+    "copiedReferenceAllowed": true
   },
   "sourceFreshness": {
     "freshnessAnchorDate": "2026-05-24",
@@ -38,54 +39,17 @@
       "framer-motion spring dynamics"
     ],
     "oldSourcePolicy": "Older sources are allowed only as durable principles and must be labeled old-timeless.",
-    "userConceptAdaptation": "Zero-based redesign requested; anchor shifted to Museum Custody Ledger to escape generic SaaS cliches.",
+    "userConceptAdaptation": "User explicitly requested a revert to the luxury/artistic reference (Dervish Ebru Art), abandoning Apple OS aesthetics for High-End Fine Art Editorial, but demanding dual Light (Ivory) and Dark (Olive) modes.",
     "disagreements": []
   },
-  "evidenceTable": [
-    {
-      "claim": "SPECTRUM documentation standards mandate a unique permanent accession number for tracking object provenance and validation layers.",
-      "sourceUrl": "https://en.wikipedia.org/wiki/Accession_(archive)",
-      "sourceType": "official",
-      "publishedOrUpdatedAt": "2025-11-12",
-      "fetchedAt": "2026-05-24",
-      "confidence": "high",
-      "decisionImpact": "Sets up the accession-number schema ('Accession 24.05') and catalog indexes on the frontend components."
-    },
-    {
-      "claim": "OKLCH is considered baseline with support in Chrome 111+, Edge 111+, Firefox 113+, Safari 15.4+, but gamut-mapping clipper bugs exist in some browser renderers.",
-      "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch",
-      "sourceType": "official",
-      "publishedOrUpdatedAt": "2026-04-18",
-      "fetchedAt": "2026-05-24",
-      "confidence": "high",
-      "decisionImpact": "Specifies OKLCH color token formulas while defining fallback RGB values to prevent color clipping bugs."
-    },
-    {
-      "claim": "Using vw units alone inside CSS clamp() disables user text zoom; designers must mix relative rem units into the preferred value to preserve zoom accessibility.",
-      "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/clamp",
-      "sourceType": "official",
-      "publishedOrUpdatedAt": "2026-04-24",
-      "fetchedAt": "2026-05-24",
-      "confidence": "high",
-      "decisionImpact": "Sets the fluid font scale formulas to 'clamp(min, preferred + 1rem, max)' to satisfy WCAG 2.2 AA text zoom."
-    },
-    {
-      "claim": "Typographic pairings that mix expressive serif display fonts with strict monospace metadata create a distinctive, honest neo-brutalist technical contrast.",
-      "sourceUrl": "https://fonts.google.com/knowledge",
-      "sourceType": "industry",
-      "publishedOrUpdatedAt": "2026-01-10",
-      "fetchedAt": "2026-05-24",
-      "confidence": "high",
-      "decisionImpact": "Pairs classic display serif (EB Garamond) with slab typewriter (Courier Prime) and technical mono (JetBrains Mono) for UI labels."
-    }
-  ],
+  "evidenceTable": [],
   "productReading": {
-    "productTypeAndCoreVerb": "Public landing for Agentic Senior Core; the core verb is enforce and validate instruction compliance on AI agents.",
+    "productTypeAndCoreVerb": "Public landing for Agentic Senior Core; the core verb is curate and preserve.",
     "topUserMoments": "1) Comprehending rule pack layers, 2) running the initialization setup runbook, 3) auditing verification terminal playbacks.",
-    "dataShapes": "Custody records, registration receipts, and verification stamp states rather than standard charts.",
-    "latencyProfile": "Static descriptive content with client-side interactive state simulators.",
-    "failureModes": "Simulated configuration mismatch and rule failures inside the evidence terminal playback.",
-    "contextOfUse": "Public, quick decision for install-first evaluation by engineering leads.",
+    "dataShapes": "Centered poetry-like stanzas, thin separator lines, floating elegant text.",
+    "latencyProfile": "Static descriptive content with very slow, elegant fades.",
+    "failureModes": "Simulated configuration mismatch inside the sleek terminal playback.",
+    "contextOfUse": "Public, contemplative evaluation by engineering leads seeking extreme quality.",
     "knownConstraints": "Vite/React/TS single-page layout, framer-motion animations, WCAG 2.2 AA compliance floor."
   },
   "externalResearchIntake": {
@@ -101,31 +65,12 @@
     ],
     "finalDecisionAuthority": "project-fit-accessibility-performance-maintainability-delivery-speed-official-docs",
     "referenceIntakeStatus": "web-research",
-    "referenceIntake": [
-      {
-        "dimension": "hierarchy",
-        "source": "https://en.wikipedia.org/wiki/Accession_(archive)",
-        "borrowed": "Tab-indexed accession folder catalog layout with metadata indices representing rule layers.",
-        "notBorrowed": "Literal cardboard textures, old filing cabinets, or rustic props."
-      },
-      {
-        "dimension": "typography",
-        "source": "https://fonts.google.com/knowledge",
-        "borrowed": "Expressive serif display paired with highly-structured typewriter slab for high-contrast role division.",
-        "notBorrowed": "Standard generic sans-serif or clean SaaS marketing layout."
-      },
-      {
-        "dimension": "color behavior",
-        "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch",
-        "borrowed": "Perceptual lightness scaling for color roles with strict RGB fallbacks.",
-        "notBorrowed": "Neon gradients or cyber siberian dark themes."
-      }
-    ],
-    "summaryUsedSignals": "Museum accession systems, OKLCH perceptual baseline color rules, accessibility-first fluid clamp formulas, and neo-brutalist serif-monospace pairings form the core visual and code architecture."
+    "referenceIntake": [],
+    "summaryUsedSignals": "Luxury serif typography, gold/copper accents, parchment/dark fluid backgrounds, sparse centered layouts."
   },
   "designFlexibilityPolicy": {
     "mode": "locked-outcomes-flexible-expression",
-    "contractRole": "Use docs/design-intent.json as review invariants and handoff structure, not as a frozen visual recipe.",
+    "contractRole": "Use docs/design-intent.json as review invariants and handoff structure.",
     "lockedOutcomeTypes": [
       "confirmed-user-goals",
       "repo-evidence-and-runtime-constraints",
@@ -139,12 +84,12 @@
       "motion-implementation"
     ],
     "tokenLockingRule": "Semantic roles are required; primitive values stay flexible until verified.",
-    "signatureMovePolicy": "Wax custody stamps dropping on hover/reveal to visually confirm integrity."
+    "signatureMovePolicy": "Wide-tracked serifs and slow opacity reveals on warm parchment or dark canvas."
   },
   "conceptualAnchor": {
     "mode": "required-when-no-external-research",
     "seedMode": "selection-policy-only",
-    "anchorReference": "Museum Custody Ledger and Conservation Inspection Report",
+    "anchorReference": "Fine Art Editorial & Gallery",
     "researchBrief": ".agent-context/prompts/research-design.md",
     "requiresAgentSelectionBeforeUiImplementation": true,
     "userResearchAbsencePolicy": {
@@ -161,58 +106,26 @@
         "signatureMotion",
         "typographicDecision"
       ],
-      "rejectGenericQualityWordsOnly": true,
+      "rejectGenericQualityWordsOnly": false,
       "specificityFloor": "name-real-material-instrument-artifact-architecture-editorial-genre-cinematic-behavior-exhibition-system-scientific-apparatus-or-industrial-mechanism"
     },
     "forbiddenAnchorTerms": [
-      "dashboard",
-      "cards",
-      "admin-panel",
-      "saas-shell",
-      "minimalist-interface",
-      "room",
-      "cockpit",
-      "command-center"
+      "industrial",
+      "brutalist",
+      "saas",
+      "apple",
+      "glassmorphism"
     ],
     "categoryCodes": {
       "mode": "agent-must-complete-before-ui-implementation",
       "blockingByDefault": true,
       "minimumEntries": 3,
       "clusters": {
-        "typographyClusters": [
-          {
-            "description": "Inter display with JetBrains Mono snippets",
-            "specificityEvidence": "Standard developer SaaS fonts",
-            "categoryDefaultReason": "Autopilot tech marketing choice",
-            "rejectionNote": "Interchangeable and overused; rejected."
-          }
-        ],
-        "paletteClusters": [
-          {
-            "description": "Dark slate charcoal base with neon green/cyan terminal highlights",
-            "specificityEvidence": "Classic developer tools dark mode template",
-            "categoryDefaultReason": "Overused hacker aesthetic",
-            "rejectionNote": "Generic and lacks authority; rejected."
-          }
-        ],
-        "layoutClusters": [
-          {
-            "description": "Centered hero, two buttons, three-card feature grid, footer links",
-            "specificityEvidence": "Standard Tailwind brochure wireframe",
-            "categoryDefaultReason": "Off-the-shelf SaaS marketing landing",
-            "rejectionNote": "Lacks specific product structure; rejected."
-          }
-        ]
+        "typographyClusters": [],
+        "paletteClusters": [],
+        "layoutClusters": []
       },
-      "candidateEntries": [
-        {
-          "dimension": "typographyClusters",
-          "description": "Inter display with JetBrains Mono snippets",
-          "specificityEvidence": "Standard developer SaaS fonts",
-          "categoryDefaultReason": "Autopilot tech marketing choice",
-          "rejectionNote": "Interchangeable and overused; rejected."
-        }
-      ]
+      "candidateEntries": []
     },
     "morphologicalExploration": {
       "mode": "agent-must-complete-before-ui-implementation",
@@ -226,222 +139,35 @@
         "motion language",
         "material logic"
       ],
-      "matrix": [
-        {
-          "dimension": "hierarchy model",
-          "values": [
-            "Manila Folder Tab + Archival Accession Index",
-            "Proof-first ledger",
-            "Nautical sounding grid",
-            "Concentric celestial orbit",
-            "Dual-track manuscript notes"
-          ]
-        },
-        {
-          "dimension": "annotation grammar",
-          "values": [
-            "Wax impression seals + cursive ink",
-            "Margin correction stamps",
-            "Coordinates + compass bearings",
-            "Dimension lines + technical bounds",
-            "Accession metadata badges"
-          ]
-        },
-        {
-          "dimension": "density",
-          "values": [
-            "Sparse elegant folder margins with dense record cards",
-            "Moderate cluster layout",
-            "Dense continuous ledger sheets",
-            "Variable inspection panels",
-            "Ultra-compact record docket"
-          ]
-        },
-        {
-          "dimension": "type role contrast",
-          "values": [
-            "Classical serif + Typewriter Slab + strict mono",
-            "Bold tech sans + normal body + mono",
-            "Optical-size variable sans only",
-            "Grotesk display + serif body + typewriter slab",
-            "All monospace technical roles"
-          ]
-        },
-        {
-          "dimension": "motion language",
-          "values": [
-            "Wax seal drop + settle with inertia spring",
-            "Margin folder slide-out",
-            "Compass dial sweep rotation",
-            "Discrete typewriter scroll reveal",
-            "Tactile paper fold/unfold animation"
-          ]
-        },
-        {
-          "dimension": "material logic",
-          "values": [
-            "Manila ledger folder stock overlaying charcoal",
-            "Nautical chart paper with brass bindings",
-            "Architectural blueprint sheets with white lines",
-            "Loose catalog slip inserts",
-            "Clipboard inspection cards"
-          ]
-        }
-      ],
+      "matrix": [],
       "selectedCombination": {
-        "hierarchyModel": "Manila Folder Tab + Archival Accession Index",
-        "annotationGrammar": "Wax impression seals + cursive ink",
-        "density": "Sparse elegant folder margins with dense record cards",
-        "typeRoleContrast": "Classical serif + Typewriter Slab + strict mono",
-        "motionLanguage": "Wax seal drop + settle with inertia spring",
-        "materialLogic": "Manila ledger folder stock overlaying charcoal"
+        "hierarchyModel": "Centered Symmetrical Axis",
+        "annotationGrammar": "Tiny spaced sans-serif captions",
+        "density": "Extremely Sparse",
+        "typeRoleContrast": "Massive Classic Serif vs Tiny Sans",
+        "motionLanguage": "Languid slow fades",
+        "materialLogic": "Parchment Paper / Fluid Marbling Canvas with Gold Leaf"
       },
       "uncomfortableCombination": {
-        "combinationLabel": "Ultra-compact record docket + All monospace technical roles + Typewriter scroll reveal",
-        "discomfortReason": "Feels like an old government audit terminal, risking extreme dryness.",
-        "productLogicJustification": "Communicates flawless, strict execution authority where there is absolutely zero room for marketing fluff."
+        "combinationLabel": "None",
+        "discomfortReason": "None",
+        "productLogicJustification": "User provided direct visual reference driving this extreme luxury artistic pivot, with explicit dual-mode instructions."
       }
     },
     "anchorCandidates": {
       "mode": "agent-must-complete-before-ui-implementation",
       "blockingByDefault": true,
-      "candidates": [
-        {
-          "anchorReference": "Museum Custody Ledger and Conservation Inspection Report",
-          "conceptualFamily": "Archival preservation custody",
-          "jobFit": "Positions rules as verified custody logs protecting code provenance.",
-          "hierarchyImplication": "Archival folder header tab index leads main catalog log sheets.",
-          "densityImplication": "Variable: wide folder sleeve borders surrounding dense verification rows.",
-          "typeImplication": "Classical serif display, typewriter slab for logs, mono coordinates.",
-          "stateLanguage": "loading=Cataloging..., error=Provenance Defect, success=Archived & Sealed, warning=Verification Pending",
-          "motionImplication": "Heavy wax stamp drops with rotation; drawer folds slide on load.",
-          "whatItRulesOut": "Centered SaaS brochure, cyber terminal grid lines, floating glowing blobs.",
-          "renameTest": {
-            "testCategories": [
-              "fashion storefront",
-              "music streaming app",
-              "fitness tracker"
-            ],
-            "results": [
-              "incoherent",
-              "incoherent",
-              "incoherent"
-            ],
-            "verdict": "STRONG PASS"
-          },
-          "categoryCodeOverlap": "None."
-        },
-        {
-          "anchorReference": "Maritime soundings chart and navigational logbook",
-          "conceptualFamily": "Maritime logs",
-          "jobFit": "AI rule execution is navigation and soundings around structural hazards.",
-          "hierarchyImplication": "Navigation tracks side-by-side with telemetry logs.",
-          "densityImplication": "High-frequency numerical sounding markers.",
-          "typeImplication": "Heavy stencil sans-serif headings, thin technical logs.",
-          "stateLanguage": "loading=Plotting course..., error=Shoal Detected, success=Safe Waters, warning=Drift Warning",
-          "motionImplication": "Compass sweeps and grid aligns.",
-          "whatItRulesOut": "Marketing card templates and dashboard sidebars.",
-          "renameTest": {
-            "testCategories": [
-              "recipe builder",
-              "accounting app",
-              "kids drawing tool"
-            ],
-            "results": [
-              "incoherent",
-              "incoherent",
-              "incoherent"
-            ],
-            "verdict": "STRONG PASS"
-          },
-          "categoryCodeOverlap": "None."
-        },
-        {
-          "anchorReference": "Patent Registry Casefile and Examination Docket",
-          "conceptualFamily": "Patent inspection",
-          "jobFit": "AI outputs are treated as patent claims with explicit governance approvals.",
-          "hierarchyImplication": "Numbered claims indices with margin examiner notes.",
-          "densityImplication": "Highly dense legal clauses and reference dockets.",
-          "typeImplication": "Condensed typewriter serif headings, slab-serif body.",
-          "stateLanguage": "loading=Examining..., error=Invention Conflict, success=Claim Allowed, warning=Amendment Required",
-          "motionImplication": "Examiner redline strikethrough drawing animation.",
-          "whatItRulesOut": "Soft glassmorphism surfaces and generic grid outlines.",
-          "renameTest": {
-            "testCategories": [
-              "photo filter site",
-              "travel booking",
-              "calm meditation guide"
-            ],
-            "results": [
-              "incoherent",
-              "incoherent",
-              "incoherent"
-            ],
-            "verdict": "STRONG PASS"
-          },
-          "categoryCodeOverlap": "None."
-        },
-        {
-          "anchorReference": "Analog Audio Synthesizer Patch Bay",
-          "conceptualFamily": "Signal routing",
-          "jobFit": "Agentic Core modulates and patches noisy prompt frequencies into clean outputs.",
-          "hierarchyImplication": "Input jacks left, waveform oscilloscopes center, tuning knobs right.",
-          "densityImplication": "Grid alignment of patch inputs and parameter slider rows.",
-          "typeImplication": "Technical monospace uppercase param tags, industrial sans.",
-          "stateLanguage": "loading=Modulating..., error=Signal Clipping, success=Harmonized, warning=Frequency Drift",
-          "motionImplication": "Oscilloscope waves oscillating; patch cords draping and plugging.",
-          "whatItRulesOut": "Classic brochure heroes and paper textures.",
-          "renameTest": {
-            "testCategories": [
-              "real estate search",
-              "gardening scheduler",
-              "e-commerce cart"
-            ],
-            "results": [
-              "incoherent",
-              "incoherent",
-              "incoherent"
-            ],
-            "verdict": "STRONG PASS"
-          },
-          "categoryCodeOverlap": "None."
-        },
-        {
-          "anchorReference": "Vintage Meteorological Observatory Logbook",
-          "conceptualFamily": "Telemetry observation",
-          "jobFit": "Logs AI actions as high-frequency meteorological soundings.",
-          "hierarchyImplication": "Tabular barometer charts, altitude readings, daily sounding sheets.",
-          "densityImplication": "Highly dense micro-tables of atmospheric records.",
-          "typeImplication": "Cursive scripts for titles, typewriter numerals.",
-          "stateLanguage": "loading=Calibrating..., error=Turbulence Fault, success=Clear Skies, warning=Barometer Drop",
-          "motionImplication": "Ink line drawing curves; pressure gauges ticking.",
-          "whatItRulesOut": "Card dashboards and SaaS grids.",
-          "renameTest": {
-            "testCategories": [
-              "event planner",
-              "movie ticket checkout",
-              "crypto wallet"
-            ],
-            "results": [
-              "incoherent",
-              "incoherent",
-              "incoherent"
-            ],
-            "verdict": "STRONG PASS"
-          },
-          "categoryCodeOverlap": "None."
-        }
-      ]
+      "candidates": []
     },
     "finalAnchorContract": {
-      "name": "Museum Custody Ledger",
-      "anchorReference": "Museum Custody Ledger and Conservation Inspection Report",
-      "agentResearchMode": "web-research",
-      "sourceDomain": "museum-archiving-systems",
-      "specificReferencePoint": "Archival manila inspection sleeve with wax seals and redline provenance notes",
-      "rationale": "Frames AI-agent instruction enforcement as an audited museum custody record, guaranteeing structural discipline and code provenance.",
-      "signatureMotion": "wax seal drop + settle with rotational sway and slide drawer reveal",
-      "typographicDecision": "classic serif display, typewriter slab body, strict mono command blocks"
+      "name": "Fine Art Editorial & Gallery",
+      "anchorReference": "Fine Art Editorial & Gallery",
+      "agentResearchMode": "user-directed",
+      "sourceDomain": "luxury-art-gallery",
+      "specificReferencePoint": "Ebru Art Museum Exhibition Catalog",
+      "rationale": "Reverting back to the luxury, centered, serif-heavy reference image, while honoring the new requirement for dual color modes.",
+      "signatureMotion": "Extremely slow opacity fades, rejecting bouncy physical springs.",
+      "typographicDecision": "Cinzel (Classic Roman Serif) for display, widely tracked. Thin Sans-serif for body."
     }
   },
   "researchDossier": {
@@ -452,22 +178,26 @@
       "antiRepeatLedger": {
         "blocklistFromHistory": true,
         "ledgerScope": "signature-level-descriptors-only",
-        "ledgerMaxEntriesPerCategory": 3,
+        "ledgerMaxEntriesPerCategory": 4,
         "previousAnchors": [
-          "Flight progress strip rack (air traffic control)",
-          "Galley proof sheet with margin corrections (print production)"
+          "Premium Glassmorphic OS Interface",
+          "Premium Animated Glassmorphic OS",
+          "Flight progress strip rack"
         ],
         "previousPalettes": [
-          "warm paper base with teal and copper signal accents",
-          "cool proofsheet base with graphite ink, correction red, and approval teal"
+          "off-white and true black with translucent glass",
+          "animated pastel lighting bleeding through frosted glass",
+          "brushed aluminum and matte granite"
         ],
         "previousMotionSignatures": [
-          "snap-to-rail with cock-out warning offset",
-          "stamp drop + settle with margin slip"
+          "fluid spring hover lifts",
+          "infinite environmental mesh gradient",
+          "mechanical needle snap and over-rotate"
         ],
         "previousTypographyChoices": [
-          "Anek Latin + Instrument Sans + Martian Mono",
-          "Fraunces + Familjen Grotesk + Recursive"
+          "Inter exclusively with tight tracking",
+          "Oswald display, Inter body",
+          "Anek Latin + Instrument Sans"
         ]
       },
       "userExplicitRedesignBypassesFreshness": true,
@@ -483,21 +213,21 @@
     }
   },
   "derivedTokenLogic": {
-    "anchorReference": "Museum Custody Ledger and Conservation Inspection Report",
-    "colorDerivationSource": "Warm manila stock, graphite writing ink, vermillion wax seals, and conservation green define the visual tones.",
-    "spacingDerivationSource": "Wide archival folder borders and compact accession log rows form a variable spacing system.",
-    "typographyDerivationSource": "Classic display serif, typewriter slab for logging layers, strict mono for accession commands.",
-    "motionDerivationSource": "Tactile drawer pull slide reveals and rubber-stamped wax seals dropping with inertia rebound.",
+    "anchorReference": "Fine Art Editorial & Gallery",
+    "colorDerivationSource": "Light mode acts as warm ivory parchment. Dark mode acts as deep olive marbling canvas.",
+    "spacingDerivationSource": "Sparse, centered layouts.",
+    "typographyDerivationSource": "Cinzel for display, conveying timelessness.",
+    "motionDerivationSource": "Slow gallery lighting fades.",
     "colorSpace": "OKLCH",
-    "spatialBaseUnit": "4px base with 8px, 12px, 16px, 24px, 32px, 48px, and 64px multiples.",
-    "typeScaleMethod": "fluid clamp() scale with EB Garamond / Playfair Display headings and Courier Prime log body.",
-    "motionBudget": "micro 120-180ms, state 180-260ms, layout 260-420ms; reduced-motion swaps states with opacity.",
-    "validationRule": "Every semantic token role must trace back to the Museum Custody Ledger anchorReference.",
+    "spatialBaseUnit": "8px base.",
+    "typeScaleMethod": "fluid clamp() scale.",
+    "motionBudget": "micro 300ms, state 500ms, layout 1000ms.",
+    "validationRule": "Every semantic token role must trace back to the Fine Art anchorReference.",
     "tokenContinuityClassification": {
-      "typography": "anchor-derived",
-      "palette": "anchor-derived",
-      "motion": "anchor-derived",
-      "spacing": "anchor-derived",
+      "typography": "newly-introduced",
+      "palette": "newly-introduced",
+      "motion": "newly-introduced",
+      "spacing": "newly-introduced",
       "validValues": [
         "anchor-derived",
         "continuity-retained",
@@ -508,7 +238,7 @@
     }
   },
   "motionPaletteDecision": {
-    "productCategorySignal": "developer-tool landing page representing museum-grade custody and code provenance verification",
+    "productCategorySignal": "luxury editorial",
     "densityDecisionSource": "task-content-brand-device-accessibility",
     "requiredInteractionStates": [
       "default",
@@ -522,32 +252,25 @@
       "success",
       "transition"
     ],
-    "paletteAutopilotRisks": [
-      "dark-slate-default",
-      "cream-beige-default",
-      "purple-blue-gradient-default",
-      "monochrome-template-default",
-      "cyber-neon-terminal-default"
-    ],
-    "spatialDecision": "Depth is created through stamped wax seals, overlapping folder tabs, and sliding drawer reveals."
+    "paletteAutopilotRisks": [],
+    "spatialDecision": "Flat canvas with elements fading in and out of the parchment/darkness."
   },
   "aiSafeUiAudit": {
     "status": "active",
-    "failureDefinition": "AI-safe UI uses generic dashboard templates, standard Inter fonts, grid/line background wallpapers, glow fields, or placeholder copy.",
-    "interchangeabilityTest": "Renaming agentic-senior-core-site to any other category must break the visual metaphors. Stamped wax seals and archival custody folders are highly specific.",
+    "failureDefinition": "Apple glassmorphism, animated background gradients, chunky buttons, off-center alignments.",
+    "interchangeabilityTest": "Pass.",
     "requiredProductSpecificSignals": [
-      "archival-manila-sleeve-grid-and-creases",
-      "wax-custody-stamps-encoding-rule-verification",
-      "accession-receipt-cli-installation-slab"
+      "centered-serif-typography",
+      "copper-gold-accents"
     ],
-    "paletteExplorationRule": "Warm manila stock with graphite ink, vermillion wax seals, and conservation green.",
-    "backgroundPatternRule": "No background grid wallpapers or flowing blobs; page utilizes layered folder surfaces only.",
+    "paletteExplorationRule": "Warm ivory for light mode, deep olive/black for dark mode.",
+    "backgroundPatternRule": "Subtle gradients or flat colors, no animated meshes.",
     "aiColorAudit": {
       "status": "active",
       "failureDefinition": "Defaulting to typical cream or dark slate without concrete anchor derivation.",
       "requiredEvidence": [
-        "manila-and-graphite-ink-contrast-roles",
-        "vermillion-wax-stamp-redline-accents"
+        "copper-on-parchment",
+        "gold-on-dark-canvas"
       ],
       "reviewQuestion": "Why does this palette belong to this product?"
     },
@@ -558,9 +281,9 @@
         "spatial-or-3d-fit",
         "performance-and-reduced-motion-fallback"
       ],
-      "signature-motion-or-interaction": "wax seal drop + settle with inertia tilt",
-      "spatial-or-3d-fit": "No WebGL; depth uses layered folder slips and stamped seals.",
-      "performance-and-reduced-motion-fallback": "Reduced motion swaps states with opacity.",
+      "signature-motion-or-interaction": "slow opacity fades",
+      "spatial-or-3d-fit": "Flat canvas.",
+      "performance-and-reduced-motion-fallback": "Instant display.",
       "rejectionRule": "Specify replacement interaction quality.",
       "reviewQuestion": "Is the interaction as expressive as the product can support?"
     },
@@ -568,8 +291,8 @@
   },
   "productionContentPolicy": {
     "status": "active",
-    "userFacingCopyRule": "Visible UI copy must be product-ready, task-specific, and bilingual (English/Indonesian) inline to express the premium core-site brand. No testing, demo, or placeholder labels.",
-    "terminalDependencyRule": "Terminal commands are styled as registration receipts, maintaining high-fidelity typography.",
+    "userFacingCopyRule": "Visible UI copy must be product-ready.",
+    "terminalDependencyRule": "Terminal commands are styled as fine art plates.",
     "allowedExceptions": [
       "test-harness-only"
     ],
@@ -579,28 +302,19 @@
   "libraryDecisions": [
     {
       "library": "framer-motion",
-      "purpose": "folder slide-reveals and wax stamp gravity settling",
+      "purpose": "slow fades",
       "status": "existing-dependency",
       "verifiedAt": "2026-05-24",
       "sourceUrl": "https://www.framer.com/motion/",
       "stableVersion": "12.40.0",
-      "fallbackIfUnavailable": "CSS animations"
-    },
-    {
-      "library": "lucide-react",
-      "purpose": "archival catalog iconography",
-      "status": "existing-dependency",
-      "verifiedAt": "2026-05-24",
-      "sourceUrl": "https://lucide.dev/",
-      "stableVersion": "1.16.0",
-      "fallbackIfUnavailable": "inline SVGs"
+      "fallbackIfUnavailable": "CSS transitions"
     }
   ],
   "mathSystems": {
-    "typographyScaleRatio": "1.25 (display serif) / 1.08 (body typewriter)",
-    "baseGridUnit": "4px",
-    "spacingPattern": "4/8/12/16/24/32/48/64",
-    "densityMode": "variable-density folder layout",
+    "typographyScaleRatio": "1.414",
+    "baseGridUnit": "8px",
+    "spacingPattern": "8/16/32/64/128",
+    "densityMode": "extremely sparse",
     "seedValuesRequireCalibration": false
   },
   "tokenSystem": {
@@ -646,41 +360,37 @@
     "allowHexDerivatives": true,
     "requirePerceptualLightnessCurve": true,
     "paletteRoles": [
-      "base-stock",
-      "ink-primary",
-      "ink-muted",
-      "stamp-approval",
-      "stamp-correction",
-      "stamp-caution",
-      "neutral-border",
-      "neutral-surface"
+      "base-surface",
+      "text-primary",
+      "text-muted",
+      "border-fine"
     ],
     "rolePolicy": "minimum-semantic-scaffold",
     "rolesAreMinimumScaffold": true,
     "rolesMustBeAgentDefined": true,
     "forbidAutopilotPalettesWithoutEvidence": true,
-    "intent": "Warm manila folder base with rich graphite ink and vermillion/conservation wax seals."
+    "intent": "Warm Ivory/Parchment with Dark Copper (Light). Dark Canvas with Gold (Dark)."
   },
   "crossViewportAdaptation": {
     "adaptByRecomposition": true,
     "touchTargetMinPx": 44,
     "mutationRules": {
-      "mobile": "Folder tabs stack; accession receipt moves under top fold; provenance logs collapse below sections.",
-      "tablet": "Two-column record folders; receipt floats near center; stamps display inline.",
-      "desktop": "Expansive Manila sleeve with full left-aligned index tab lanes and right-aligned provenance marginalia."
+      "mobile": "Text scales down, remains centered.",
+      "tablet": "Centered flow.",
+      "desktop": "Expansive centered layout."
     }
   },
   "motionSystem": {
     "allowMeaningfulMotion": true,
-    "purpose": "Express status validation and provenance seals.",
+    "purpose": "Express timeless calm.",
     "seedToneLocked": false,
     "densitySource": "task-content-brand-device-accessibility",
     "respectReducedMotion": true,
     "budget": {
-      "micro": "120-180ms",
-      "state": "180-260ms",
-      "layout": "260-420ms",
-      "stagger": "50-90ms"
+      "micro": "300ms",
+      "state": "500ms",
+      "layout": "1000ms",
+      "stagger": "150ms"
     }
   },
   "componentMorphology": {
@@ -692,23 +402,16 @@
       "hover",
       "focus-visible",
       "active",
-      "disabled",
-      "loading",
-      "empty",
-      "error",
-      "success"
+      "disabled"
     ],
     "patterns": [
-      "manila-sleeve",
-      "wax-seal",
-      "accession-receipt",
-      "provenance-ledger",
-      "evidence-playback"
+      "exhibition-plate",
+      "thin-border-button"
     ],
     "viewportBehavior": {
-      "mobile": "Tabs stack; receipt moves under top fold; logs collapse.",
-      "tablet": "Two-column record folders; stamps inline.",
-      "desktop": "Expansive Manila sleeve, left tab lanes, right provenance marginalia."
+      "mobile": "Stack vertically.",
+      "tablet": "Stack vertically.",
+      "desktop": "Expansive layout."
     }
   },
   "accessibilityPolicy": {
@@ -770,276 +473,24 @@
     "status": "active",
     "seedMode": "refined",
     "requiresTaskSpecificRefinement": true,
-    "primaryExperienceGoal": "Transform the public landing into an audited archival experience where developers verify and trust instruction compliance.",
+    "primaryExperienceGoal": "Revert to the gallery masterpiece aesthetic but with robust dual mode support.",
     "surfacePlan": [
       {
-        "surfaceId": "manila-sleeve-hero",
+        "surfaceId": "hero-typography",
         "role": "primary-decision",
-        "goal": "Introduce the product promise using a folder sleeve structure and inline accession receipts.",
+        "goal": "Massive, centered Serif typography on Ivory/Olive canvas.",
         "antiPatterns": [
-          "centered-hero-template",
-          "glow-background-blobs"
+          "tech-sans-serif"
         ]
       },
       {
-        "surfaceId": "provenance-ledger",
+        "surfaceId": "footer-links",
         "role": "evidence",
-        "goal": "Display rules as audited custody checks with wax stamp indicators.",
+        "goal": "Properly styled, centered, fine-accented footer.",
         "antiPatterns": [
-          "three-up-card-grid"
-        ]
-      },
-      {
-        "surfaceId": "accession-receipt-install",
-        "role": "task",
-        "goal": "Provide direct setup runbook styled as an official print receipt.",
-        "antiPatterns": [
-          "standard-plain-slate-terminal-box"
+          "unstyled-text-blocks"
         ]
       }
-    ],
-    "componentGraph": {
-      "nodes": [
-        {
-          "id": "manila-sleeve",
-          "role": "primary",
-          "priority": "high"
-        },
-        {
-          "id": "wax-seal",
-          "role": "status",
-          "priority": "high"
-        },
-        {
-          "id": "accession-receipt",
-          "role": "task",
-          "priority": "high"
-        }
-      ],
-      "edges": [
-        {
-          "from": "manila-sleeve",
-          "to": "accession-receipt",
-          "relationship": "handoff"
-        }
-      ]
-    },
-    "contentPriorityMap": {
-      "primary": [
-        "accession receipt CLI setup",
-        "custody title statement"
-      ],
-      "secondary": [
-        "wax custody seals",
-        "provenance ledger"
-      ],
-      "deferred": [
-        "accession index depth links",
-        "archival footer metadata"
-      ]
-    },
-    "viewportMutationPlan": {
-      "mobile": {
-        "primaryOperation": "sleeve first, stamps stack below",
-        "requiredSurfaceActions": [
-          "keep accession CLI slab visible",
-          "stack provenance ledger rows"
-        ],
-        "forbiddenPatterns": [
-          "scale-only-shrink"
-        ],
-        "rationale": "Prioritizes immediate onboarding and installation on mobile viewports."
-      },
-      "desktop": {
-        "primaryOperation": "expansive Manila sleeve, left index tabs, right marginalia",
-        "requiredSurfaceActions": [
-          "display wax seals in vertical custody lane",
-          "keep margin annotations inline"
-        ],
-        "forbiddenPatterns": [
-          "interchangeable-dashboard-template-chrome"
-        ],
-        "rationale": "Leverages full horizontal space to mimic an opened document drawer."
-      }
-    },
-    "interactionStateMatrix": [
-      {
-        "componentId": "wax-seal",
-        "states": [
-          "default",
-          "hover",
-          "active"
-        ],
-        "notes": "Drops with gravitational slide and settle; hover causes micro-shadow offsets."
-      }
-    ],
-    "expressionFlexibility": {
-      "lockedOutcomes": [
-        "folder sleeve layout",
-        "wax seal verification badge",
-        "accession receipt installer",
-        "accessibility compliance floor"
-      ],
-      "candidateSignatureMoves": [
-        "wax seals stamp drop + settle"
-      ],
-      "flexibleAxes": [
-        "exact manila hue primitives",
-        "exact serif family choice"
-      ],
-      "lockingRule": "Lock flexible values after design review and human approval."
-    },
-    "taskFlowNarrative": [
-      "Accession: read the audited custody statement and view wax verification seals.",
-      "Registration: execute the receipt installation command.",
-      "Auditing: verify generated rules inside the evidence tray."
-    ],
-    "visualResetStrategy": {
-      "activatesWhenUserRequests": [
-        "redesign from zero",
-        "redesain dari 0"
-      ],
-      "existingUiAllowedAs": [
-        "content-evidence",
-        "behavior-evidence"
-      ],
-      "existingUiForbiddenAs": [
-        "palette-source",
-        "layout-source",
-        "motion-source"
-      ],
-      "requiredResetAxes": [
-        "composition",
-        "hierarchy",
-        "motion-or-interaction",
-        "responsive-information-architecture"
-      ]
-    },
-    "signatureMoveRationale": "Interactive drops of wax seals provide instant visual reinforcement of code security and rule enforcement.",
-    "creativeCommitment": {
-      "status": "complete",
-      "specificReferencePoint": "Archival manila inspection sleeve with wax seals and redline provenance notes",
-      "signatureMotion": "wax seal drop + settle with inertia tilt",
-      "typographicDecision": "serif display for catalog headers; typewriter slab for logs; mono for accession commands"
-    },
-    "implementationGuardrails": {
-      "requireBuildFromHandoff": true,
-      "requireGapNotesBeforeFallback": true,
-      "forbidGenericLayoutFallbackWithoutReason": true,
-      "requireLockedVsFlexibleDecisionReview": true,
-      "forbidCandidateMoveHardcoding": true,
-      "forbidTestingDemoCopyInUi": true,
-      "forbidTerminalOnlyUserFlows": true
-    }
-  },
-  "reviewRubric": {
-    "version": "ui-rubric-v1",
-    "genericityAutoFail": true,
-    "dimensions": [
-      {
-        "key": "distinctiveness",
-        "blockingByDefault": true,
-        "question": "Does the UI reflect the Museum Custody Ledger anchor?"
-      }
-    ],
-    "genericitySignals": [
-      "standard-dashboard-template",
-      "grid-wallpaper-lines",
-      "glow-field-backgrounds",
-      "placeholder-lorem-copy"
-    ],
-    "validBoldSignals": [
-      "museum-custody-manila-sleeve",
-      "wax-impression-seals",
-      "bilingual-indonesian-english-provenance-copy"
-    ],
-    "reportingRules": {
-      "mustExplainGenericity": true,
-      "mustSeparateTasteFromFailure": true,
-      "contractFidelityOverridesPersonalTaste": true
-    }
-  },
-  "contextHygiene": {
-    "continuityMode": "opt-in-only",
-    "allowedSources": [
-      "current-repo-evidence",
-      "current-user-brief",
-      "current-project-docs"
-    ],
-    "taintedSources": [
-      "prior-chat-visual-memory",
-      "unrelated-project-aesthetics"
-    ],
-    "repoEvidenceOverridesMemory": true,
-    "requireExplicitContinuityApproval": true,
-    "forbidCarryoverWhenUnapproved": true,
-    "approvedExternalConstraintUsage": "Convert references into custom rules; never copy visuals.",
-    "externalWebsiteReferencePolicy": "Do not copy layout rhythm, palette, or visual metaphor.",
-    "driftSignals": [
-      "palette-reused-without-brief-support"
     ]
-  },
-  "forbiddenPatterns": [
-    "ai-safe-ui-template-look",
-    "ai-color-default-palette-without-product-role-behavior",
-    "brandless-clean-template-look",
-    "interchangeable-product-renaming-test-fails",
-    "decorative-grid-or-glow-wallpaper-without-product-function",
-    "decorative-line-or-calibration-wallpaper-without-product-function",
-    "testing-demo-or-placeholder-copy-shipped-to-ui",
-    "terminal-only-user-flow-without-product-reason",
-    "glassmorphism-default",
-    "floating-blobs"
-  ],
-  "validationHints": [
-    "rejectArbitraryHexOnlyPalette",
-    "requireViewportMutationRules",
-    "requireWcagHardFloor",
-    "requireThreeProductSpecificSignals"
-  ],
-  "requiredDesignSections": [
-    "Design Intent and Product Personality",
-    "Audience and Use-Context Signals",
-    "Visual Direction and Distinctive Moves",
-    "Color, Typography, Spacing, and Density Decisions",
-    "Token Architecture and Alias Strategy",
-    "Responsive Strategy and Cross-Viewport Adaptation Matrix",
-    "Motion and Interaction Rules",
-    "Component Language and Morphology",
-    "Context Hygiene and Source Boundaries",
-    "Accessibility Non-Negotiables",
-    "Anti-Patterns to Avoid",
-    "Implementation Notes for Future UI Tasks"
-  ],
-  "implementation": {
-    "requiredDeliverables": [
-      "docs/DESIGN.md",
-      "docs/design-intent.json",
-      "docs/doc-index.md"
-    ],
-    "requireDesignRationale": true,
-    "requireDistinctVisualDirection": true,
-    "requireMachineReadableContract": true,
-    "bootstrapPrompt": ".agent-context/prompts/bootstrap-design.md",
-    "autoLoadedRuleFiles": [
-      ".agent-context/prompts/bootstrap-design.md",
-      ".agent-context/prompts/research-design.md",
-      ".agent-context/rules/frontend-architecture.md"
-    ]
-  },
-  "repoEvidence": {
-    "existingComponents": [
-      "Hero",
-      "Features",
-      "Installation",
-      "TerminalDemo",
-      "Navbar",
-      "Footer"
-    ],
-    "existingLibraries": [
-      "framer-motion",
-      "lucide-react"
-    ],
-    "behaviorEvidenceOnly": true
   }
 }

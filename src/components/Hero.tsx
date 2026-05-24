@@ -1,18 +1,4 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, FileCheck, Layers } from 'lucide-react';
-
-const coreRulesList = [
-  {
-    title: 'Scope-Aware Rules',
-    description: 'Loads only the instruction layers matching the active project surface, maximizing token and context efficiency.',
-    icon: <Layers size={24} />
-  },
-  {
-    title: 'Evidence-Preserving Trails',
-    description: 'Maintains absolute proof and reasoning logs permanently attached to every codebase modification.',
-    icon: <FileCheck size={24} />
-  }
-];
 
 export default function Hero() {
   const containerVariants = {
@@ -20,77 +6,53 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: 0.5,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { scale: 0.98, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
-      scale: 1,
+      y: 0,
       opacity: 1,
-      transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const },
+      transition: { duration: 1.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section className="section hero" id="top" aria-label="Project Core Release Deck">
-      <div className="container case-grid">
+    <section className="section" id="top" aria-label="Project Core Release Deck" style={{ width: '100%', paddingTop: '60px' }}>
+      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <motion.div
-          className="case-main"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
-          <motion.div variants={itemVariants} className="case-meta">
-            <span className="case-chip">Release</span>
-            <span className="case-chip">Workspace Core Pack</span>
+          <motion.div variants={itemVariants} className="eyebrow" style={{ marginBottom: '24px', color: 'var(--color-accent)' }}>
+            AGENTIC SENIOR CORE
           </motion.div>
 
-          <motion.p variants={itemVariants} className="eyebrow">
-            Strict Rule & Checklist Enforcement
-          </motion.p>
-
-          <motion.h1 variants={itemVariants} className="heading-xl">
-            Ship AI-generated code with absolute proof, not guesswork.
+          <motion.h1 variants={itemVariants} className="heading-xl" style={{ marginBlockEnd: '24px' }}>
+            ABSOLUTE <br/> PROOF.
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lead">
-            A multi-layered workspace oversight tool that enforces architecture, security, 
-            and test discipline across Cursor, Windsurf, Claude Code, Gemini and Any IDE.
+          <motion.div variants={itemVariants} className="gold-line"></motion.div>
+
+          <motion.p variants={itemVariants} className="text-lead" style={{ marginBlockEnd: '40px' }}>
+            The strict oversight tool for AI engineering. <br/> Every line, every rule, enforced flawlessly.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="cta-row">
-            <a href="#install" className="btn btn-primary" title="Begin setup protocol">
-              Install Rule Pack <ArrowRight size={18} aria-hidden="true" />
+          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '32px', justifyContent: 'center' }}>
+            <a href="#install" className="btn btn-primary" title="Artist Application">
+              INITIALIZE
             </a>
-            <a href="#demo" className="btn btn-secondary" title="View historical audit log">
-              Watch Demo Playback
+            <a href="#demo" className="btn btn-primary" style={{ border: 'none' }} title="Collab Request">
+              VIEW PLAYBACK
             </a>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="case-command">
-            <div className="command-label">Installation Gate</div>
-            <div className="case-command-body">
-              <span className="command-caret">$</span>
-              <code>npx @ryuenn3123/agentic-senior-core init</code>
-            </div>
           </motion.div>
         </motion.div>
-      </div>
-
-      <div className="container proof-stack" aria-label="Core Rules Details">
-        {coreRulesList.map((rule) => (
-          <div key={rule.title} className="proof-card">
-            <div className="proof-icon" aria-hidden="true">{rule.icon}</div>
-            <div>
-              <div className="proof-title">{rule.title}</div>
-              <div className="proof-desc">{rule.description}</div>
-            </div>
-          </div>
-        ))}
       </div>
     </section>
   );
