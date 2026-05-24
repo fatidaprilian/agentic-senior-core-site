@@ -1,70 +1,55 @@
 import { motion } from 'framer-motion';
-import { Layers, Zap, Cpu, Code2 } from 'lucide-react';
 
-const features = [
+const featureList = [
   {
-    icon: <Layers size={24} />,
-    title: 'Adaptive Context',
-    description: 'Dynamically loads rules based on the scope of the task. Keep context compact and relevant.',
+    code: 'F-01',
+    title: 'Dynamic Scope Filtering',
+    description: 'Loads only the rule files required by the current task surface and hides the rest to minimize context noise.',
   },
   {
-    icon: <Zap size={24} />,
-    title: 'Token Optimization',
-    description: 'Use ascx wrappers to compress noisy output, preserving crucial evidence without token bloat.',
+    code: 'F-02',
+    title: 'Oversight Evidence Trail',
+    description: 'Preserves the complete reasoning trail and rule check history permanently inside your workspace.',
   },
   {
-    icon: <Cpu size={24} />,
-    title: 'IDE Agnostic',
-    description: 'No vendor lock-in. Works effortlessly with Cursor, Windsurf, Copilot, and Gemini natively.',
+    code: 'F-03',
+    title: 'Unified Checklist Gates',
+    description: 'Enforces strict architecture, security, UI design, and testing checklists automatically before any commit.',
   },
   {
-    icon: <Code2 size={24} />,
-    title: 'Production-Grade',
-    description: 'Pre-configured rules for architecture, security, performance, and UI design synthesis.',
+    code: 'F-04',
+    title: 'Compact Token Memory',
+    description: 'Optimizes code logs while preserving core context, maximizing token and context window efficiency.',
   }
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="section" style={{ position: 'relative', zIndex: 10 }}>
+    <section id="features" className="section section-band" aria-label="Product Features Ledger">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <h2 className="heading-lg">Why Agentic-Senior-Core?</h2>
-          <p className="text-lead" style={{ margin: '16px auto 0 auto' }}>
-            Elevate your AI agent\'s decision-making process with structured governance.
+        <div className="section-head">
+          <h2 className="heading-lg">Verification & Oversight Ledger</h2>
+          <p className="text-lead">
+            Every rule capability is structured as a verifiable gate you can audit, not a promise you must trust.
           </p>
         </div>
-        
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          gap: '32px' 
-        }}>
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              className="glass-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+
+        <div className="evidence-ledger">
+          {featureList.map((item, index) => (
+            <motion.article
+              key={item.code}
+              className="evidence-row"
+              initial={{ opacity: 0, scale: 0.98, rotate: -0.4 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: index * 0.05, duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
             >
-              <div style={{ 
-                width: '48px', 
-                height: '48px', 
-                borderRadius: '12px', 
-                background: 'var(--primary-light)',
-                color: 'var(--primary-color)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '20px'
-              }}>
-                {feature.icon}
+              <div className="evidence-code">{item.code} // FEATURE</div>
+              <div>
+                <h3 className="heading-md">{item.title}</h3>
+                <p className="text-body" style={{ marginBlockStart: '8px' }}>{item.description}</p>
               </div>
-              <h3 className="heading-md" style={{ marginBottom: '12px' }}>{feature.title}</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>{feature.description}</p>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

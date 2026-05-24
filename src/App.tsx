@@ -3,24 +3,22 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Installation from './components/Installation';
 import TerminalDemo from './components/TerminalDemo';
+import Documentation from './components/Documentation';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <>
-      <div className="bg-blob bg-blob-1"></div>
-      <div className="bg-blob bg-blob-2"></div>
-      <div className="bg-blob bg-blob-3"></div>
-      
       <Navbar />
-      
-      <main>
+
+      <main className="page">
         <Hero />
         <Features />
         <Installation />
         <TerminalDemo />
+        <Documentation />
       </main>
-      
+
       <Footer />
     </>
   );

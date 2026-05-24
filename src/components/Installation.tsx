@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { Terminal as TerminalIcon, Copy, Check } from 'lucide-react';
+import { Archive, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
 
-const CodeBlock = ({ command, label }: { command: string, label: string }) => {
+const SetupCodeBlock = ({ command, label }: { command: string, label: string }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -12,40 +12,17 @@ const CodeBlock = ({ command, label }: { command: string, label: string }) => {
   };
 
   return (
-    <div style={{ marginBottom: '24px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-        <h4 style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--text-primary)' }}>{label}</h4>
+    <div className="command-strip" aria-label={`CLI Command for ${label}`}>
+      <div className="command-header">
+        <span className="command-label">{label}</span>
       </div>
-      <div style={{ 
-        background: 'var(--term-bg)', 
-        borderRadius: '12px', 
-        padding: '16px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        border: '1px solid var(--term-border)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', overflowX: 'auto' }}>
-          <TerminalIcon size={16} color="var(--term-prompt)" />
-          <code style={{ color: 'var(--term-text)', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>
-            {command}
-          </code>
+      <div className="command-body">
+        <div className="command-code">
+          <Archive size={16} className="command-icon" aria-hidden="true" />
+          <code>{command}</code>
         </div>
-        <button 
-          onClick={handleCopy}
-          style={{ 
-            color: copied ? 'var(--term-success)' : 'var(--term-muted)',
-            background: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '4px',
-            marginLeft: '12px'
-          }}
-          aria-label="Copy code"
-        >
-          {copied ? <Check size={18} /> : <Copy size={18} />}
+        <button onClick={handleCopy} className="icon-button" aria-label="Copy Command Code">
+          {copied ? <Check size={18} style={{ color: 'var(--color-stamp-approve)' }} /> : <Copy size={18} />}
         </button>
       </div>
     </div>
@@ -54,47 +31,53 @@ const CodeBlock = ({ command, label }: { command: string, label: string }) => {
 
 export default function Installation() {
   return (
-    <section id="install" className="section" style={{ position: 'relative', zIndex: 10 }}>
+    <section id="install" className="section section-band" aria-label="Installation Registry">
       <div className="container">
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <motion.div 
-            className="glass-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="heading-lg" style={{ marginBottom: '16px' }}>Installation & Usage</h2>
-            <p className="text-lead" style={{ marginBottom: '40px' }}>
-              Add production-grade rules to your AI workspace in seconds. Works instantly with your favorite LLM-powered IDE.
+        <motion.div
+          className="runbook-shell"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
+        >
+          <div className="runbook-summary">
+            <h2 className="heading-lg">Installation & Upgrades</h2>
+            <p className="text-lead">
+              Initialize the oversight rule pack, then keep it current with managed upgrades.
             </p>
+          </div>
 
-            <CodeBlock 
-              label="1. Install & Initialize" 
-              command="npx @ryuenn3123/agentic-senior-core init" 
-            />
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '0.95rem' }}>
-              Initializes <code>AGENTS.md</code>, native import bridges, checklists, policies, state files, and the lazy <code>.agent-context/</code> rule library. Token optimization and Compact Natural Mode are enabled by default.
-            </p>
+          <div className="runbook-steps">
+            <div className="runbook-step">
+              <SetupCodeBlock
+                label="Step 1: Initialize Workspace Rules"
+                command="npx @ryuenn3123/agentic-senior-core init"
+              />
+              <p className="text-body" style={{ marginBlockStart: '8px' }}>
+                Creates <code>AGENTS.md</code>, import bridges, checklists, policies, state files, and the <code>.agent-context/</code> rules catalog automatically. Token optimization is enabled by default.
+              </p>
+            </div>
 
-            <CodeBlock 
-              label="2. Upgrade Managed Rules" 
-              command="npx @ryuenn3123/agentic-senior-core upgrade --yes" 
-            />
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '0.95rem' }}>
-              Preview changes with <code>--dry-run</code>, then apply with <code>--yes</code>. Upgrade prunes obsolete managed files by default. User-owned files without Agentic markers are never overwritten.
-            </p>
+            <div className="runbook-step">
+              <SetupCodeBlock
+                label="Step 2: Managed Upgrades"
+                command="npx @ryuenn3123/agentic-senior-core upgrade --yes"
+              />
+              <p className="text-body" style={{ marginBlockStart: '8px' }}>
+                Updates to the latest official rules while preserving all your custom, user-owned instructions safely.
+              </p>
+            </div>
 
-            <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid var(--border-color)' }}>
-              <h3 className="heading-md" style={{ marginBottom: '16px' }}>Options</h3>
-              <ul style={{ color: 'var(--text-secondary)', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <li>Add <code>--mcp-template</code> to generate VS Code MCP workspace config.</li>
-                <li>Add <code>--no-token-optimize</code> only when you do not want ASCX command guidance enabled.</li>
-                <li>Add <code>--local-only</code> to ignore instructions in <code>.gitignore</code> so they are not pushed to GitHub.</li>
+            <div className="runbook-options">
+              <h3 className="heading-md">Setup Options</h3>
+              <ul className="option-list">
+                <li>Add <code>--mcp-template</code> to generate MCP workspace configs for VS Code.</li>
+                <li>Add <code>--no-token-optimize</code> if you prefer to disable compact natural model instructions.</li>
+                <li>Add <code>--local-only</code> to ignore instructions in <code>.gitignore</code> so they are not pushed to remote repositories.</li>
               </ul>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
