@@ -209,6 +209,18 @@ button {
   gap: 24px;
 }
 
+.theme-toggle {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.5s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--color-accent);
+}
+
 /* Editorial Buttons */
 .btn {
   display: inline-flex;

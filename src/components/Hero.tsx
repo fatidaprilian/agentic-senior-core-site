@@ -23,7 +23,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="section" id="top" aria-label="Project Core Release Deck" style={{ width: '100%', paddingTop: '60px' }}>
+    <section className="section" id="top" aria-label="Project Core Release Deck" style={{ width: '100%', minHeight: 'calc(100vh - 120px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <motion.div
           variants={containerVariants}
@@ -36,7 +36,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1 variants={itemVariants} className="heading-xl" style={{ marginBlockEnd: '24px' }}>
-            ABSOLUTE <br/> PROOF.
+            FLAWLESS <br/> EXECUTION.
           </motion.h1>
 
           <motion.div variants={itemVariants} className="gold-line"></motion.div>
