@@ -2,8 +2,8 @@ export default function Footer() {
   return (
     <footer className="footer" aria-label="Archival Footer Registry">
       <div className="container footer-inner">
-        <div className="brand" style={{ flexDirection: 'column', gap: '8px' }}>
-          <span className="brand-name" style={{ fontSize: '1.5rem' }}>A. S. C.</span>
+        <div>
+          <span className="brand-logo" style={{ fontSize: '1.2rem', color: 'var(--text-primary)' }}>asc</span>
         </div>
         
         <div className="footer-links">
@@ -13,14 +13,15 @@ export default function Footer() {
             rel="noopener noreferrer"
             title="GitHub Repository"
           >
-            REPOSITORY
+            GitHub Repository
           </a>
-          <a href="#install" title="Accession Setup">ACCESSION</a>
-          <a href="#docs" title="Accession Indexes">ARCHIVES</a>
+          <a href="#install" title="Accession Setup">Install Guide</a>
+          <a href="#features" title="Features List">Features</a>
+          <a href="#docs" title="Archive Links">Archives</a>
         </div>
         
         <p className="footer-note">
-          RELEASED UNDER THE MIT LICENSE. USE FREELY, ENFORCE STRICTLY.
+          RELEASED UNDER THE MIT LICENSE. CURATE SCIENTIFICALLY, ENFORCE STRICTLY.
         </p>
       </div>
     </footer>

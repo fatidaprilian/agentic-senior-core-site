@@ -1,51 +1,87 @@
+import { motion } from 'framer-motion';
+
 const docs = [
   {
     code: 'DOC-01',
-    title: 'AGENTS.md',
-    description: 'Canonical governance contract and agent instructions baseline.',
-    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/AGENTS.md'
+    title: 'FAQ Manual',
+    description: 'Frequently asked questions covering path exclusion, local snaps, and custom rule extensions.',
+    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/faq.md'
   },
   {
     code: 'DOC-02',
-    title: '.agent-context',
-    description: 'Library containing Layer 1 to 9 guidelines.',
-    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/tree/main/.agent-context'
+    title: 'Deep Dive Internals',
+    description: 'Detailed analysis of ascx interceptors, tee outputs, active memory logs, and rule metrics.',
+    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/deep-dive.md'
   },
   {
     code: 'DOC-03',
-    title: 'Policies',
-    description: 'Strict thresholds, security checks, and checklists.',
-    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/tree/main/.agent-context/rules'
+    title: 'Integration Playbook',
+    description: 'Step-by-step guidance to bind the rules engine to Cursor, Windsurf, Claude Code, and Copilot.',
+    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/integration-playbook.md'
+  },
+  {
+    code: 'DOC-04',
+    title: 'Benchmark & Stack Reference',
+    description: 'Token optimization logs, caching boundaries, and provider-free benchmarks.',
+    href: 'https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/benchmark-reference.md'
   }
 ];
 
 export default function Documentation() {
   return (
-    <section id="docs" style={{ paddingBlock: '60px', width: '100%' }} aria-label="Reference Documentation">
+    <section id="docs" className="section" aria-label="Reference Documentation">
       <div className="container">
-        <div style={{ marginBottom: '80px', maxWidth: '800px', textAlign: 'center', marginInline: 'auto' }}>
-          <h2 className="heading-lg" style={{ marginBottom: '40px' }}>ARCHIVE</h2>
-          <div className="gold-line"></div>
-          <p className="text-lead" style={{ marginInline: 'auto' }}>
-            Stored file-first in your workspace. Audit, customize, and version-control all rules effortlessly.
+        <div style={{ marginBottom: '64px', maxWidth: '800px', textAlign: 'center', marginInline: 'auto' }}>
+          <span style={{ 
+            color: 'var(--color-accent)', 
+            fontSize: '0.8rem', 
+            fontWeight: 600, 
+            letterSpacing: '0.15em', 
+            textTransform: 'uppercase' 
+          }}>
+            Archive Registry
+          </span>
+          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '24px' }}>
+            Comprehensive Reference
+          </h2>
+          <p className="text-lead">
+            Every file, standard operating procedure, and deep-dive technical manual is stored file-first in your workspace.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px' }}>
+        <div className="bento-grid">
           {docs.map((doc, i) => (
-            <a 
+            <motion.a 
               key={i} 
-              className="exhibition-plate" 
+              className="bento-card" 
               href={doc.href} 
               target="_blank" 
               rel="noopener noreferrer"
               title={`Read ${doc.title}`}
-              style={{ display: 'block', cursor: 'pointer' }}
+              style={{ display: 'flex', cursor: 'pointer', textDecoration: 'none' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="eyebrow" style={{ marginBottom: '16px', color: 'var(--color-accent)' }}>{doc.code}</div>
-              <div className="heading-md" style={{ marginBottom: '24px', color: 'var(--text-primary)' }}>{doc.title}</div>
-              <p className="text-body" style={{ maxWidth: '280px', marginInline: 'auto' }}>{doc.description}</p>
-            </a>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <span style={{ 
+                    fontSize: '0.75rem', 
+                    fontFamily: 'var(--font-mono)', 
+                    color: 'var(--color-accent)', 
+                    fontWeight: 600,
+                    background: 'var(--hover-bg)',
+                    padding: '4px 8px',
+                    borderRadius: '4px'
+                  }}>
+                    {doc.code}
+                  </span>
+                </div>
+                <h3 className="heading-md" style={{ marginBottom: '12px' }}>{doc.title}</h3>
+                <p className="text-body" style={{ color: 'var(--text-muted)' }}>{doc.description}</p>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>

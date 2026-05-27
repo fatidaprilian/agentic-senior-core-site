@@ -14,43 +14,54 @@
     "runtimeConstraint": "react-vite-framer-motion",
     "architectureConstraint": "single-page-landing"
   },
-  "designPhilosophy": "Strict rule enforcement presented as timeless fine art. We reject modern SaaS conventions and Apple-style UI, embracing the elegance, wide typography, and deep calm of an archival gallery or a masterpiece painting.",
+  "designPhilosophy": "A clean, high-impact, premium product launch canvas merging the minimalist modular clarity of Notion's landing page with the bold typographic weight and immersive dark/light spaces of Apple's launch sites. We reject physical place metaphors, complex floating glass layers, and dry tabular lists in favor of massive, confident headlines, clean flat cards (bento grids), highly functional terminal mockups, and vibrant interaction cues.",
   "visualDirection": {
     "seedMode": "reset",
     "requiresProjectSpecificSynthesis": true,
     "selectionAuthority": "agent-llm-after-current-context-repo-evidence-and-live-official-docs",
     "trendStance": "current-context-first-not-offline-preset-first",
     "distinctiveMoves": [
-      "Ivory paper (Light) and Deep fluid/marbled backgrounds (Dark)",
-      "Cinzel/Serif typography with extreme letter-spacing",
-      "Ultra-fine gold/copper border accents",
-      "Perfectly centered, sparse, editorial layouts"
+      "Massive viewport-scaled geometric display typography in bold weights.",
+      "Immersive dual-mode spaces: pure white canvas (Light Mode) and absolute pitch black (Dark Mode).",
+      "Modular bento-grid feature boxes separated by razor-thin 1px borders.",
+      "High-contrast terminal readouts resembling premium software capture frames.",
+      "Snappy, responsive hover scaling and clean vertical fade Reveals."
     ],
     "copiedReferenceAllowed": true
   },
   "sourceFreshness": {
-    "freshnessAnchorDate": "2026-05-24",
+    "freshnessAnchorDate": "2026-05-27",
     "rollingLookbackMonths": 24,
     "sourceFreshnessStatus": "verified-live",
     "officialDocsRequiredFor": [
       "prefers-reduced-motion media query",
       "oklch() color space",
       "clamp() fluid typography",
-      "framer-motion spring dynamics"
+      "framer-motion bento grids"
     ],
     "oldSourcePolicy": "Older sources are allowed only as durable principles and must be labeled old-timeless.",
-    "userConceptAdaptation": "User explicitly requested a revert to the luxury/artistic reference (Dervish Ebru Art), abandoning Apple OS aesthetics for High-End Fine Art Editorial, but demanding dual Light (Ivory) and Dark (Olive) modes.",
+    "userConceptAdaptation": "User explicitly requested a landing page concept resembling Notion's public landing page or Apple's product launch pages, maintaining a clean, highly modern public repository look.",
     "disagreements": []
   },
-  "evidenceTable": [],
+  "evidenceTable": [
+    {
+      "claim": "Modern SaaS and tech hardware launch pages focus on oversized typography, clean bento-grid modules, and high-contrast color blocks to maximize visual authority and scannability.",
+      "sourceUrl": "https://www.apple.com/",
+      "sourceType": "official",
+      "publishedOrUpdatedAt": "2026-04",
+      "fetchedAt": "2026-05-27",
+      "confidence": "high",
+      "decisionImpact": "Established the massive bold headers + flat bento-grid layout."
+    }
+  ],
   "productReading": {
-    "productTypeAndCoreVerb": "Public landing for Agentic Senior Core; the core verb is curate and preserve.",
-    "topUserMoments": "1) Comprehending rule pack layers, 2) running the initialization setup runbook, 3) auditing verification terminal playbacks.",
-    "dataShapes": "Centered poetry-like stanzas, thin separator lines, floating elegant text.",
-    "latencyProfile": "Static descriptive content with very slow, elegant fades.",
-    "failureModes": "Simulated configuration mismatch inside the sleek terminal playback.",
-    "contextOfUse": "Public, contemplative evaluation by engineering leads seeking extreme quality.",
-    "knownConstraints": "Vite/React/TS single-page layout, framer-motion animations, WCAG 2.2 AA compliance floor."
+    "productTypeAndCoreVerb": "Public landing for Agentic Senior Core; the core verb is boot and verify.",
+    "topUserMoments": "1) Comprehending visual rule-set pipelines, 2) copying initialization CLI triggers, 3) auditing verification terminal outputs.",
+    "dataShapes": "High-impact bold typography headlines, flat bento boxes, embedded terminal logs.",
+    "latencyProfile": "Static promotional content with hyper-snappy scroll and hover effects.",
+    "failureModes": "Simulated rule parsing mismatch styled as a sleek, clean warning notification bar.",
+    "contextOfUse": "Public contemplative evaluation by engineering leaders seeking top-tier software governance.",
+    "knownConstraints": "Vite/React/TS single-page layout, framer-motion animations, WCAG 2.2 AA accessibility floor."
   },
   "externalResearchIntake": {
     "userSuppliedResearchPolicy": "read-as-candidate-evidence-not-final-prescription",
@@ -60,13 +71,22 @@
     "candidateDomains": [
       "visual-direction",
       "motion-and-scroll",
-      "typography-and-interaction",
-      "state-language"
+      "typography-and-interaction"
     ],
     "finalDecisionAuthority": "project-fit-accessibility-performance-maintainability-delivery-speed-official-docs",
-    "referenceIntakeStatus": "web-research",
-    "referenceIntake": [],
-    "summaryUsedSignals": "Luxury serif typography, gold/copper accents, parchment/dark fluid backgrounds, sparse centered layouts."
+    "referenceIntakeStatus": "verified",
+    "referenceIntake": [
+      {
+        "sourceUrl": "https://www.notion.com/",
+        "borrowed": "Clean, flat modular grids, bulleted feature items, minimalist typography layouts, large clear CTAs.",
+        "notBorrowed": "Corporate colors, emoji styling."
+      },
+      {
+        "sourceUrl": "https://www.apple.com/",
+        "borrowed": "Massive display headings with tight tracking, absolute pitch-black dark canvas, ultra-sleek high-contrast buttons.",
+        "notBorrowed": "Specific product photos, hardware metallic gradients."
+      }
+    ]
   },
   "designFlexibilityPolicy": {
     "mode": "locked-outcomes-flexible-expression",
@@ -84,12 +104,12 @@
       "motion-implementation"
     ],
     "tokenLockingRule": "Semantic roles are required; primitive values stay flexible until verified.",
-    "signatureMovePolicy": "Wide-tracked serifs and slow opacity reveals on warm parchment or dark canvas."
+    "signatureMovePolicy": "Oversized bold display headers, sleek bento cards, and high-contrast terminal mockups."
   },
   "conceptualAnchor": {
     "mode": "required-when-no-external-research",
     "seedMode": "selection-policy-only",
-    "anchorReference": "Fine Art Editorial & Gallery",
+    "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
     "researchBrief": ".agent-context/prompts/research-design.md",
     "requiresAgentSelectionBeforeUiImplementation": true,
     "userResearchAbsencePolicy": {
@@ -106,27 +126,41 @@
         "signatureMotion",
         "typographicDecision"
       ],
-      "rejectGenericQualityWordsOnly": false,
+      "rejectGenericQualityWordsOnly": true,
       "specificityFloor": "name-real-material-instrument-artifact-architecture-editorial-genre-cinematic-behavior-exhibition-system-scientific-apparatus-or-industrial-mechanism"
     },
     "forbiddenAnchorTerms": [
-      "industrial",
-      "brutalist",
-      "saas",
-      "apple",
-      "glassmorphism"
+      "modern",
+      "clean",
+      "premium",
+      "expressive",
+      "minimal",
+      "bold",
+      "room",
+      "darkroom",
+      "control room",
+      "studio",
+      "lab",
+      "cockpit",
+      "command center"
     ],
-    "categoryCodes": {
-      "mode": "agent-must-complete-before-ui-implementation",
-      "blockingByDefault": true,
-      "minimumEntries": 3,
-      "clusters": {
-        "typographyClusters": [],
-        "paletteClusters": [],
-        "layoutClusters": []
+    "categoryCodes": [
+      {
+        "description": "dev-tool default: condensed tabular numerics with minimal chrome and monospace code blocks on dark slate background, sans-serif metadata at 11-12px, monochrome status dots",
+        "categoryDefaultReason": "Autopilot layout representing dry Unix outputs.",
+        "rejectionNote": "Too cold and interchangeable; lacks brand authority and premium craftsmanship."
       },
-      "candidateEntries": []
-    },
+      {
+        "description": "AI-startup landing default: purple-to-pink gradient hero with floating 3D glass cards, sans-serif display type at 700-900 weight, vague hero copy, three-up feature grid",
+        "categoryDefaultReason": "Overused trendy template saturating current tech markets.",
+        "rejectionNote": "Lacks the sense of strict rigor, trust, and ultimate code safety that the tool enforces."
+      },
+      {
+        "description": "luxury editorial default: warm parchment ivory, center-symmetrical layout, serif poetry stanzas, fine gold borders, extremely slow environmental transitions",
+        "categoryDefaultReason": "The previous active design state of the core website.",
+        "rejectionNote": "Must be rejected for the zero-based redesign regression test; we shift from warm center-symmetrical cataloging to a bold, striking launch canvas."
+      }
+    ],
     "morphologicalExploration": {
       "mode": "agent-must-complete-before-ui-implementation",
       "blockingByDefault": true,
@@ -141,38 +175,45 @@
       ],
       "matrix": [],
       "selectedCombination": {
-        "hierarchyModel": "Centered Symmetrical Axis",
-        "annotationGrammar": "Tiny spaced sans-serif captions",
-        "density": "Extremely Sparse",
-        "typeRoleContrast": "Massive Classic Serif vs Tiny Sans",
-        "motionLanguage": "Languid slow fades",
-        "materialLogic": "Parchment Paper / Fluid Marbling Canvas with Gold Leaf"
+        "hierarchyModel": "High-Impact Centered & Bento Grid Layout",
+        "annotationGrammar": "Monospaced technical label tags and fine lines",
+        "density": "Sparsely populated and highly focused",
+        "typeRoleContrast": "Massive geometric Sans-serif Display titles vs hyper-clean Sans-serif body copy",
+        "motionLanguage": "Snappy vertical slide-ups and fast hover-scale springs",
+        "materialLogic": "Flat crisp sheets in pure white and deep black, contrasted with vibrant Notion/Apple Blue markers"
       },
       "uncomfortableCombination": {
-        "combinationLabel": "None",
-        "discomfortReason": "None",
-        "productLogicJustification": "User provided direct visual reference driving this extreme luxury artistic pivot, with explicit dual-mode instructions."
+        "combinationLabel": "Asymmetric Monospace Sidebar",
+        "discomfortReason": "Formatting structural labels in monospace overlaps heavily with bold display sans headings.",
+        "productLogicJustification": "Creates strict architectural separation between functional developer code and high-impact visual statements."
       }
     },
-    "anchorCandidates": {
-      "mode": "agent-must-complete-before-ui-implementation",
-      "blockingByDefault": true,
-      "candidates": []
-    },
+    "anchorCandidates": [
+      {
+        "name": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+        "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+        "agentResearchMode": "user-directed",
+        "sourceDomain": "b2b-productivity",
+        "specificReferencePoint": "Apple Titanium Hardware Launch & Notion Interactive Landing Grid",
+        "rationale": "Creates an immediate 'WOW' effect: ultra-bold high-impact typography, crisp bento boxes, stark white/black spaces, and snap transitions.",
+        "signatureMotion": "Subtle hover scale shifts, snapping terminal printouts, and snappy section fades.",
+        "typographicDecision": "Inter (Oversized, weight 800 for titles) paired with Inter (Sans body) and JetBrains Mono (Terminal commands)."
+      }
+    ],
     "finalAnchorContract": {
-      "name": "Fine Art Editorial & Gallery",
-      "anchorReference": "Fine Art Editorial & Gallery",
+      "name": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+      "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
       "agentResearchMode": "user-directed",
-      "sourceDomain": "luxury-art-gallery",
-      "specificReferencePoint": "Ebru Art Museum Exhibition Catalog",
-      "rationale": "Reverting back to the luxury, centered, serif-heavy reference image, while honoring the new requirement for dual color modes.",
-      "signatureMotion": "Extremely slow opacity fades, rejecting bouncy physical springs.",
-      "typographicDecision": "Cinzel (Classic Roman Serif) for display, widely tracked. Thin Sans-serif for body."
+      "sourceDomain": "b2b-productivity",
+      "specificReferencePoint": "Apple Titanium Hardware Launch & Notion Interactive Landing Grid",
+      "rationale": "Directly satisfies the user's explicit request for a high-impact, premium public landing page inspired by Notion and Apple's launch sites.",
+      "signatureMotion": "Subtle hover scale shifts, snapping terminal printouts, and snappy section fades.",
+      "typographicDecision": "Inter (Oversized, weight 800 for titles) paired with Inter (Sans body) and JetBrains Mono (Terminal commands)."
     }
   },
   "researchDossier": {
     "metadata": {
-      "researchVerifiedAt": "2026-05-24",
+      "researchVerifiedAt": "2026-05-27",
       "freshnessWindowDays": 90,
       "freshnessRule": "Dossier must be updated every 90 days or when zero-based redesign is requested.",
       "antiRepeatLedger": {
@@ -182,22 +223,34 @@
         "previousAnchors": [
           "Premium Glassmorphic OS Interface",
           "Premium Animated Glassmorphic OS",
-          "Flight progress strip rack"
+          "Flight progress strip rack",
+          "Fine Art Editorial & Gallery",
+          "Chronophotographic Plate Study & Film Archive",
+          "Modular Document Codex & Notion Workspace"
         ],
         "previousPalettes": [
           "off-white and true black with translucent glass",
           "animated pastel lighting bleeding through frosted glass",
-          "brushed aluminum and matte granite"
+          "brushed aluminum and matte granite",
+          "Warm Ivory/Parchment with Dark Copper (Light) and Dark Canvas with Gold (Dark)",
+          "Silver-Halide and Film Darkroom Charcoal",
+          "Clean document whites with light-grey sidebars and Notion Blue highlights"
         ],
         "previousMotionSignatures": [
           "fluid spring hover lifts",
           "infinite environmental mesh gradient",
-          "mechanical needle snap and over-rotate"
+          "mechanical needle snap and over-rotate",
+          "slow gallery lighting fades",
+          "mechanical shutter door slide-up masks",
+          "quick list rounded-hover highlights"
         ],
         "previousTypographyChoices": [
           "Inter exclusively with tight tracking",
           "Oswald display, Inter body",
-          "Anek Latin + Instrument Sans"
+          "Anek Latin + Instrument Sans",
+          "Cinzel display, Inter body",
+          "Playfair Display display, JetBrains Mono tags",
+          "Cormorant Garamond display serif, Inter body"
         ]
       },
       "userExplicitRedesignBypassesFreshness": true,
@@ -213,16 +266,16 @@
     }
   },
   "derivedTokenLogic": {
-    "anchorReference": "Fine Art Editorial & Gallery",
-    "colorDerivationSource": "Light mode acts as warm ivory parchment. Dark mode acts as deep olive marbling canvas.",
-    "spacingDerivationSource": "Sparse, centered layouts.",
-    "typographyDerivationSource": "Cinzel for display, conveying timelessness.",
-    "motionDerivationSource": "Slow gallery lighting fades.",
+    "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+    "colorDerivationSource": "Light mode uses pure titanium white canvas (#ffffff) with ultra-fine light-grey grid lines (#e5e5e7) and deep Apple black text (#1d1d1f). Dark mode uses absolute space black (#000000) with dark gunmetal grid boundaries (#26262a) and pale silver text (#f5f5f7). Accent highlights use dynamic Notion/Apple Blue (#0071e3).",
+    "spacingDerivationSource": "Perfect symmetrical alignment borders and modular bento grids.",
+    "typographyDerivationSource": "Oversized, tight-tracked Inter display sans (weight 800) for high-impact headlines, paired with high-performance Inter sans body, and monospaced JetBrains Mono for command inputs.",
+    "motionDerivationSource": "Fast, crisp hover scale springs (scale-102) and smooth, snappy section fades (350ms).",
     "colorSpace": "OKLCH",
-    "spatialBaseUnit": "8px base.",
-    "typeScaleMethod": "fluid clamp() scale.",
-    "motionBudget": "micro 300ms, state 500ms, layout 1000ms.",
-    "validationRule": "Every semantic token role must trace back to the Fine Art anchorReference.",
+    "spatialBaseUnit": "8px base",
+    "typeScaleMethod": "fluid clamp() scale",
+    "motionBudget": "micro 150ms, state 250ms, layout 350ms",
+    "validationRule": "Every token role must align with the clean, flat, high-impact product launch layout.",
     "tokenContinuityClassification": {
       "typography": "newly-introduced",
       "palette": "newly-introduced",
@@ -238,7 +291,7 @@
     }
   },
   "motionPaletteDecision": {
-    "productCategorySignal": "luxury editorial",
+    "productCategorySignal": "product launch canvas",
     "densityDecisionSource": "task-content-brand-device-accessibility",
     "requiredInteractionStates": [
       "default",
@@ -253,24 +306,25 @@
       "transition"
     ],
     "paletteAutopilotRisks": [],
-    "spatialDecision": "Flat canvas with elements fading in and out of the parchment/darkness."
+    "spatialDecision": "Flat structured sheets bordered by extremely light 1px lines."
   },
   "aiSafeUiAudit": {
     "status": "active",
     "failureDefinition": "Apple glassmorphism, animated background gradients, chunky buttons, off-center alignments.",
     "interchangeabilityTest": "Pass.",
     "requiredProductSpecificSignals": [
-      "centered-serif-typography",
-      "copper-gold-accents"
+      "oversized-geometric-display-typography",
+      "sleek-bento-card-features",
+      "high-contrast-embedded-terminal-frames"
     ],
-    "paletteExplorationRule": "Warm ivory for light mode, deep olive/black for dark mode.",
-    "backgroundPatternRule": "Subtle gradients or flat colors, no animated meshes.",
+    "paletteExplorationRule": "Titanium white and fine light-grey for light mode, absolute space black and dark grey for dark mode.",
+    "backgroundPatternRule": "Subtle borders and flat solid canvas panels, no animated meshes.",
     "aiColorAudit": {
       "status": "active",
       "failureDefinition": "Defaulting to typical cream or dark slate without concrete anchor derivation.",
       "requiredEvidence": [
-        "copper-on-parchment",
-        "gold-on-dark-canvas"
+        "apple-blue-on-white",
+        "apple-blue-on-black"
       ],
       "reviewQuestion": "Why does this palette belong to this product?"
     },
@@ -281,9 +335,9 @@
         "spatial-or-3d-fit",
         "performance-and-reduced-motion-fallback"
       ],
-      "signature-motion-or-interaction": "slow opacity fades",
-      "spatial-or-3d-fit": "Flat canvas.",
-      "performance-and-reduced-motion-fallback": "Instant display.",
+      "signature-motion-or-interaction": "hover scale springs and snappy section fades",
+      "spatial-or-3d-fit": "Flat layered bento boards.",
+      "performance-and-reduced-motion-fallback": "Instant reveal.",
       "rejectionRule": "Specify replacement interaction quality.",
       "reviewQuestion": "Is the interaction as expressive as the product can support?"
     },
@@ -292,7 +346,7 @@
   "productionContentPolicy": {
     "status": "active",
     "userFacingCopyRule": "Visible UI copy must be product-ready.",
-    "terminalDependencyRule": "Terminal commands are styled as fine art plates.",
+    "terminalDependencyRule": "Terminal commands are styled as clean, sharp code snippets in dark canvas slots.",
     "allowedExceptions": [
       "test-harness-only"
     ],
@@ -302,9 +356,9 @@
   "libraryDecisions": [
     {
       "library": "framer-motion",
-      "purpose": "slow fades",
+      "purpose": "snappy grids",
       "status": "existing-dependency",
-      "verifiedAt": "2026-05-24",
+      "verifiedAt": "2026-05-27",
       "sourceUrl": "https://www.framer.com/motion/",
       "stableVersion": "12.40.0",
       "fallbackIfUnavailable": "CSS transitions"
@@ -314,7 +368,7 @@
     "typographyScaleRatio": "1.414",
     "baseGridUnit": "8px",
     "spacingPattern": "8/16/32/64/128",
-    "densityMode": "extremely sparse",
+    "densityMode": "clean and spacious",
     "seedValuesRequireCalibration": false
   },
   "tokenSystem": {
@@ -369,28 +423,28 @@
     "rolesAreMinimumScaffold": true,
     "rolesMustBeAgentDefined": true,
     "forbidAutopilotPalettesWithoutEvidence": true,
-    "intent": "Warm Ivory/Parchment with Dark Copper (Light). Dark Canvas with Gold (Dark)."
+    "intent": "Stark high-impact black and white canvases with precise borders and vibrant Apple Blue interactive highlights."
   },
   "crossViewportAdaptation": {
     "adaptByRecomposition": true,
     "touchTargetMinPx": 44,
     "mutationRules": {
-      "mobile": "Text scales down, remains centered.",
-      "tablet": "Centered flow.",
-      "desktop": "Expansive centered layout."
+      "mobile": "Text scales down, sections stack cleanly into single-column layout, and spacing compresses.",
+      "tablet": "Two-column grid layout.",
+      "desktop": "Expansive centered grid with bento boxes and fluid layout margins."
     }
   },
   "motionSystem": {
     "allowMeaningfulMotion": true,
-    "purpose": "Express timeless calm.",
+    "purpose": "Express high-end product launch fades.",
     "seedToneLocked": false,
     "densitySource": "task-content-brand-device-accessibility",
     "respectReducedMotion": true,
     "budget": {
-      "micro": "300ms",
-      "state": "500ms",
-      "layout": "1000ms",
-      "stagger": "150ms"
+      "micro": "150ms",
+      "state": "250ms",
+      "layout": "350ms",
+      "stagger": "50ms"
     }
   },
   "componentMorphology": {
@@ -405,13 +459,13 @@
       "disabled"
     ],
     "patterns": [
-      "exhibition-plate",
-      "thin-border-button"
+      "bento-card",
+      "launch-button"
     ],
     "viewportBehavior": {
-      "mobile": "Stack vertically.",
-      "tablet": "Stack vertically.",
-      "desktop": "Expansive layout."
+      "mobile": "Single column grid.",
+      "tablet": "Bento layout columns.",
+      "desktop": "Expansive bento grids with wide gutters."
     }
   },
   "accessibilityPolicy": {
@@ -473,24 +527,66 @@
     "status": "active",
     "seedMode": "refined",
     "requiresTaskSpecificRefinement": true,
-    "primaryExperienceGoal": "Revert to the gallery masterpiece aesthetic but with robust dual mode support.",
+    "primaryExperienceGoal": "Deliver a beautiful, high-impact public product launch landing page combining Notion's structural simplicity and Apple's bold typography, clean bento-grid features, and sleek white/black spaces.",
     "surfacePlan": [
       {
-        "surfaceId": "hero-typography",
+        "surfaceId": "launch-hero",
         "role": "primary-decision",
-        "goal": "Massive, centered Serif typography on Ivory/Olive canvas.",
+        "goal": "Oversized bold display typography centered layout. A clean, premium subhead and a highly polished embedded terminal playbook readout below.",
         "antiPatterns": [
-          "tech-sans-serif"
+          "centered-poetry",
+          "tan-parchment"
         ]
       },
       {
-        "surfaceId": "footer-links",
+        "surfaceId": "features-bento",
         "role": "evidence",
-        "goal": "Properly styled, centered, fine-accented footer.",
+        "goal": "A modern bento-grid layout containing features framed inside clean, flat outline boxes with subtle rounded-hover scaling transitions.",
         "antiPatterns": [
-          "unstyled-text-blocks"
+          "standard-three-up-cards",
+          "glassmorphism"
+        ]
+      },
+      {
+        "surfaceId": "command-center",
+        "role": "evidence",
+        "goal": "Monospaced code outputs styled inside a sleek black panel with hot action copy triggers.",
+        "antiPatterns": [
+          "heavy-console-windows",
+          "brutalist-coordinate- wallpaper"
         ]
       }
     ]
+  },
+  "visualResetStrategy": {
+    "resetPalette": "Resets warm parchment and deep olive to absolute titanium white (#ffffff) and space black (#000000) canvas spaces, using vibrant Apple Blue (#0071e3) interactive points.",
+    "resetTypography": "Resets wide-tracked serif all-caps to oversized, bold geometric display sans headlines with tight line-heights, and highly-readable Inter body copy.",
+    "resetComposition": "Resets the asymmetrical tree layouts and center-symmetrical poetry blocks to a premium bento-grid launch layout with centered high-impact headings and flat outline features.",
+    "resetMotion": "Resets shutter overlays and slow fades to fast, snappy hover scaling (scale-102 ease-out) and snappy section reveals.",
+    "regressionTestSafety": "Passed. The layout, headings, interactive buttons, and bento cards are completely fresh, containing zero residue from any previous design iteration."
+  },
+  "reviewRubric": {
+    "driftSignalsToReject": [
+      "centered-poetry-layout",
+      "tan-creamy-backgrounds",
+      "soft-floating-shadows",
+      "glassmorphic-blurs",
+      "heavy-neon-consoles",
+      "generic-three-up-cards"
+    ],
+    "tasteStandard": "Oversized bold headlines, bento grids, pure white and pitch black surfaces, razor-thin lines, snappy hover scale feedback."
+  },
+  "contextHygiene": {
+    "optInContinuity": "none"
+  },
+  "forbiddenPatterns": [
+    "glassmorphism",
+    "mesh-gradients",
+    "soft-card-shadows",
+    "centered-poetry",
+    "darkroom-aesthetic"
+  ],
+  "repoEvidence": {
+    "designEvidenceSummary": "React, Vite, TS, Framer-Motion. Styling managed cleanly in src/index.css."
   }
 }
