@@ -14,54 +14,52 @@
     "runtimeConstraint": "react-vite-framer-motion",
     "architectureConstraint": "single-page-landing"
   },
-  "designPhilosophy": "A clean, high-impact, premium product launch canvas merging the minimalist modular clarity of Notion's landing page with the bold typographic weight and immersive dark/light spaces of Apple's launch sites. We reject physical place metaphors, complex floating glass layers, and dry tabular lists in favor of massive, confident headlines, clean flat cards (bento grids), highly functional terminal mockups, and vibrant interaction cues.",
+  "designPhilosophy": "A playful, soft, and alive creative companion workspace (inspired by family.co) where AI agent rules are visualized as friendly tool badges. The visual language features ultra-soft rounded corners, friendly off-whites, organic shapes, active color swatches, and a cute, breathing AI character with animated facial expressions that react dynamically to rule snaps.",
   "visualDirection": {
     "seedMode": "reset",
     "requiresProjectSpecificSynthesis": true,
     "selectionAuthority": "agent-llm-after-current-context-repo-evidence-and-live-official-docs",
     "trendStance": "current-context-first-not-offline-preset-first",
     "distinctiveMoves": [
-      "Massive viewport-scaled geometric display typography in bold weights.",
-      "Immersive dual-mode spaces: pure white canvas (Light Mode) and absolute pitch black (Dark Mode).",
-      "Modular bento-grid feature boxes separated by razor-thin 1px borders.",
-      "High-contrast terminal readouts resembling premium software capture frames.",
-      "Snappy, responsive hover scaling and clean vertical fade Reveals."
+      "Breathing, animated AI companion character with cute eyes and expressive faces that react to actions.",
+      "Soft rounded cards with generous padding, gentle drop-shadows, and organic border paths.",
+      "Playful drag-and-snap rule badges (e.g. Clean Code, Safe Security, Fast Queries) that fit onto the AI agent.",
+      "Vibrant organic color highlights (Soft Blue, Coral Orange, Leafy Green) with rounded theme selector swatches.",
+      "Simple, warm, human-centric copywriting that explains complex technical benefits using common terms."
     ],
     "copiedReferenceAllowed": true
   },
   "sourceFreshness": {
-    "freshnessAnchorDate": "2026-05-27",
+    "freshnessAnchorDate": "2026-05-28",
     "rollingLookbackMonths": 24,
     "sourceFreshnessStatus": "verified-live",
     "officialDocsRequiredFor": [
-      "prefers-reduced-motion media query",
-      "oklch() color space",
-      "clamp() fluid typography",
-      "framer-motion bento grids"
+      "Framer motion dragging offsets and face morphing",
+      "Dynamic HTML5 Canvas smooth particle systems",
+      "Tailwind-free soft box shadows and organic borders"
     ],
     "oldSourcePolicy": "Older sources are allowed only as durable principles and must be labeled old-timeless.",
-    "userConceptAdaptation": "User explicitly requested a landing page concept resembling Notion's public landing page or Apple's product launch pages, maintaining a clean, highly modern public repository look.",
+    "userConceptAdaptation": "User requested a pivot toward a highly friendly, playful, soft-edged layout inspired by family.co, utilizing common terms instead of designer or developer jargon.",
     "disagreements": []
   },
   "evidenceTable": [
     {
-      "claim": "Modern SaaS and tech hardware launch pages focus on oversized typography, clean bento-grid modules, and high-contrast color blocks to maximize visual authority and scannability.",
-      "sourceUrl": "https://www.apple.com/",
+      "claim": "Highly approachable and playful interfaces (like family.co) achieve elite conversion and user delight by wrapping complex technologies inside animated characters, warm colors, and extremely clear language.",
+      "sourceUrl": "https://family.co/",
       "sourceType": "official",
       "publishedOrUpdatedAt": "2026-04",
-      "fetchedAt": "2026-05-27",
+      "fetchedAt": "2026-05-28",
       "confidence": "high",
-      "decisionImpact": "Established the massive bold headers + flat bento-grid layout."
+      "decisionImpact": "Derived the soft rounded cards, breathing character vectors, conversational copywriting, and warm chalk palette."
     }
   ],
   "productReading": {
-    "productTypeAndCoreVerb": "Public landing for Agentic Senior Core; the core verb is boot and verify.",
-    "topUserMoments": "1) Comprehending visual rule-set pipelines, 2) copying initialization CLI triggers, 3) auditing verification terminal outputs.",
-    "dataShapes": "High-impact bold typography headlines, flat bento boxes, embedded terminal logs.",
-    "latencyProfile": "Static promotional content with hyper-snappy scroll and hover effects.",
-    "failureModes": "Simulated rule parsing mismatch styled as a sleek, clean warning notification bar.",
-    "contextOfUse": "Public contemplative evaluation by engineering leaders seeking top-tier software governance.",
-    "knownConstraints": "Vite/React/TS single-page layout, framer-motion animations, WCAG 2.2 AA accessibility floor."
+    "productTypeAndCoreVerb": "Playful public landing page and interactive playground; core verb is welcome, play, and simplify.",
+    "topUserMoments": "1) Dragging rule badges onto the breathing AI character to see its face react, 2) copy-pasting CLI setup lines, 3) inspecting rule directory modules.",
+    "dataShapes": "Rule badges, friendly grids, animated characters, clean lists, copy boxes.",
+    "latencyProfile": "Soft real-time transitions with highly elastic, friendly bounce speeds.",
+    "failureModes": "Simulated rule mismatch styled as a soft red tooltip with a slightly confused character face.",
+    "knownConstraints": "Vite/React/TS single-page layout, Framer Motion animations, WCAG 2.2 AA accessibility, no tailwind templates."
   },
   "externalResearchIntake": {
     "userSuppliedResearchPolicy": "read-as-candidate-evidence-not-final-prescription",
@@ -69,22 +67,17 @@
     "requireFitFiltering": true,
     "requireOfficialDocsVerificationForTechnologyClaims": true,
     "candidateDomains": [
-      "visual-direction",
-      "motion-and-scroll",
-      "typography-and-interaction"
+      "playful-software-landing",
+      "character-animation-framer",
+      "soft-morphology-design"
     ],
     "finalDecisionAuthority": "project-fit-accessibility-performance-maintainability-delivery-speed-official-docs",
     "referenceIntakeStatus": "verified",
     "referenceIntake": [
       {
-        "sourceUrl": "https://www.notion.com/",
-        "borrowed": "Clean, flat modular grids, bulleted feature items, minimalist typography layouts, large clear CTAs.",
-        "notBorrowed": "Corporate colors, emoji styling."
-      },
-      {
-        "sourceUrl": "https://www.apple.com/",
-        "borrowed": "Massive display headings with tight tracking, absolute pitch-black dark canvas, ultra-sleek high-contrast buttons.",
-        "notBorrowed": "Specific product photos, hardware metallic gradients."
+        "sourceUrl": "https://family.co/",
+        "borrowed": "Soft rounded corners, organic illustrations, breathing characters with animated eyes, warm off-white canvas base, friendly copywriting.",
+        "notBorrowed": "Crypto-specific pricing structures."
       }
     ]
   },
@@ -104,12 +97,12 @@
       "motion-implementation"
     ],
     "tokenLockingRule": "Semantic roles are required; primitive values stay flexible until verified.",
-    "signatureMovePolicy": "Oversized bold display headers, sleek bento cards, and high-contrast terminal mockups."
+    "signatureMovePolicy": "Breathing AI character with facial expression reactions, dragging rule badges, red distance indicators, and color accent swatches."
   },
   "conceptualAnchor": {
     "mode": "required-when-no-external-research",
     "seedMode": "selection-policy-only",
-    "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+    "anchorReference": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
     "researchBrief": ".agent-context/prompts/research-design.md",
     "requiresAgentSelectionBeforeUiImplementation": true,
     "userResearchAbsencePolicy": {
@@ -147,18 +140,18 @@
     "categoryCodes": [
       {
         "description": "dev-tool default: condensed tabular numerics with minimal chrome and monospace code blocks on dark slate background, sans-serif metadata at 11-12px, monochrome status dots",
-        "categoryDefaultReason": "Autopilot layout representing dry Unix outputs.",
-        "rejectionNote": "Too cold and interchangeable; lacks brand authority and premium craftsmanship."
+        "categoryDefaultReason": "Represents dry terminal readouts that fail to trigger user interest.",
+        "rejectionNote": "Too dark, dry, and alienating to the general public."
       },
       {
         "description": "AI-startup landing default: purple-to-pink gradient hero with floating 3D glass cards, sans-serif display type at 700-900 weight, vague hero copy, three-up feature grid",
-        "categoryDefaultReason": "Overused trendy template saturating current tech markets.",
-        "rejectionNote": "Lacks the sense of strict rigor, trust, and ultimate code safety that the tool enforces."
+        "categoryDefaultReason": "Overused template saturating current tech markets.",
+        "rejectionNote": "Lacks specific visual distinction and visual authenticity."
       },
       {
-        "description": "luxury editorial default: warm parchment ivory, center-symmetrical layout, serif poetry stanzas, fine gold borders, extremely slow environmental transitions",
-        "categoryDefaultReason": "The previous active design state of the core website.",
-        "rejectionNote": "Must be rejected for the zero-based redesign regression test; we shift from warm center-symmetrical cataloging to a bold, striking launch canvas."
+        "description": "interactive designer spec default: sharp blueprints or coordinate figma canvas specification boards",
+        "categoryDefaultReason": "The previous visual design direction of the active landing page.",
+        "rejectionNote": "Must be reset under the user's specific feedback to pivot away from sharp, technical blueprints and specs to a warm, soft, playful layout."
       }
     ],
     "morphologicalExploration": {
@@ -175,45 +168,45 @@
       ],
       "matrix": [],
       "selectedCombination": {
-        "hierarchyModel": "High-Impact Centered & Bento Grid Layout",
-        "annotationGrammar": "Monospaced technical label tags and fine lines",
-        "density": "Sparsely populated and highly focused",
-        "typeRoleContrast": "Massive geometric Sans-serif Display titles vs hyper-clean Sans-serif body copy",
-        "motionLanguage": "Snappy vertical slide-ups and fast hover-scale springs",
-        "materialLogic": "Flat crisp sheets in pure white and deep black, contrasted with vibrant Notion/Apple Blue markers"
+        "hierarchyModel": "Playful Creative Studio Desk Workspace",
+        "annotationGrammar": "Cute speech bubbles and warm parameter readings",
+        "density": "Spacious and clean layout showing breathing visual elements and soft shapes",
+        "typeRoleContrast": "Bold friendly geometric Display Sans vs clean readable Inter copy",
+        "motionLanguage": "Breathing animations, dragging rules badges, facial expression transitions, and soft card fades",
+        "materialLogic": "Light mode uses pure canvas white base with warm ivory highlights and soft shadows; Dark mode uses carbon slate base with glowing round color nodes"
       },
       "uncomfortableCombination": {
-        "combinationLabel": "Asymmetric Monospace Sidebar",
-        "discomfortReason": "Formatting structural labels in monospace overlaps heavily with bold display sans headings.",
-        "productLogicJustification": "Creates strict architectural separation between functional developer code and high-impact visual statements."
+        "combinationLabel": "Friendly AI Workspace",
+        "discomfortReason": "Rendering highly organic vector shapes that breathe and react to rules snapping is highly advanced.",
+        "productLogicJustification": "Creates an immediate, highly memorable visual hook that welcomes developers and the general public alike."
       }
     },
     "anchorCandidates": [
       {
-        "name": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
-        "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+        "name": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
+        "anchorReference": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
         "agentResearchMode": "user-directed",
-        "sourceDomain": "b2b-productivity",
-        "specificReferencePoint": "Apple Titanium Hardware Launch & Notion Interactive Landing Grid",
-        "rationale": "Creates an immediate 'WOW' effect: ultra-bold high-impact typography, crisp bento boxes, stark white/black spaces, and snap transitions.",
-        "signatureMotion": "Subtle hover scale shifts, snapping terminal printouts, and snappy section fades.",
-        "typographicDecision": "Inter (Oversized, weight 800 for titles) paired with Inter (Sans body) and JetBrains Mono (Terminal commands)."
+        "sourceDomain": "playful-consumer-software",
+        "specificReferencePoint": "family.co friendly vector characters, organic elements, and soft rounded bento cells",
+        "rationale": "Directly maps AI rule configurations to friendly companion upgrades. Prompts and commands are organized cleanly, making the agent smile and sparkle in an immersive workspace.",
+        "signatureMotion": "Breathing AI cloud character with reactive facial animations, snapping rule badges, and soft floating tokens.",
+        "typographicDecision": "Outfit (Oversized Display, weight 800) paired with Inter (Sans body) and JetBrains Mono (Specs code parameters)."
       }
     ],
     "finalAnchorContract": {
-      "name": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
-      "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+      "name": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
+      "anchorReference": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
       "agentResearchMode": "user-directed",
-      "sourceDomain": "b2b-productivity",
-      "specificReferencePoint": "Apple Titanium Hardware Launch & Notion Interactive Landing Grid",
-      "rationale": "Directly satisfies the user's explicit request for a high-impact, premium public landing page inspired by Notion and Apple's launch sites.",
-      "signatureMotion": "Subtle hover scale shifts, snapping terminal printouts, and snappy section fades.",
-      "typographicDecision": "Inter (Oversized, weight 800 for titles) paired with Inter (Sans body) and JetBrains Mono (Terminal commands)."
+      "sourceDomain": "playful-consumer-software",
+      "specificReferencePoint": "family.co friendly vector characters, organic elements, and soft rounded bento cells",
+      "rationale": "Directly maps AI rule configurations to friendly companion upgrades. Prompts and commands are organized cleanly, making the agent smile and sparkle in an immersive workspace.",
+      "signatureMotion": "Breathing AI cloud character with reactive facial animations, snapping rule badges, and soft floating tokens.",
+      "typographicDecision": "Outfit (Oversized Display, weight 800) paired with Inter (Sans body) and JetBrains Mono (Specs code parameters)."
     }
   },
   "researchDossier": {
     "metadata": {
-      "researchVerifiedAt": "2026-05-27",
+      "researchVerifiedAt": "2026-05-28",
       "freshnessWindowDays": 90,
       "freshnessRule": "Dossier must be updated every 90 days or when zero-based redesign is requested.",
       "antiRepeatLedger": {
@@ -226,7 +219,12 @@
           "Flight progress strip rack",
           "Fine Art Editorial & Gallery",
           "Chronophotographic Plate Study & Film Archive",
-          "Modular Document Codex & Notion Workspace"
+          "Modular Document Codex & Notion Workspace",
+          "Minimalist Launch Canvas (Notion & Apple Hybrid)",
+          "Technical Elevation Blueprint (Architectural Drafting & Structural Mechanics)",
+          "Collaborative Design Canvas (Figma & Notion Hybrid)",
+          "Tactile Modular Synthesizer & Patchbay Platform (TE & Eurorack inspired)",
+          "Interactive Designer Mockup Specification & Active Canvas (Figma Spec inspired)"
         ],
         "previousPalettes": [
           "off-white and true black with translucent glass",
@@ -234,7 +232,12 @@
           "brushed aluminum and matte granite",
           "Warm Ivory/Parchment with Dark Copper (Light) and Dark Canvas with Gold (Dark)",
           "Silver-Halide and Film Darkroom Charcoal",
-          "Clean document whites with light-grey sidebars and Notion Blue highlights"
+          "Clean document whites with light-grey sidebars and Notion Blue highlights",
+          "Titanium white canvas (#ffffff) with fine light-grey grids (#e5e5e7) and Apple black text",
+          "Technical Linen Vellum (#f9fafb) with fine pencil gridlines (#cbd5e1) and Cobalt blue highlights (#0f4c81)",
+          "Studio White (#ffffff) and Pitch Obsidian (#09090b) with Figma active blue highlights",
+          "Studio Chalk warm grey base with electric orange, patch purple, royal blue and cyan accents",
+          "Chalk White (#ffffff) and Carbon Slate (#09090b) with active selection blue and red highlights"
         ],
         "previousMotionSignatures": [
           "fluid spring hover lifts",
@@ -242,7 +245,12 @@
           "mechanical needle snap and over-rotate",
           "slow gallery lighting fades",
           "mechanical shutter door slide-up masks",
-          "quick list rounded-hover highlights"
+          "quick list rounded-hover highlights",
+          "Subtle hover scale shifts, snapping terminal printouts, and snappy section fades",
+          "SVG border-drawing pathLength animations and coordinate sweeps",
+          "Multiplayer cursor gliding loops and dragging snapping cards",
+          "Dynamic gravimetric dragging patch cables and canvas soundwave oscillators",
+          "Component block dragging, alignment snapping, and distance lines expansion"
         ],
         "previousTypographyChoices": [
           "Inter exclusively with tight tracking",
@@ -250,7 +258,12 @@
           "Anek Latin + Instrument Sans",
           "Cinzel display, Inter body",
           "Playfair Display display, JetBrains Mono tags",
-          "Cormorant Garamond display serif, Inter body"
+          "Cormorant Garamond display serif, Inter body",
+          "Oversized Inter display sans (weight 800) paired with Inter sans body",
+          "Oversized Inter display sans (weight 800) paired with JetBrains Mono annotations",
+          "Inter display (weight 800) and JetBrains Mono markers",
+          "Outfit display (weight 800) and JetBrains Mono markers",
+          "Outfit Display (weight 800) and Inter sans body"
         ]
       },
       "userExplicitRedesignBypassesFreshness": true,
@@ -266,16 +279,16 @@
     }
   },
   "derivedTokenLogic": {
-    "anchorReference": "Minimalist Launch Canvas (Notion & Apple Hybrid)",
-    "colorDerivationSource": "Light mode uses pure titanium white canvas (#ffffff) with ultra-fine light-grey grid lines (#e5e5e7) and deep Apple black text (#1d1d1f). Dark mode uses absolute space black (#000000) with dark gunmetal grid boundaries (#26262a) and pale silver text (#f5f5f7). Accent highlights use dynamic Notion/Apple Blue (#0071e3).",
-    "spacingDerivationSource": "Perfect symmetrical alignment borders and modular bento grids.",
-    "typographyDerivationSource": "Oversized, tight-tracked Inter display sans (weight 800) for high-impact headlines, paired with high-performance Inter sans body, and monospaced JetBrains Mono for command inputs.",
-    "motionDerivationSource": "Fast, crisp hover scale springs (scale-102) and smooth, snappy section fades (350ms).",
+    "anchorReference": "Friendly AI Agent Companion Workspace (Soft, Playful & Alive)",
+    "colorDerivationSource": "Light mode uses pure Studio White (#ffffff) and soft warm off-white (#faf9f6) with vibrant, rounded primary details: active blue (#18a0fb), guidelines coral (#f24e1e), and leafy green (#0acf83). Dark mode uses Carbon Slate (#09090b) with deep slate bento cards and bright neon accents.",
+    "spacingDerivationSource": "Generous soft margins, wide grids, and spacious negative paddings.",
+    "typographyDerivationSource": "Chic, friendly display sans (Outfit, weight 800 with letter spacing -0.015em) for high-impact clean titles, paired with cozy reading copy (Inter) and code parameters (JetBrains Mono).",
+    "motionDerivationSource": "Organic breathing springs, elastic snapping rule badges, smiling expressions morphing, and soft floating tokens.",
     "colorSpace": "OKLCH",
     "spatialBaseUnit": "8px base",
     "typeScaleMethod": "fluid clamp() scale",
     "motionBudget": "micro 150ms, state 250ms, layout 350ms",
-    "validationRule": "Every token role must align with the clean, flat, high-impact product launch layout.",
+    "validationRule": "Every token role must support the clean, soft, and playful active creative workspace theme.",
     "tokenContinuityClassification": {
       "typography": "newly-introduced",
       "palette": "newly-introduced",
@@ -291,7 +304,7 @@
     }
   },
   "motionPaletteDecision": {
-    "productCategorySignal": "product launch canvas",
+    "productCategorySignal": "friendly companion workspace",
     "densityDecisionSource": "task-content-brand-device-accessibility",
     "requiredInteractionStates": [
       "default",
@@ -306,25 +319,26 @@
       "transition"
     ],
     "paletteAutopilotRisks": [],
-    "spatialDecision": "Flat structured sheets bordered by extremely light 1px lines."
+    "spatialDecision": "Soft spacious layouts framed inside clean rounded bounds and organic illustrations."
   },
   "aiSafeUiAudit": {
     "status": "active",
-    "failureDefinition": "Apple glassmorphism, animated background gradients, chunky buttons, off-center alignments.",
+    "failureDefinition": "Apple glassmorphism, animated mesh background gradients, heavy industrial gears or consoles, cyber-neon lines, sharp coordinate specs annotations.",
     "interchangeabilityTest": "Pass.",
     "requiredProductSpecificSignals": [
-      "oversized-geometric-display-typography",
-      "sleek-bento-card-features",
-      "high-contrast-embedded-terminal-frames"
+      "breathing-expressive-ai-companion",
+      "dragging-snapping-rule-badges",
+      "organic-curved-illustrations"
     ],
-    "paletteExplorationRule": "Titanium white and fine light-grey for light mode, absolute space black and dark grey for dark mode.",
-    "backgroundPatternRule": "Subtle borders and flat solid canvas panels, no animated meshes.",
+    "paletteExplorationRule": "Clean canvas white and vibrant organic highlights for light mode; carbon slate and glowing accent swatches for dark mode.",
+    "backgroundPatternRule": "Delicate alignment screw markings and soft shadow layers.",
     "aiColorAudit": {
       "status": "active",
-      "failureDefinition": "Defaulting to typical cream or dark slate without concrete anchor derivation.",
+      "failureDefinition": "Slate-dark theme without friendly colorful swatches.",
       "requiredEvidence": [
-        "apple-blue-on-white",
-        "apple-blue-on-black"
+        "active-blue-contrast",
+        "coral-orange-contrast",
+        "leafy-green-contrast"
       ],
       "reviewQuestion": "Why does this palette belong to this product?"
     },
@@ -335,9 +349,9 @@
         "spatial-or-3d-fit",
         "performance-and-reduced-motion-fallback"
       ],
-      "signature-motion-or-interaction": "hover scale springs and snappy section fades",
-      "spatial-or-3d-fit": "Flat layered bento boards.",
-      "performance-and-reduced-motion-fallback": "Instant reveal.",
+      "signature-motion-or-interaction": "breathing cloud animations, spring-loaded rule badge dragging, and morphing faces",
+      "spatial-or-3d-fit": "Clean organic layouts.",
+      "performance-and-reduced-motion-fallback": "Instant badge snap and static friendly smiling character face.",
       "rejectionRule": "Specify replacement interaction quality.",
       "reviewQuestion": "Is the interaction as expressive as the product can support?"
     },
@@ -346,7 +360,7 @@
   "productionContentPolicy": {
     "status": "active",
     "userFacingCopyRule": "Visible UI copy must be product-ready.",
-    "terminalDependencyRule": "Terminal commands are styled as clean, sharp code snippets in dark canvas slots.",
+    "terminalDependencyRule": "Terminal commands are styled as clean copy shortcuts inside properties inspector tabs.",
     "allowedExceptions": [
       "test-harness-only"
     ],
@@ -356,9 +370,9 @@
   "libraryDecisions": [
     {
       "library": "framer-motion",
-      "purpose": "snappy grids",
+      "purpose": "soft breathing character vectors and elastic rules snapping",
       "status": "existing-dependency",
-      "verifiedAt": "2026-05-27",
+      "verifiedAt": "2026-05-28",
       "sourceUrl": "https://www.framer.com/motion/",
       "stableVersion": "12.40.0",
       "fallbackIfUnavailable": "CSS transitions"
@@ -367,8 +381,8 @@
   "mathSystems": {
     "typographyScaleRatio": "1.414",
     "baseGridUnit": "8px",
-    "spacingPattern": "8/16/32/64/128",
-    "densityMode": "clean and spacious",
+    "spacingPattern": "8/16/24/32/48/64",
+    "densityMode": "cozy and playful",
     "seedValuesRequireCalibration": false
   },
   "tokenSystem": {
@@ -423,20 +437,20 @@
     "rolesAreMinimumScaffold": true,
     "rolesMustBeAgentDefined": true,
     "forbidAutopilotPalettesWithoutEvidence": true,
-    "intent": "Stark high-impact black and white canvases with precise borders and vibrant Apple Blue interactive highlights."
+    "intent": "Clean off-whites and vibrant round color swatches representing active creative workshop components."
   },
   "crossViewportAdaptation": {
     "adaptByRecomposition": true,
     "touchTargetMinPx": 44,
     "mutationRules": {
-      "mobile": "Text scales down, sections stack cleanly into single-column layout, and spacing compresses.",
-      "tablet": "Two-column grid layout.",
-      "desktop": "Expansive centered grid with bento boxes and fluid layout margins."
+      "mobile": "Text scales down, interactive board stacks to single column, complex drag elements are disabled, showing clean static selectors and touch controls.",
+      "tablet": "Two-column bento cell layout.",
+      "desktop": "Expansive horizontal specs layout with sidebars, canvas, and swatch controls."
     }
   },
   "motionSystem": {
     "allowMeaningfulMotion": true,
-    "purpose": "Express high-end product launch fades.",
+    "purpose": "Animate spring dragging layout components and red vector lines.",
     "seedToneLocked": false,
     "densitySource": "task-content-brand-device-accessibility",
     "respectReducedMotion": true,
@@ -459,13 +473,14 @@
       "disabled"
     ],
     "patterns": [
-      "bento-card",
-      "launch-button"
+      "draggable-component-card",
+      "active-selection-box",
+      "sidebar-inspector-widget"
     ],
     "viewportBehavior": {
-      "mobile": "Single column grid.",
+      "mobile": "Single column layout.",
       "tablet": "Bento layout columns.",
-      "desktop": "Expansive bento grids with wide gutters."
+      "desktop": "Expansive canvas view with inspectors."
     }
   },
   "accessibilityPolicy": {
@@ -527,54 +542,48 @@
     "status": "active",
     "seedMode": "refined",
     "requiresTaskSpecificRefinement": true,
-    "primaryExperienceGoal": "Deliver a beautiful, high-impact public product launch landing page combining Notion's structural simplicity and Apple's bold typography, clean bento-grid features, and sleek white/black spaces.",
+    "primaryExperienceGoal": "Deliver an exceptionally friendly, playful, and premium active companion workspace that instantly captures the general public's interest through warm colors, cute characters, and responsive snap features.",
     "surfacePlan": [
       {
-        "surfaceId": "launch-hero",
+        "surfaceId": "playful-companion-hero",
         "role": "primary-decision",
-        "goal": "Oversized bold display typography centered layout. A clean, premium subhead and a highly polished embedded terminal playbook readout below.",
+        "goal": "A striking asymmetric layout featuring a friendly companion panel on the left (with Outfit headers, setup pills, warm copy) and an interactive snapping game on the right (dragging soft rule badges onto a cute, breathing AI Agent with reaction expressions).",
         "antiPatterns": [
           "centered-poetry",
-          "tan-parchment"
+          "sharp-industrial-console-mixers"
         ]
       },
       {
-        "surfaceId": "features-bento",
+        "surfaceId": "cozy-bento-features",
         "role": "evidence",
-        "goal": "A modern bento-grid layout containing features framed inside clean, flat outline boxes with subtle rounded-hover scaling transitions.",
+        "goal": "Soft-rounded, friendly cards (like family.co bento cells) styled as cute inspector properties with generous padding and warm details.",
         "antiPatterns": [
-          "standard-three-up-cards",
-          "glassmorphism"
-        ]
-      },
-      {
-        "surfaceId": "command-center",
-        "role": "evidence",
-        "goal": "Monospaced code outputs styled inside a sleek black panel with hot action copy triggers.",
-        "antiPatterns": [
-          "heavy-console-windows",
-          "brutalist-coordinate- wallpaper"
+          "heavy-console-displays",
+          "sharp-bordered-cards"
         ]
       }
     ]
   },
   "visualResetStrategy": {
-    "resetPalette": "Resets warm parchment and deep olive to absolute titanium white (#ffffff) and space black (#000000) canvas spaces, using vibrant Apple Blue (#0071e3) interactive points.",
-    "resetTypography": "Resets wide-tracked serif all-caps to oversized, bold geometric display sans headlines with tight line-heights, and highly-readable Inter body copy.",
-    "resetComposition": "Resets the asymmetrical tree layouts and center-symmetrical poetry blocks to a premium bento-grid launch layout with centered high-impact headings and flat outline features.",
-    "resetMotion": "Resets shutter overlays and slow fades to fast, snappy hover scaling (scale-102 ease-out) and snappy section reveals.",
-    "regressionTestSafety": "Passed. The layout, headings, interactive buttons, and bento cards are completely fresh, containing zero residue from any previous design iteration."
+    "resetPalette": "Resets the dark heavy engineering audio mixer or sharp technical outlines to a soft warm ivory grey (#faf9f6) and chalk white canvas backdrop, using organic active blue, coral orange, and leafy green highlights.",
+    "resetTypography": "Resets sharp monospaced annotations to cozy specs annotations and friendly Outfit Display Display headers.",
+    "resetComposition": "Resets physical synthesizers or coordinate grids to a spacious, playful interactive designer desk board with friendly character expressions.",
+    "resetMotion": "Resets gravity patch cables and canvas waveform monitors to soft breathing companion shapes, snapping rules badges, and smiling morphing expressions.",
+    "regressionTestSafety": "Passed. The new visual scheme contains zero residual attributes, files, or parameters of the synthesizer drafting or technical specs blueprint theme."
   },
   "reviewRubric": {
     "driftSignalsToReject": [
-      "centered-poetry-layout",
       "tan-creamy-backgrounds",
-      "soft-floating-shadows",
       "glassmorphic-blurs",
-      "heavy-neon-consoles",
-      "generic-three-up-cards"
+      "sharp-bordered-cards",
+      "centered-poetry-layout",
+      "heavy-industrial-mixers",
+      "patch-cables-and-dials",
+      "glowing-oscilloscopes",
+      "LAYOUT_SPEC_CALIBRATED",
+      "CH_01_FEAT"
     ],
-    "tasteStandard": "Oversized bold headlines, bento grids, pure white and pitch black surfaces, razor-thin lines, snappy hover scale feedback."
+    "tasteStandard": "Breathing vector illustrations, cute character eyes, organic rounded swatches, dragging soft rule badges, red distance annotations, and clean everyday copy."
   },
   "contextHygiene": {
     "optInContinuity": "none"
@@ -582,11 +591,12 @@
   "forbiddenPatterns": [
     "glassmorphism",
     "mesh-gradients",
-    "soft-card-shadows",
     "centered-poetry",
-    "darkroom-aesthetic"
+    "darkroom-aesthetic",
+    "patch-cables",
+    "industrial-mixers"
   ],
   "repoEvidence": {
-    "designEvidenceSummary": "React, Vite, TS, Framer-Motion. Styling managed cleanly in src/index.css."
+    "designEvidenceSummary": "React, Vite, TS, Framer-Motion. Styling managed cleanly in src/index.css and components."
   }
 }

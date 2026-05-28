@@ -1,95 +1,137 @@
 import { motion } from 'framer-motion';
+import { Sparkles, Trash2, MessageSquare, RefreshCw } from 'lucide-react';
 
 const featureList = [
   {
     code: '01',
-    wide: true,
-    title: 'Adaptive Context',
-    description: 'Only the essential rule files required by the current task surface are loaded. Eliminates context noise completely and maximizes attention window efficiency by pulling from 21 target-scoped rule libraries (architecture, security, background jobs, migrations, config).',
-    tag: 'Layer 1-9 Rules'
+    colSpan: 'bento-span-8',
+    title: 'Smart Rules Organizer',
+    description: 'Scans your workspace to load only the specific guidelines required for the active task. Keeps prompt contexts clean, saves AI memory, and prevents token overhead instantly.',
+    icon: <Sparkles size={20} style={{ color: 'var(--color-blue)' }} />,
+    accentColor: 'var(--color-blue)',
+    role: 'Primary Guide'
   },
   {
     code: '02',
-    wide: false,
-    title: 'ASCX Command Wrappers',
-    description: 'Dynamically compresses verbose shell outputs (tests, git status, builds) before they hit the agent context, saving up to 80% of token overhead while preserving exit codes and error logs.',
-    tag: 'Token Saver Runtime'
+    colSpan: 'bento-span-4',
+    title: 'Clutter Cleaner',
+    description: 'Filters out up to 80% of unnecessary console logs, build outputs, and duplicate instructions so your AI focuses purely on high-quality code.',
+    icon: <Trash2 size={20} style={{ color: 'var(--color-orange)' }} />,
+    accentColor: 'var(--color-orange)',
+    role: 'Optimizer'
   },
   {
     code: '03',
-    wide: false,
-    title: 'Compact Natural Mode',
-    description: 'A structural prompt-level contract that guarantees concise, factual, and compact replies from the agent, completely avoiding verbose filler text while preserving paths, errors, and actions.',
-    tag: 'Response Efficiency'
+    colSpan: 'bento-span-4',
+    title: 'Friendly Response Guide',
+    description: 'Enforces a clean response structure to guarantee short, filler-free answers. Cuts down conversational noise and gets straight to the point.',
+    icon: <MessageSquare size={20} style={{ color: 'var(--color-purple)' }} />,
+    accentColor: 'var(--color-purple)',
+    role: 'Regulator'
   },
   {
     code: '04',
-    wide: true,
-    title: 'Model Context Protocol (MCP) Server',
-    description: 'A native stdio workspace server for VS Code, Cursor, and Windsurf. Provides real-time rule compliance diagnostics, checklists, and active memory logs directly inside your interactive chat workspace.',
-    tag: 'IDE Workspace Integration'
+    colSpan: 'bento-span-8',
+    title: 'Native Editor Sync',
+    description: 'Binds rule checklists and validation logs directly inside Cursor, VS Code, Windsurf, or Claude Code. Feeds the exact files and policies seamlessly behind the scenes.',
+    icon: <RefreshCw size={20} style={{ color: 'var(--color-green)' }} />,
+    accentColor: 'var(--color-green)',
+    role: 'Sync Bridge'
   }
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="section" aria-label="Product Features">
+    <section id="features" className="section" aria-label="Features Grid" style={{ paddingBlock: '80px' }}>
       <div className="container">
-        <div style={{ marginBottom: '64px', maxWidth: '800px', textAlign: 'center', marginInline: 'auto' }}>
-          <span style={{ 
-            color: 'var(--color-accent)', 
-            fontSize: '0.8rem', 
-            fontWeight: 600, 
-            letterSpacing: '0.15em', 
-            textTransform: 'uppercase' 
-          }}>
-            Oversight Infrastructure
+        
+        {/* Header section */}
+        <div style={{ marginBottom: '48px', maxWidth: '720px', textAlign: 'left', position: 'relative' }}>
+          <span className="mono-tag" style={{ color: 'var(--color-accent)', fontWeight: 800 }}>
+            Features & Capabilities
           </span>
-          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '24px' }}>
-            Built for Staff-Grade Performance
+          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '16px' }}>
+            Built to make AI coding simple
           </h2>
-          <p className="text-lead">
-            Every capability is engineered to establish strict architectural boundaries while minimizing LLM token overhead.
+          <p className="text-lead" style={{ maxWidth: '640px' }}>
+            A powerful suite of workspace rule processors tailored to optimize communication between builders and AI partners.
           </p>
         </div>
 
+        {/* Bento Grid */}
         <div className="bento-grid">
           {featureList.map((item, index) => (
             <motion.div
               key={item.code}
-              className={`bento-card ${item.wide ? 'bento-wide' : ''}`}
-              initial={{ opacity: 0, y: 20 }}
+              className="chassis-panel"
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ delay: index * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: '-5%' }}
+              transition={{ delay: index * 0.05, type: 'spring', stiffness: 90, damping: 18 }}
+              style={{ 
+                gridColumn: item.colSpan === 'bento-span-8' ? 'span 8' : 'span 4',
+                minHeight: '220px', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'space-between',
+                padding: '28px',
+                borderRadius: 'var(--radius-companion)',
+                border: '1.5px solid var(--border-fine)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.015)'
+              }}
             >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                  <span style={{ 
-                    fontSize: '0.75rem', 
-                    fontFamily: 'var(--font-mono)', 
-                    color: 'var(--color-accent)', 
-                    fontWeight: 600,
-                    background: 'var(--hover-bg)',
-                    padding: '4px 8px',
-                    borderRadius: '4px'
-                  }}>
-                    {item.tag}
-                  </span>
-                  <span style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
-                    [{item.code}]
-                  </span>
+              {/* Inner outline handles */}
+              <div className="chassis-panel-inner" />
+
+              {/* Module Header details */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {item.icon}
+                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--text-primary)' }}>{item.role}</span>
                 </div>
-                <h3 className="heading-md" style={{ marginBottom: '12px' }}>
-                  {item.title}
-                </h3>
-                <p className="text-body" style={{ color: 'var(--text-muted)' }}>
-                  {item.description}
-                </p>
+                <span className="mono-tag" style={{ 
+                  fontSize: '0.65rem', 
+                  background: 'var(--bg-surface-tertiary)', 
+                  padding: '4px 10px', 
+                  borderRadius: '9999px',
+                  fontWeight: 700
+                }}>
+                  Layer {item.code}
+                </span>
               </div>
+
+              {/* Core description */}
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', marginBlock: '24px', zIndex: 1, textAlign: 'left' }}>
+                <div>
+                  <h3 className="heading-md" style={{ marginBottom: '8px' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-body" style={{ color: 'var(--text-muted)', lineHeight: '1.5' }}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Spacing alignment measurements */}
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center', 
+                borderTop: '1.5px solid var(--border-fine)', 
+                paddingTop: '16px', 
+                zIndex: 1 
+              }}>
+                <span style={{ color: item.accentColor, fontWeight: 800, fontSize: '0.72rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: item.accentColor }} />
+                  Safe & Calibrated
+                </span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 500 }}>Active Workspace Status</span>
+              </div>
+
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

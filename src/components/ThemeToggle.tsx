@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark';
+    }
+    return false;
+  });
 
   useEffect(() => {
-    // Check local storage or system preference on mount
-    const savedTheme = localStorage.getItem('theme');
-    // Default is light unless explicitly saved as dark
-    if (savedTheme === 'dark') {
-      setIsDark(true);
+    if (isDark) {
       document.documentElement.classList.add('dark');
     } else {
-      setIsDark(false);
       document.documentElement.classList.remove('dark');
     }
-  }, []);
+  }, [isDark]);
 
   const toggleTheme = () => {
     setIsDark((prev) => {
@@ -32,13 +33,51 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="theme-toggle"
-      aria-label="Toggle Theme"
-      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-    >
-      {isDark ? <Sun size={20} /> : <Moon size={20} />}
-    </button>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <span className="channel-tag" style={{ fontSize: '0.6rem' }} aria-hidden="true">LIGHT</span>
+      
+      {/* Physical Hardware Slide Switch Container */}
+      <button
+        onClick={toggleTheme}
+        aria-label="Toggle system theme calibrator"
+        title={isDark ? "Set to Light Mode" : "Set to Dark Mode"}
+        style={{
+          width: '42px',
+          height: '20px',
+          borderRadius: '10px',
+          backgroundColor: 'var(--bg-surface-tertiary)',
+          border: '1.5px solid var(--border-fine)',
+          cursor: 'pointer',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '2px',
+          outline: 'none'
+        }}
+      >
+        <motion.div
+          animate={{ x: isDark ? 20 : 0 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          style={{
+            width: '14px',
+            height: '14px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--text-primary)',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          {isDark ? (
+            <Moon size={8} style={{ color: 'var(--bg-base)' }} />
+          ) : (
+            <Sun size={8} style={{ color: 'var(--bg-base)' }} />
+          )}
+        </motion.div>
+      </button>
+
+      <span className="channel-tag" style={{ fontSize: '0.6rem' }} aria-hidden="true">DARK</span>
+    </div>
   );
 }

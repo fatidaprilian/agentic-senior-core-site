@@ -1,7 +1,8 @@
 import { Copy, Check } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-const SetupBlock = ({ command, label, desc }: { command: string, label: string, desc: string }) => {
+const SetupBlock = ({ command, label, desc, step }: { command: string, label: string, desc: string, step: string }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -11,104 +12,142 @@ const SetupBlock = ({ command, label, desc }: { command: string, label: string, 
   };
 
   return (
-    <div className="bento-card" style={{ padding: '24px', width: '100%', gap: '16px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-        <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--color-accent)', fontWeight: 600 }}>
-          {label}
-        </span>
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-          {desc}
-        </p>
+    <motion.div 
+      className="chassis-panel"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ type: 'spring', stiffness: 90, damping: 18 }}
+      style={{ 
+        padding: '24px', 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '16px',
+        borderRadius: 'var(--radius-companion)',
+        border: '1.5px solid var(--border-fine)'
+      }}
+    >
+      {/* Corner selection anchors */}
+      <div className="chassis-panel-inner" />
+
+      {/* Block Header details */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', zIndex: 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+          <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-accent)' }}>
+            {step}. {label}
+          </span>
+          <p className="text-body" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+            {desc}
+          </p>
+        </div>
+        <span className="mono-tag" style={{ fontSize: '0.65rem', background: 'var(--bg-surface-tertiary)', padding: '4px 10px', borderRadius: '9999px' }}>Command</span>
       </div>
 
+      {/* Copyable Console container */}
       <div style={{ 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: 'var(--bg-base)',
-        border: '1px solid var(--border-fine)',
-        borderRadius: '6px',
+        background: 'var(--bg-surface-tertiary)',
+        border: '1.5px solid var(--border-fine)',
+        borderRadius: '12px',
         padding: '12px 16px',
         width: '100%',
-        gap: '16px'
+        gap: '16px',
+        zIndex: 1,
+        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.02)'
       }}>
         <code style={{ 
           fontFamily: 'var(--font-mono)', 
-          fontSize: '0.85rem', 
+          fontSize: '0.84rem', 
           color: 'var(--text-primary)', 
           wordBreak: 'break-all',
-          textAlign: 'left'
+          textAlign: 'left',
+          fontWeight: 600
         }}>
           {command}
         </code>
+        
+        {/* Copy trigger */}
         <button
           onClick={handleCopy}
-          aria-label="Copy command to clipboard"
+          aria-label={`Copy command for ${label}`}
           title="Copy command"
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minWidth: '32px',
-            height: '32px',
-            borderRadius: '4px',
-            border: '1px solid var(--border-fine)',
-            color: 'var(--text-muted)',
-            backgroundColor: 'var(--bg-surface-secondary)',
-            transition: 'all 0.2s'
+            minWidth: '34px',
+            height: '34px',
+            borderRadius: '10px',
+            border: '1.5px solid var(--border-fine)',
+            color: copied ? 'var(--color-green)' : 'var(--text-muted)',
+            backgroundColor: 'var(--bg-base)',
+            transition: 'all 0.2s',
+            cursor: 'pointer',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
-          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+          onMouseEnter={(e) => {
+            if (!copied) e.currentTarget.style.borderColor = 'var(--color-accent)';
+          }}
+          onMouseLeave={(e) => {
+            if (!copied) e.currentTarget.style.borderColor = 'var(--border-fine)';
+          }}
         >
-          {copied ? <Check size={14} style={{ color: '#27c93f' }} /> : <Copy size={14} />}
+          {copied ? (
+            <Check size={14} style={{ filter: 'drop-shadow(0 0 4px var(--color-green))' }} />
+          ) : (
+            <Copy size={14} />
+          )}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 export default function Installation() {
   return (
-    <section id="install" className="section" aria-label="Installation Guide">
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ marginBottom: '64px', maxWidth: '800px', textAlign: 'center' }}>
-          <span style={{ 
-            color: 'var(--color-accent)', 
-            fontSize: '0.8rem', 
-            fontWeight: 600, 
-            letterSpacing: '0.15em', 
-            textTransform: 'uppercase' 
-          }}>
-            Accession Setup
+    <section id="install" className="section" aria-label="Setup Guides" style={{ paddingBlock: '80px' }}>
+      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        
+        {/* Header Section */}
+        <div style={{ marginBottom: '48px', maxWidth: '720px', textAlign: 'left' }}>
+          <span className="mono-tag" style={{ color: 'var(--color-accent)', fontWeight: 800 }}>
+            Setup & Onboarding
           </span>
-          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '24px' }}>
-            Initialize in One Command
+          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '16px' }}>
+            Initialize your workspace in seconds
           </h2>
-          <p className="text-lead">
-            Easily bootstrap your project with the production-ready developer oversight pack.
+          <p className="text-lead" style={{ maxWidth: '640px' }}>
+            Set up active rules and compiler scripts inside your project directories using these quick terminal commands.
           </p>
         </div>
 
+        {/* Configuration stack */}
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: '1fr', 
-          gap: '24px', 
+          gap: '20px', 
           width: '100%', 
           maxWidth: '800px' 
         }}>
           <SetupBlock
-            label="I. STANDARD INITIALIZATION"
-            desc="Generates AGENTS.md, native IDE config bridges, and the lazy rule library."
+            step="1"
+            label="Initialize AI Rules Engine"
+            desc="Generates core files, coding rules checklists, local directories, and active memory registries."
             command="npx @ryuenn3123/agentic-senior-core init"
           />
           <SetupBlock
-            label="II. VS CODE MCP TEMPLATE"
-            desc="Generates workspace Model Context Protocol configuration inside .vscode/mcp.json."
+            step="2"
+            label="Generate Code Editor Sync"
+            desc="Enables real-time MCP communication with Cursor, Windsurf, Claude Code, or VS Code."
             command="npx @ryuenn3123/agentic-senior-core init --mcp-template"
           />
           <SetupBlock
-            label="III. SYSTEM UPGRADES"
-            desc="Upgrades managed rule files and prunes obsolete context configurations."
+            step="3"
+            label="Update Workspace Rules"
+            desc="Upgrades active rule presets to the latest version and prunes outdated guidelines."
             command="npx @ryuenn3123/agentic-senior-core upgrade --yes"
           />
         </div>
