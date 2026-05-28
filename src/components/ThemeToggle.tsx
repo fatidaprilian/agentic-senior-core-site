@@ -34,7 +34,7 @@ export default function ThemeToggle() {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <span className="channel-tag" style={{ fontSize: '0.6rem' }} aria-hidden="true">LIGHT</span>
+      <span className="channel-tag theme-label" style={{ fontSize: '0.6rem' }} aria-hidden="true">LIGHT</span>
       
       {/* Physical Hardware Slide Switch Container */}
       <button
@@ -77,7 +77,7 @@ export default function ThemeToggle() {
         </motion.div>
       </button>
 
-      <span className="channel-tag" style={{ fontSize: '0.6rem' }} aria-hidden="true">DARK</span>
+      <span className="channel-tag theme-label" style={{ fontSize: '0.6rem' }} aria-hidden="true">DARK</span>
     </div>
   );
 }

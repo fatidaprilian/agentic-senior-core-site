@@ -76,28 +76,30 @@ export default function Navbar() {
           }
           .mono-tag:hover { color: var(--color-accent) !important; }
           
-          /* Mobile reflow controls */
-          @media (max-width: 640px) {
-            .rules-engine-tag { display: none !important; }
-            .color-swatch-label { display: none !important; }
-            .master-toolbar-inner {
-              padding-inline: 16px !important;
-              height: auto !important;
-              padding-block: 10px !important;
-              flex-wrap: wrap;
-              gap: 8px;
-              justify-content: center !important;
+            /* Mobile reflow controls */
+            @media (max-width: 640px) {
+              .rules-engine-tag { display: none !important; }
+              .color-swatch-label { display: none !important; }
+              .theme-label { display: none !important; }
+              .toolbar-controls { gap: 10px !important; }
+              .master-toolbar-inner {
+                padding-inline: 16px !important;
+                height: auto !important;
+                padding-block: 10px !important;
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center !important;
+              }
+              .master-toolbar {
+                border-radius: 20px !important;
+                max-width: 95% !important;
+                inset-block-start: 8px !important;
+              }
             }
-            .master-toolbar {
-              border-radius: 20px !important;
-              max-width: 95% !important;
-              inset-block-start: 8px !important;
-            }
-          }
-        `}} />
+          `}} />
 
         {/* Color Theme Swatches & Theme toggler */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="toolbar-controls" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           
           {/* Accent swatches */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="Change workspace accent color">
