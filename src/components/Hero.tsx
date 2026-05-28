@@ -312,21 +312,21 @@ export default function Hero() {
                   background: var(--text-primary);
                   color: var(--bg-base);
                   padding: 12px 16px;
-                  borderRadius: 20px;
-                  fontSize: 0.8rem;
-                  fontWeight: 600;
-                  zIndex: 25;
-                  boxShadow: 0 8px 24px rgba(0,0,0,0.12);
-                  textAlign: center;
-                  pointerEvents: none;
+                  border-radius: 20px;
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  z-index: 25;
+                  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                  text-align: center;
+                  pointer-events: none;
                 }
-                @media (max-width: 480px) {
+                @media (max-width: 768px) {
                   .canvas-inner {
-                    grid-template-columns: 1fr;
-                    grid-template-rows: auto auto;
+                    display: flex;
+                    flex-direction: column-reverse;
                     height: auto;
-                    gap: 24px;
-                    margin-top: 24px;
+                    gap: 32px;
+                    margin-top: 56px;
                   }
                   .rule-buttons-container {
                     flex-direction: row;
