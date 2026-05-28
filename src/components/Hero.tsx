@@ -275,52 +275,81 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Main Interactive Canvas */}
-              <div style={{ position: 'relative', height: '240px', marginTop: '16px' }}>
-                
-                {/* Speech Bubble Above AI Companion */}
-                <AnimatePresence>
-                  {speechBubbleText && (
-                    <motion.div
-                      variants={speechBubbleVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                      style={{
-                        position: 'absolute',
-                        left: '190px',
-                        top: '-15px',
-                        width: '210px',
-                        background: 'var(--text-primary)',
-                        color: 'var(--bg-base)',
-                        padding: '12px 16px',
-                        borderRadius: '20px',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        zIndex: 25,
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-                        textAlign: 'center',
-                        pointerEvents: 'none'
-                      }}
-                    >
-                      {speechBubbleText}
-                      {/* Triangle tail for speech bubble */}
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '-6px',
-                        left: '50%',
-                        transform: 'translateX(-50%) rotate(45deg)',
-                        width: '12px',
-                        height: '12px',
-                        backgroundColor: 'var(--text-primary)'
-                      }} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+              {/* Responsive Styles & Grid Calibrations */}
+              <style dangerouslySetInnerHTML={{__html: `
+                .canvas-inner {
+                  display: grid;
+                  grid-template-columns: 1.2fr 1fr;
+                  align-items: center;
+                  height: 240px;
+                  margin-top: 16px;
+                  position: relative;
+                  gap: 16px;
+                  width: 100%;
+                }
+                .rule-buttons-container {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  z-index: 15;
+                  align-items: flex-start;
+                }
+                .companion-wrapper {
+                  position: relative;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  z-index: 10;
+                  width: 100%;
+                  height: 140px;
+                }
+                .speech-bubble-position {
+                  position: absolute;
+                  bottom: 135px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: 200px;
+                  background: var(--text-primary);
+                  color: var(--bg-base);
+                  padding: 12px 16px;
+                  borderRadius: 20px;
+                  fontSize: 0.8rem;
+                  fontWeight: 600;
+                  zIndex: 25;
+                  boxShadow: 0 8px 24px rgba(0,0,0,0.12);
+                  textAlign: center;
+                  pointerEvents: none;
+                }
+                @media (max-width: 480px) {
+                  .canvas-inner {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto;
+                    height: auto;
+                    gap: 24px;
+                    margin-top: 24px;
+                  }
+                  .rule-buttons-container {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    width: 100%;
+                    gap: 8px;
+                  }
+                  .companion-wrapper {
+                    height: 140px;
+                  }
+                  #top .chassis-panel {
+                    height: auto !important;
+                    padding-bottom: 32px !important;
+                  }
+                }
+              `}} />
 
+              {/* Main Interactive Grid Canvas */}
+              <div className="canvas-inner">
+                
                 {/* Left Side: Rule Selector Pills */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'absolute', left: 0, top: '24px', zIndex: 15 }}>
+                <div className="rule-buttons-container">
                   {Object.keys(ruleOrigins).map((ruleId) => {
                     const isConnected = connectedRule === ruleId;
                     const origin = ruleOrigins[ruleId];
@@ -384,21 +413,34 @@ export default function Hero() {
                   })}
                 </div>
 
-                {/* Right Side: Animated Breathing Vector AI Companion */}
-                <div 
-                  style={{ 
-                    position: 'absolute', 
-                    left: '230px', 
-                    top: '36px', 
-                    width: '140px', 
-                    height: '140px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 10
-                  }}
-                >
+                {/* Right Side: Animated Breathing Vector AI Companion Wrapper */}
+                <div className="companion-wrapper">
+                  {/* Speech Bubble Above AI Companion (Always centers beautifully) */}
+                  <AnimatePresence>
+                    {speechBubbleText && (
+                      <motion.div
+                        variants={speechBubbleVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                        className="speech-bubble-position"
+                      >
+                        {speechBubbleText}
+                        {/* Triangle tail for speech bubble */}
+                        <div style={{
+                          position: 'absolute',
+                          bottom: '-6px',
+                          left: '50%',
+                          transform: 'translateX(-50%) rotate(45deg)',
+                          width: '12px',
+                          height: '12px',
+                          backgroundColor: 'var(--text-primary)'
+                        }} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                   <motion.div
                     animate={!prefersReducedMotion ? {
                       scale: [1, 1.03, 1],

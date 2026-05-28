@@ -74,15 +74,27 @@ export default function TerminalDemo() {
             </div>
           </div>
 
+          {/* Responsive Console Separator override */}
+          <style dangerouslySetInnerHTML={{__html: `
+            .console-left-pane {
+              border-right: 1.5px solid var(--border-fine);
+            }
+            @media (max-width: 768px) {
+              .console-left-pane {
+                border-right: none !important;
+                border-bottom: 1.5px solid var(--border-fine) !important;
+              }
+            }
+          `}} />
+
           {/* Interactive Core Panel grid */}
           <div className="bento-grid" style={{ gap: '0' }}>
             
             {/* Left Console: Guidelines Diagnostic */}
             <div 
-              className="bento-span-6" 
+              className="bento-span-6 console-left-pane" 
               style={{ 
                 padding: '24px', 
-                borderRight: '1.5px solid var(--border-fine)',
                 display: 'flex', 
                 flexDirection: 'column', 
                 gap: '16px',

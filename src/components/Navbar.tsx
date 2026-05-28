@@ -40,7 +40,7 @@ export default function Navbar() {
           }}>
             ascx
           </span>
-          <span style={{ 
+          <span className="rules-engine-tag" style={{ 
             fontSize: '0.75rem', 
             fontFamily: 'var(--font-mono)', 
             color: 'var(--text-muted)',
@@ -75,6 +75,25 @@ export default function Navbar() {
             .nav-links { display: flex !important; }
           }
           .mono-tag:hover { color: var(--color-accent) !important; }
+          
+          /* Mobile reflow controls */
+          @media (max-width: 640px) {
+            .rules-engine-tag { display: none !important; }
+            .color-swatch-label { display: none !important; }
+            .master-toolbar-inner {
+              padding-inline: 16px !important;
+              height: auto !important;
+              padding-block: 10px !important;
+              flex-wrap: wrap;
+              gap: 8px;
+              justify-content: center !important;
+            }
+            .master-toolbar {
+              border-radius: 20px !important;
+              max-width: 95% !important;
+              inset-block-start: 8px !important;
+            }
+          }
         `}} />
 
         {/* Color Theme Swatches & Theme toggler */}
@@ -82,7 +101,7 @@ export default function Navbar() {
           
           {/* Accent swatches */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="Change workspace accent color">
-            <span className="channel-tag" style={{ fontSize: '0.55rem', fontWeight: 700, color: 'var(--text-muted)' }}>COLOR:</span>
+            <span className="channel-tag color-swatch-label" style={{ fontSize: '0.55rem', fontWeight: 700, color: 'var(--text-muted)' }}>COLOR:</span>
             <div style={{ display: 'flex', gap: '5px' }}>
               {swatchesList.map((swatch) => (
                 <button
