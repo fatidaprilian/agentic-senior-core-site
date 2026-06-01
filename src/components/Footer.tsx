@@ -17,12 +17,12 @@ export default function Footer() {
             </p>
           </div>
           <div
-            className="col-5"
+            className="col-5 btn-row"
             style={{
               display: "flex",
               gap: 10,
               flexWrap: "wrap",
-              justifyContent: "flex-start",
+              alignItems: "flex-start",
             }}
           >
             <a className="btn" href="#features">

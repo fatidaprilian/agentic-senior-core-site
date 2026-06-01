@@ -58,12 +58,12 @@ export default function Hero() {
       style={{
         minHeight: "calc(100vh - 64px)",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         paddingBlock: "clamp(56px, 8vw, 96px)",
       }}
     >
       <div className="container">
-        <div className="grid-12" style={{ alignItems: "stretch" }}>
+        <div className="grid-12" style={{ alignItems: "start" }}>
           <motion.div
             className="col-7"
             initial={{ opacity: 0, y: 18 }}
@@ -96,7 +96,10 @@ export default function Hero() {
               cleaner command output.
             </p>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <div
+              className="btn-row"
+              style={{ display: "flex", flexWrap: "wrap", gap: 12 }}
+            >
               <a className="btn btn-primary" href="#install">
                 Install now
               </a>

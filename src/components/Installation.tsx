@@ -81,7 +81,10 @@ export default function Installation() {
               Keep setup boring: run one command, connect your editor when
               needed, and upgrade the rule pack later.
             </p>
-            <div className="neo-card" style={{ marginTop: 28, padding: 18 }}>
+            <div
+              className="neo-card"
+              style={{ marginTop: 28, padding: 18, display: "inline-block" }}
+            >
               <div className="heading-md">30s</div>
               <div className="label-mono" style={{ marginTop: 8 }}>
                 average setup path

@@ -53,7 +53,7 @@ export default function TerminalDemo() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.28 }}
-            style={{ overflow: "hidden" }}
+            style={{ overflow: "hidden", minWidth: 0 }}
           >
             <div
               style={{
@@ -75,12 +75,13 @@ export default function TerminalDemo() {
               style={{
                 margin: 0,
                 padding: 22,
-                minHeight: 260,
+                minHeight: 200,
                 background: "#111111",
                 color: "#fff7df",
                 overflowX: "auto",
+                maxWidth: "100%",
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.88rem",
+                fontSize: "clamp(0.76rem, 1.5vw, 0.88rem)",
                 lineHeight: 1.9,
               }}
             >
