@@ -42,6 +42,7 @@ html.dark {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: clip;
 }
 
 body {
@@ -51,7 +52,7 @@ body {
     color: var(--text-primary);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    overflow: clip; /* clip prevents shadow-driven scroll without creating a scroll context */
+    overflow-x: clip; /* clip prevents shadow-driven scroll without creating a scroll context */
 }
 
 body::before {
@@ -253,6 +254,7 @@ a {
 .command-box code {
     flex: 1;
     min-width: 0;
+    max-width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     font-family: var(--font-mono);
@@ -345,6 +347,11 @@ a {
     .command-box {
         align-items: stretch;
         flex-direction: column;
+    }
+
+    .command-box code {
+        width: 100%;
+        max-width: 100%;
     }
 
     .command-box button {
