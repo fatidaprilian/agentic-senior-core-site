@@ -31,37 +31,25 @@ export default function Features() {
   return (
     <section id="features" className="section" aria-label="Capabilities">
       <div className="container">
-        <div
-          className="grid-12"
-          style={{ alignItems: "end", marginBottom: 28 }}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.3 }}
+          style={{ maxWidth: 680, marginBottom: 28 }}
         >
-          <motion.div
-            className="col-7"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.3 }}
+          <span className="label-mono">Capabilities</span>
+          <h2
+            className="heading-lg"
+            style={{ marginTop: 10, marginBottom: 14 }}
           >
-            <span className="label-mono">Capabilities</span>
-            <h2
-              className="heading-lg"
-              style={{ marginTop: 10, marginBottom: 14 }}
-            >
-              What the engine does
-            </h2>
-            <p className="text-lead">
-              Four practical systems working together to strip noise, enforce
-              structure, and keep AI responses accurate and lean.
-            </p>
-          </motion.div>
-          <div className="col-5 neo-card-soft" style={{ padding: 18 }}>
-            <div className="label-mono">Design choice</div>
-            <p className="text-body" style={{ marginTop: 8 }}>
-              No scroll tricks here. Just exposed product facts in a responsive
-              grid.
-            </p>
-          </div>
-        </div>
+            What the engine does
+          </h2>
+          <p className="text-lead">
+            Four practical systems working together to strip noise, enforce
+            structure, and keep AI responses accurate and lean.
+          </p>
+        </motion.div>
 
         <div
           style={{
