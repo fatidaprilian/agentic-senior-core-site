@@ -103,9 +103,9 @@ export default function Installation() {
                 transition={{ duration: 0.25, delay: index * 0.05 }}
                 style={{ padding: 20 }}
               >
-                <div style={{ display: "flex", gap: 16, alignItems: "start" }}>
+                <div className="install-step-inner">
                   <span className="badge badge-live">{step.number}</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="install-step-content">
                     <h3 className="heading-md">{step.title}</h3>
                     <p className="text-body" style={{ marginTop: 8 }}>
                       {step.body}

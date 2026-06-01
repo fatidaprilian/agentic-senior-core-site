@@ -273,6 +273,17 @@ a {
     cursor: pointer;
 }
 
+.install-step-inner {
+    display: flex;
+    gap: 16px;
+    align-items: start;
+}
+
+.install-step-content {
+    flex: 1;
+    min-width: 0;
+}
+
 .navbar {
     position: sticky;
     top: 0;
@@ -368,6 +379,12 @@ a {
     .btn:not(.btn-row .btn) {
         width: 100%;
         justify-content: center;
+    }
+
+    .install-step-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 }
 
