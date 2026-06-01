@@ -1,157 +1,307 @@
-import { Copy, Check } from 'lucide-react';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
+import { Check, Copy } from "lucide-react";
 
-const SetupBlock = ({ command, label, desc, step }: { command: string, label: string, desc: string, step: string }) => {
+// ---------------------------------------------------------------------------
+// Data
+// ---------------------------------------------------------------------------
+
+interface Step {
+  title: string;
+  description: string;
+  command: string;
+}
+
+const STEPS: Step[] = [
+  {
+    title: "Initialize Rules Engine",
+    description:
+      "Generates core rule files, active memory registries, and coding governance checklists.",
+    command: "npx @ryuenn3123/agentic-senior-core init",
+  },
+  {
+    title: "Sync with Your Editor (optional)",
+    description:
+      "Enables real-time MCP communication with Cursor, VS Code, Windsurf, or Claude Code.",
+    command: "npx @ryuenn3123/agentic-senior-core init --mcp-template",
+  },
+  {
+    title: "Stay Current",
+    description:
+      "Upgrades all rule presets to the latest version and prunes outdated guidelines.",
+    command: "npx @ryuenn3123/agentic-senior-core upgrade --yes",
+  },
+];
+
+const MOBILE_STYLES = `
+  @media (max-width: 768px) {
+    .install-grid {
+      grid-template-columns: 1fr !important;
+      gap: 48px !important;
+    }
+  }
+`;
+
+// ---------------------------------------------------------------------------
+// StepCard
+// ---------------------------------------------------------------------------
+
+interface StepCardProps {
+  step: Step;
+  index: number;
+  isLast: boolean;
+}
+
+function StepCard({ step, index, isLast }: StepCardProps) {
   const [copied, setCopied] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Single IntersectionObserver drives both entrance animation and color change.
+  const isInView = useInView(ref, { once: true });
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText(step.command).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
-    <motion.div 
-      className="chassis-panel"
+    <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ type: 'spring', stiffness: 90, damping: 18 }}
-      style={{ 
-        padding: '24px', 
-        width: '100%', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        gap: '16px',
-        borderRadius: 'var(--radius-companion)',
-        border: '1.5px solid var(--border-fine)'
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      transition={{ delay: index * 0.12, duration: 0.4, ease: "easeOut" }}
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        // Spacing between steps: last step has no margin.
+        marginBottom: isLast ? 0 : "24px",
       }}
     >
-      {/* Corner selection anchors */}
-      <div className="chassis-panel-inner" />
-
-      {/* Block Header details */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', zIndex: 1 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-          <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-accent)' }}>
-            {step}. {label}
-          </span>
-          <p className="text-body" style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            {desc}
-          </p>
-        </div>
-        <span className="mono-tag" style={{ fontSize: '0.65rem', background: 'var(--bg-surface-tertiary)', padding: '4px 10px', borderRadius: '9999px' }}>Command</span>
-      </div>
-
-      {/* Copyable Console container */}
-      <div style={{ 
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: 'var(--bg-surface-tertiary)',
-        border: '1.5px solid var(--border-fine)',
-        borderRadius: '12px',
-        padding: '12px 16px',
-        width: '100%',
-        gap: '16px',
-        zIndex: 1,
-        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.02)'
-      }}>
-        <code style={{ 
-          fontFamily: 'var(--font-mono)', 
-          fontSize: '0.84rem', 
-          color: 'var(--text-primary)', 
-          wordBreak: 'break-all',
-          textAlign: 'left',
-          fontWeight: 600
-        }}>
-          {command}
-        </code>
-        
-        {/* Copy trigger */}
-        <button
-          onClick={handleCopy}
-          aria-label={`Copy command for ${label}`}
-          title="Copy command"
+      {/* ----------------------------------------------------------------
+          Timeline column
+          align-self: stretch ensures the column matches card height so
+          the connector line fills exactly to the next step's circle.
+      ---------------------------------------------------------------- */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          alignSelf: "stretch",
+          width: "20px",
+          flexShrink: 0,
+        }}
+      >
+        {/* Circle node — border and text color animate when in view */}
+        <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minWidth: '34px',
-            height: '34px',
-            borderRadius: '10px',
-            border: '1.5px solid var(--border-fine)',
-            color: copied ? 'var(--color-green)' : 'var(--text-muted)',
-            backgroundColor: 'var(--bg-base)',
-            transition: 'all 0.2s',
-            cursor: 'pointer',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
-          }}
-          onMouseEnter={(e) => {
-            if (!copied) e.currentTarget.style.borderColor = 'var(--color-accent)';
-          }}
-          onMouseLeave={(e) => {
-            if (!copied) e.currentTarget.style.borderColor = 'var(--border-fine)';
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            border: `2px solid ${isInView ? "var(--accent)" : "var(--border-fine)"}`,
+            background: "var(--bg-surface-secondary)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.68rem",
+            fontWeight: 600,
+            color: isInView ? "var(--accent)" : "var(--text-muted)",
+            // CSS transition handles the smooth color shift.
+            transition: "border-color 0.4s ease 0.2s, color 0.4s ease 0.2s",
+            flexShrink: 0,
+            zIndex: 1,
           }}
         >
-          {copied ? (
-            <Check size={14} style={{ filter: 'drop-shadow(0 0 4px var(--color-green))' }} />
-          ) : (
-            <Copy size={14} />
-          )}
-        </button>
+          {index + 1}
+        </div>
+
+        {/* Connector line — negative margin-bottom pulls it 24px into the
+            gap between steps, closing the visual join to the next circle. */}
+        {!isLast && (
+          <div
+            style={{
+              flex: 1,
+              width: "2px",
+              background: isInView ? "var(--accent)" : "var(--border-fine)",
+              transition: "background 0.4s ease 0.4s",
+              marginTop: "4px",
+              marginBottom: "-24px",
+            }}
+          />
+        )}
+      </div>
+
+      {/* ----------------------------------------------------------------
+          Step card
+      ---------------------------------------------------------------- */}
+      <div
+        className="card"
+        style={{
+          marginLeft: "32px",
+          flex: 1,
+          padding: "24px",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            fontSize: "1rem",
+            color: "var(--text-primary)",
+            marginBottom: "8px",
+          }}
+        >
+          {step.title}
+        </div>
+
+        <p className="text-body" style={{ margin: 0 }}>
+          {step.description}
+        </p>
+
+        {/* Command block */}
+        <div
+          className="inset-terminal"
+          style={{
+            marginTop: "16px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <code
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.82rem",
+              flex: 1,
+              wordBreak: "break-all",
+              color: "var(--text-primary)",
+            }}
+          >
+            {step.command}
+          </code>
+
+          <button
+            onClick={handleCopy}
+            aria-label={`Copy: ${step.command}`}
+            style={{
+              width: "36px",
+              height: "36px",
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              border: `1px solid ${copied ? "var(--green)" : "var(--border-fine)"}`,
+              borderRadius: "var(--radius-sm)",
+              background: "var(--bg-surface)",
+              cursor: "pointer",
+              transition: "border-color 0.2s ease, color 0.2s ease",
+              color: copied ? "var(--green)" : "var(--text-muted)",
+              outline: "none",
+            }}
+          >
+            {copied ? <Check size={14} /> : <Copy size={14} />}
+          </button>
+        </div>
       </div>
     </motion.div>
   );
-};
+}
+
+// ---------------------------------------------------------------------------
+// Section
+// ---------------------------------------------------------------------------
 
 export default function Installation() {
   return (
-    <section id="install" className="section" aria-label="Setup Guides" style={{ paddingBlock: '80px' }}>
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-        
-        {/* Header Section */}
-        <div style={{ marginBottom: '48px', maxWidth: '720px', textAlign: 'left' }}>
-          <span className="mono-tag" style={{ color: 'var(--color-accent)', fontWeight: 800 }}>
-            Setup & Onboarding
-          </span>
-          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '16px' }}>
-            Initialize your workspace in seconds
-          </h2>
-          <p className="text-lead" style={{ maxWidth: '640px' }}>
-            Set up active rules and compiler scripts inside your project directories using these quick terminal commands.
-          </p>
-        </div>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: MOBILE_STYLES }} />
 
-        {/* Configuration stack */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr', 
-          gap: '20px', 
-          width: '100%', 
-          maxWidth: '800px' 
-        }}>
-          <SetupBlock
-            step="1"
-            label="Initialize AI Rules Engine"
-            desc="Generates core files, coding rules checklists, local directories, and active memory registries."
-            command="npx @ryuenn3123/agentic-senior-core init"
-          />
-          <SetupBlock
-            step="2"
-            label="Generate Code Editor Sync"
-            desc="Enables real-time MCP communication with Cursor, Windsurf, Claude Code, or VS Code."
-            command="npx @ryuenn3123/agentic-senior-core init --mcp-template"
-          />
-          <SetupBlock
-            step="3"
-            label="Update Workspace Rules"
-            desc="Upgrades active rule presets to the latest version and prunes outdated guidelines."
-            command="npx @ryuenn3123/agentic-senior-core upgrade --yes"
-          />
+      <section id="install" className="section">
+        <div className="container">
+          <div
+            className="install-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "5fr 7fr",
+              gap: "64px",
+              alignItems: "start",
+            }}
+          >
+            {/* ----------------------------------------------------------------
+                Left column
+            ---------------------------------------------------------------- */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="label-mono">Quick Start</p>
+
+              <h2 className="heading-lg" style={{ marginTop: "16px" }}>
+                Up and running in 30 seconds
+              </h2>
+
+              <p className="text-lead" style={{ marginTop: "16px" }}>
+                Three commands to initialize the rules engine, sync with your
+                editor, and stay current.
+              </p>
+
+              {/* Inline stat card */}
+              <div
+                className="card"
+                style={{ padding: "20px", marginTop: "32px" }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "12px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "2rem",
+                      fontWeight: 700,
+                      color: "var(--accent)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    30s
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.68rem",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    Average setup time
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ----------------------------------------------------------------
+                Right column — vertical timeline
+            ---------------------------------------------------------------- */}
+            <div>
+              {STEPS.map((step, index) => (
+                <StepCard
+                  key={step.title}
+                  step={step}
+                  index={index}
+                  isLast={index === STEPS.length - 1}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

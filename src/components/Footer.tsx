@@ -1,73 +1,224 @@
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+import { motion } from "motion/react";
 
+// ---------------------------------------------------------------------------
+// Data
+// ---------------------------------------------------------------------------
+
+const RESOURCES_LINKS = [
+  {
+    label: "GitHub",
+    href: "https://github.com/fatidaprilian/Agentic-Senior-Core",
+    external: true,
+  },
+  {
+    label: "Documentation",
+    href: "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs",
+    external: true,
+  },
+  {
+    label: "Benchmarks",
+    href: "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/benchmark-reference.md",
+    external: true,
+  },
+];
+
+const NAVIGATE_LINKS = [
+  { label: "Features", href: "#features" },
+  { label: "Install", href: "#install" },
+  { label: "Demo", href: "#demo" },
+  { label: "Rules", href: "#docs" },
+];
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+
+export default function Footer() {
   return (
-    <footer 
-      className="footer" 
-      aria-label="Footer" 
-      style={{ 
-        paddingBlock: '56px', 
-        borderTop: '1.5px solid var(--border-fine)', 
-        background: 'var(--bg-surface-secondary)',
-        position: 'relative'
+    <motion.footer
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      style={{
+        borderTop: "1px solid var(--border-subtle)",
+        paddingBlock: "48px",
       }}
     >
-      <div className="chassis-panel-inner" />
-
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '28px' }}>
-        
-        {/* Upper row */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', width: '100%', gap: '20px' }}>
-          
-          {/* Brand plate */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', textAlign: 'left' }}>
-            <span style={{ 
-              fontFamily: 'var(--font-display)', 
-              fontWeight: 800, 
-              fontSize: '0.86rem',
-              color: '#ffffff',
-              background: 'var(--color-accent)',
-              padding: '4px 10px',
-              borderRadius: '8px',
-              width: 'fit-content',
-              boxShadow: '0 2px 8px rgba(var(--color-accent-rgb), 0.15)'
-            }}>
-              ASC
-            </span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500 }}>Open Source AI Coding</span>
-          </div>
-
-          {/* Quick links */}
-          <div className="footer-links" style={{ display: 'flex', gap: '24px', fontFamily: 'var(--font-body)', fontSize: '0.82rem', alignItems: 'center' }}>
-            <a href="https://github.com/fatidaprilian/Agentic-Senior-Core" target="_blank" rel="noopener noreferrer" title="GitHub Codebase" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontWeight: 600 }}>
-              GitHub
-            </a>
-            <a href="#install" title="Setup Guides" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontWeight: 600 }}>
-              Setup
-            </a>
-            <a href="#features" title="System Features" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontWeight: 600 }}>
-              Features
-            </a>
-            <a href="#docs" title="Calibrator Specs" style={{ color: 'var(--text-muted)', textDecoration: 'none', fontWeight: 600 }}>
-              Documentation
-            </a>
-          </div>
-        </div>
-
-        {/* Division border */}
-        <div style={{ borderBottom: '1.5px solid var(--border-fine)', width: '100%' }} />
-
-        {/* Bottom copyright block */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', width: '100%', gap: '12px', fontSize: '0.78rem', color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}>
-          <div style={{ textAlign: 'left' }}>
-            Released under the friendly MIT License. Build freely, validate strictly.
-          </div>
+      <div className="container">
+        {/* ----------------------------------------------------------------
+            Row 1 — Brand + links
+        ---------------------------------------------------------------- */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            marginBottom: "40px",
+            flexWrap: "wrap",
+            gap: "40px",
+          }}
+        >
+          {/* Brand block */}
           <div>
-            © {currentYear} Agentic-Senior-Core
+            <div
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 600,
+                fontSize: "1rem",
+                color: "var(--text-primary)",
+              }}
+            >
+              agentic-senior-core
+            </div>
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.84rem",
+                color: "var(--text-muted)",
+                marginTop: "6px",
+                marginBottom: "16px",
+                maxWidth: "260px",
+              }}
+            >
+              Production-grade rules engine for AI coding agents.
+            </p>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              <span className="badge">MIT License</span>
+              <span className="badge badge-accent">Open Source</span>
+            </div>
+          </div>
+
+          {/* Link groups */}
+          <div
+            style={{
+              display: "flex",
+              gap: "48px",
+              flexWrap: "wrap",
+            }}
+          >
+            {/* Resources */}
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.68rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-muted)",
+                  marginBottom: "12px",
+                }}
+              >
+                Resources
+              </p>
+              {RESOURCES_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  {...(link.external
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.84rem",
+                    color: "var(--text-muted)",
+                    textDecoration: "none",
+                    display: "block",
+                    marginBottom: "8px",
+                    transition: "color 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--text-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--text-muted)";
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Navigate */}
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.68rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--text-muted)",
+                  marginBottom: "12px",
+                }}
+              >
+                Navigate
+              </p>
+              {NAVIGATE_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.84rem",
+                    color: "var(--text-muted)",
+                    textDecoration: "none",
+                    display: "block",
+                    marginBottom: "8px",
+                    transition: "color 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--text-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--text-muted)";
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* ----------------------------------------------------------------
+            Row 2 — Legal strip
+        ---------------------------------------------------------------- */}
+        <div
+          style={{
+            borderTop: "1px solid var(--border-subtle)",
+            paddingTop: "24px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.8rem",
+              color: "var(--text-muted)",
+              margin: 0,
+            }}
+          >
+            &copy; 2025 Agentic-Senior-Core. Released under the MIT License.
+          </p>
+
+          {/* Meta moment: the site itself was built with the tool */}
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              color: "var(--text-muted)",
+            }}
+          >
+            Built with agentic-senior-core v4.0
+          </span>
+        </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

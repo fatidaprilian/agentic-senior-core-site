@@ -1,587 +1,663 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check, Shield, Zap, Sparkles } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { motion, useSpring } from "motion/react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
-interface RuleOrigin {
-  color: string;
-  label: string;
-  icon: React.ReactNode;
+// ─── CONSTANTS ────────────────────────────────────────────────────────────────
+
+const SCRAMBLE_CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+const HERO_LINES = ["AGENTIC", "SENIOR", "CORE"] as const;
+const SCRAMBLE_DURATION_MS = 1200;
+const SCRAMBLE_INTERVAL_MS = 40;
+
+const RECEIPT_ROWS: Array<{
+  key: string;
+  value: string;
+  accent?: boolean;
+}> = [
+  { key: "loaded_files", value: "architecture.md, security.md" },
+  {
+    key: "selected_rules",
+    value: "ARCH-001, SEC-003, PERF-002",
+    accent: true,
+  },
+  { key: "skipped_rules", value: "docker-runtime.md" },
+  {
+    key: "validation_plan",
+    value: "npm run validate \u2192 tsc",
+    accent: true,
+  },
+];
+
+const TYPING_COMMAND = "$ ascx npm run validate";
+
+// ─── HOOKS ────────────────────────────────────────────────────────────────────
+
+/**
+ * Scrambles a word's characters left-to-right over `duration` ms.
+ * Returns the current display string and whether scramble is complete.
+ */
+function useScramble(
+  word: string,
+  startDelay: number,
+  duration: number,
+): { display: string; done: boolean } {
+  const [display, setDisplay] = useState(() =>
+    word.replace(/./g, SCRAMBLE_CHARS[0]),
+  );
+  const [done, setDone] = useState(false);
+  const frameRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const startedRef = useRef(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (startedRef.current) return;
+      startedRef.current = true;
+
+      const totalFrames = Math.ceil(duration / SCRAMBLE_INTERVAL_MS);
+      // Each character resolves over an equal share of frames, left-to-right.
+      const framesPerChar = totalFrames / word.length;
+      let frame = 0;
+
+      frameRef.current = setInterval(() => {
+        frame++;
+        const resolvedCount = Math.min(
+          Math.floor(frame / framesPerChar),
+          word.length,
+        );
+        const scrambled = word
+          .split("")
+          .map((char, i) => {
+            if (i < resolvedCount) return char;
+            return SCRAMBLE_CHARS[
+              Math.floor(Math.random() * SCRAMBLE_CHARS.length)
+            ];
+          })
+          .join("");
+        setDisplay(scrambled);
+
+        if (resolvedCount >= word.length) {
+          setDisplay(word);
+          setDone(true);
+          if (frameRef.current) clearInterval(frameRef.current);
+        }
+      }, SCRAMBLE_INTERVAL_MS);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (frameRef.current) clearInterval(frameRef.current);
+    };
+  }, [word, startDelay, duration]);
+
+  return { display, done };
 }
 
-
-const speechBubbleVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 10 },
-  visible: { opacity: 1, scale: 1, y: 0 },
-  exit: { opacity: 0, scale: 0.8, y: 10 }
-};
-
-export default function Hero() {
-  const [version, setVersion] = useState('4.2.0');
-  const [copied, setCopied] = useState(false);
-  
-  // Track snapping states
-  const [connectedRule, setConnectedRule] = useState<string | null>(null);
-  const [speechBubbleText, setSpeechBubbleText] = useState<string | null>(null);
-  const [isBlinking, setIsBlinking] = useState(false);
-
-  const targetRef = useRef<HTMLDivElement>(null);
-
-  // Playful rule pills attributes
-  const ruleOrigins: Record<string, RuleOrigin> = {
-    clean: { 
-      color: 'var(--color-purple)', 
-      label: 'Clean Code', 
-      icon: <Sparkles size={13} style={{ color: 'var(--bg-surface-secondary)' }} /> 
-    },
-    secure: { 
-      color: 'var(--color-orange)', 
-      label: 'Safe Security', 
-      icon: <Shield size={13} style={{ color: 'var(--bg-surface-secondary)' }} /> 
-    },
-    fast: { 
-      color: 'var(--color-green)', 
-      label: 'Fast Queries', 
-      icon: <Zap size={13} style={{ color: 'var(--bg-surface-secondary)' }} /> 
-    }
-  };
-
-  // Detect system reduced motion settings
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    }
-    return false;
-  });
+/**
+ * Types a string character-by-character after an initial delay.
+ */
+function useTyping(
+  text: string,
+  startDelay: number,
+  charIntervalMs: number,
+): string {
+  const [typed, setTyped] = useState("");
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const listener = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', listener);
-    return () => mediaQuery.removeEventListener('change', listener);
-  }, []);
+    let i = 0;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    const timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        i++;
+        setTyped(text.slice(0, i));
+        if (i >= text.length && intervalId) clearInterval(intervalId);
+      }, charIntervalMs);
+    }, startDelay);
 
-  // Fetch package version on load
-  useEffect(() => {
-    fetch('https://registry.npmjs.org/@ryuenn3123/agentic-senior-core/latest')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.version) {
-          setVersion(data.version);
-        }
-      })
-      .catch(() => {});
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [text, startDelay, charIntervalMs]);
 
-  // Soft blink timer for the companion's cute eyes
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => setIsBlinking(false), 200);
-    }, 4000);
-    return () => clearInterval(blinkInterval);
-  }, []);
+  return typed;
+}
 
-  // Handle snapping events & dynamic companion dialogue
-  const handleSnap = (ruleId: string | null) => {
-    setConnectedRule(ruleId);
-    if (ruleId) {
-      if (ruleId === 'clean') {
-        setSpeechBubbleText('Wow! I write exceptionally clean code now! ✨');
-      } else if (ruleId === 'secure') {
-        setSpeechBubbleText('Safe and sound! Locked down and ready! 🔒');
-      } else if (ruleId === 'fast') {
-        setSpeechBubbleText('Wheee! I am running at light speed! ⚡');
-      }
-    } else {
-      setSpeechBubbleText(null);
-    }
+// ─── MAGNETIC BUTTON ──────────────────────────────────────────────────────────
+
+interface MagneticButtonProps {
+  href: string;
+  target?: string;
+  rel?: string;
+  className: string;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}
+
+function MagneticButton({
+  href,
+  target,
+  rel,
+  className,
+  children,
+  style,
+}: MagneticButtonProps) {
+  const ref = useRef<HTMLAnchorElement | null>(null);
+  const springConfig = { stiffness: 300, damping: 20, restDelta: 0.001 };
+  const x = useSpring(0, springConfig);
+  const y = useSpring(0, springConfig);
+  const MAX_PULL = 8;
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = Math.max(rect.width, rect.height) * 1.5;
+    const factor = Math.max(0, 1 - dist / maxDist);
+    x.set(dx * factor * (MAX_PULL / maxDist) * maxDist);
+    y.set(dy * factor * (MAX_PULL / maxDist) * maxDist);
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText('npx @ryuenn3123/agentic-senior-core init');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  // Keyboard accessibility triggers
-  const handleKeyboardConnect = (ruleId: string) => {
-    if (connectedRule === ruleId) {
-      handleSnap(null);
-    } else {
-      handleSnap(ruleId);
-    }
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
-    <section 
-      className="section" 
-      id="top" 
-      aria-label="Friendly AI Companion Canvas" 
-      style={{ 
-        width: '100%', 
-        minHeight: '90vh', 
-        paddingBlockStart: '130px',
-        paddingBlockEnd: '64px',
-        borderBottom: '1.5px solid var(--border-fine)',
-        display: 'flex',
-        alignItems: 'center'
-      }}
+    <motion.a
+      ref={ref}
+      href={href}
+      target={target}
+      rel={rel}
+      className={className}
+      style={{ ...style, x, y }}
+      whileHover={{ y: -2 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className="container">
-        <div className="bento-grid" style={{ alignItems: 'center' }}>
-          
-          {/* Left Column: Cozy branding and copy block */}
-          <div className="bento-span-6" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-            
-            {/* Version Tag */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 14px',
-              background: 'var(--bg-surface-tertiary)',
-              border: '1.5px solid var(--border-fine)',
-              borderRadius: '9999px',
-              marginBottom: '28px'
-            }}>
-              <span className="mono-tag" style={{ color: 'var(--color-accent)', fontWeight: 800, fontSize: '0.75rem' }}>v{version}</span>
-              <span style={{ opacity: 0.2, color: 'var(--text-muted)' }}>|</span>
-              <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-muted)' }}>Active AI Rules</span>
-            </div>
+      {children}
+    </motion.a>
+  );
+}
 
-            {/* Cozy displays sans Outfit headers */}
-            <h1 className="heading-xl" style={{ marginBottom: '22px' }}>
-              Meet your AI’s friendly <br />
-              <span style={{ color: 'var(--color-accent)' }}>coding companion.</span>
-            </h1>
+// ─── SCRAMBLE LINE ────────────────────────────────────────────────────────────
 
-            <p className="text-lead" style={{ marginBottom: '36px', maxWidth: '540px' }}>
-              A soft, playful workspace designed to organize your AI coding assistant. Align guidelines, prevent context clutter, and help your digital partner code safely, cleanly, and at lightning speed.
-            </p>
+interface ScrambleLineProps {
+  word: string;
+  startDelay: number;
+  motionDelay: number;
+  isLast: boolean;
+  allDone: boolean;
+}
 
-            {/* Inset Terminal Command Panel */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              background: 'var(--bg-surface-secondary)',
-              border: '1.5px solid var(--border-fine)',
-              borderRadius: '20px',
-              padding: '14px 20px',
-              width: '100%',
-              maxWidth: '480px',
-              marginBottom: '40px',
-              gap: '16px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.02)'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ color: 'var(--color-accent)', fontWeight: 800 }}>$</span>
-                <code style={{ 
-                  fontFamily: 'var(--font-mono)', 
-                  fontSize: '0.86rem', 
-                  color: 'var(--text-primary)',
-                  fontWeight: 600
-                }}>
-                  npx @ryuenn3123/agentic-senior-core init
-                </code>
-              </div>
-              
-              <button
-                onClick={handleCopy}
-                aria-label="Copy installation command"
-                title="Copy Command"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '12px',
-                  border: '1.5px solid var(--border-fine)',
-                  color: 'var(--text-muted)',
-                  backgroundColor: 'var(--bg-base)',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-accent)'}
-                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border-fine)'}
-              >
-                {copied ? <Check size={15} style={{ color: 'var(--color-green)' }} /> : <Copy size={15} />}
-              </button>
-            </div>
+function ScrambleLine({
+  word,
+  startDelay,
+  motionDelay,
+  isLast,
+  allDone,
+}: ScrambleLineProps) {
+  const { display, done } = useScramble(word, startDelay, SCRAMBLE_DURATION_MS);
+  // Show cursor for 1.5s after last line resolves, then fade it out.
+  const [cursorVisible, setCursorVisible] = useState(true);
+  const [cursorFaded, setCursorFaded] = useState(false);
 
-            {/* Cozy Bento Statistics Card */}
-            <div style={{ display: 'flex', gap: '40px', borderTop: '2px solid var(--border-fine)', paddingTop: '28px', width: '100%', maxWidth: '480px' }}>
-              <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-purple)', fontFamily: 'var(--font-display)' }}>21 Rules</div>
-                <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 500 }}>Ready to Guide</div>
-              </div>
-              <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-orange)', fontFamily: 'var(--font-display)' }}>-80% Less</div>
-                <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 500 }}>Context Waste</div>
-              </div>
-              <div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-green)', fontFamily: 'var(--font-display)' }}>100% Free</div>
-                <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 500 }}>Open Source</div>
-              </div>
-            </div>
+  useEffect(() => {
+    if (!isLast || !allDone) return;
+    const fadeTimer = setTimeout(() => setCursorFaded(true), 1500);
+    const removeTimer = setTimeout(() => setCursorVisible(false), 2000);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, [isLast, allDone]);
 
-          </div>
+  return (
+    <motion.div
+      className="display-hero"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        delay: motionDelay,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      aria-label={word}
+    >
+      {display}
+      {isLast && done && cursorVisible && (
+        <span
+          className="cursor-bar"
+          style={{
+            marginLeft: "4px",
+            height: "0.75em",
+            opacity: cursorFaded ? 0 : 1,
+            transition: "opacity 0.4s ease",
+          }}
+        />
+      )}
+    </motion.div>
+  );
+}
 
-          {/* Right Column: Breathing AI Companion Sandbox */}
-          <div className="bento-span-6" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <div 
-              ref={targetRef}
-              className="chassis-panel"
+// ─── RECEIPT PANEL ────────────────────────────────────────────────────────────
+
+function ReceiptPanel() {
+  const typedCommand = useTyping(TYPING_COMMAND, 1500, 40);
+  const [cursorOn, setCursorOn] = useState(true);
+
+  useEffect(() => {
+    const id = setInterval(() => setCursorOn((v) => !v), 500);
+    return () => clearInterval(id);
+  }, []);
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: 0.6,
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const rowVariants = {
+    hidden: { opacity: 0, x: -8 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: [0, 0, 0.58, 1] as [number, number, number, number],
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className="card"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        padding: "28px",
+        borderRadius: "var(--radius-xl)",
+      }}
+      aria-label="Bootstrap Receipt panel"
+    >
+      {/* Traffic lights + badge header */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingBottom: "16px",
+          borderBottom: "1px solid var(--border-fine)",
+          marginBottom: "20px",
+        }}
+      >
+        {/* Traffic lights */}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          {(
+            [
+              { color: "#ef4444", label: "close" },
+              { color: "#f59e0b", label: "minimize" },
+              { color: "#22c55e", label: "maximize" },
+            ] as const
+          ).map(({ color, label }) => (
+            <span
+              key={label}
+              aria-label={label}
               style={{
-                width: '100%',
-                maxWidth: '460px',
-                height: '350px',
-                background: 'var(--bg-surface-secondary)',
-                border: '1.5px solid var(--border-fine)',
-                borderRadius: 'var(--radius-companion)',
-                padding: '24px',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                userSelect: 'none',
-                overflow: 'visible'
+                display: "block",
+                width: "10px",
+                height: "10px",
+                borderRadius: "50%",
+                backgroundColor: color,
+                flexShrink: 0,
+              }}
+            />
+          ))}
+        </div>
+        <span className="badge">Bootstrap Receipt</span>
+      </div>
+
+      {/* Receipt rows */}
+      <motion.div
+        className="receipt-block"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {RECEIPT_ROWS.map(({ key, value, accent }) => (
+          <motion.div key={key} variants={rowVariants}>
+            <span className="receipt-key">{key}</span>
+            <span
+              style={{
+                color: "var(--text-muted)",
+                marginRight: "4px",
               }}
             >
-              {/* Chassis outline handles */}
-              <div className="chassis-panel-inner" />
+              :{" "}
+            </span>
+            {accent ? (
+              <span className="receipt-accent">{value}</span>
+            ) : (
+              <span className="receipt-val">{value}</span>
+            )}
+          </motion.div>
+        ))}
 
-              {/* Sandbox Top Metadata Info */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="mono-tag" style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Playground Sandbox</span>
-                
-                {/* Status Indicator Dot */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span className="channel-tag" style={{ fontSize: '0.68rem', color: connectedRule ? 'var(--color-accent)' : 'var(--text-muted)', fontWeight: 700 }}>
-                    {connectedRule ? 'Active!' : 'Click to Toggle Rules'}
-                  </span>
-                  <div 
-                    style={{ 
-                      backgroundColor: connectedRule ? 'var(--color-green)' : 'var(--text-muted)', 
-                      width: '8px', 
-                      height: '8px',
-                      borderRadius: '50%',
-                      boxShadow: connectedRule ? '0 0 8px var(--color-green)' : 'none',
-                      transition: 'all 0.3s'
-                    }} 
-                  />
-                </div>
-              </div>
+        {/* Typing command line */}
+        <motion.div variants={rowVariants} style={{ marginTop: "12px" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              color: "var(--accent)",
+            }}
+          >
+            {typedCommand}
+            {typedCommand.length < TYPING_COMMAND.length && (
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "2px",
+                  height: "0.8em",
+                  backgroundColor: "var(--accent)",
+                  verticalAlign: "middle",
+                  marginLeft: "1px",
+                  opacity: cursorOn ? 1 : 0,
+                  transition: "opacity 0.1s",
+                }}
+              />
+            )}
+          </span>
+        </motion.div>
+      </motion.div>
 
-              {/* Responsive Styles & Grid Calibrations */}
-              <style dangerouslySetInnerHTML={{__html: `
-                .canvas-inner {
-                  display: grid;
-                  grid-template-columns: 1.2fr 1fr;
-                  align-items: center;
-                  height: 240px;
-                  margin-top: 16px;
-                  position: relative;
-                  gap: 16px;
-                  width: 100%;
-                }
-                .rule-buttons-container {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
-                  z-index: 15;
-                  align-items: flex-start;
-                }
-                .companion-wrapper {
-                  position: relative;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  z-index: 10;
-                  width: 100%;
-                  height: 140px;
-                }
-                .speech-bubble-position {
-                  position: absolute;
-                  bottom: 135px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 200px;
-                  background: var(--text-primary);
-                  color: var(--bg-base);
-                  padding: 12px 16px;
-                  border-radius: 20px;
-                  font-size: 0.8rem;
-                  font-weight: 600;
-                  z-index: 25;
-                  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-                  text-align: center;
-                  pointer-events: none;
-                }
-                @media (max-width: 768px) {
-                  .canvas-inner {
-                    display: flex;
-                    flex-direction: column-reverse;
-                    height: auto;
-                    gap: 32px;
-                    margin-top: 56px;
-                  }
-                  .rule-buttons-container {
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    width: 100%;
-                    gap: 8px;
-                  }
-                  .companion-wrapper {
-                    height: 140px;
-                  }
-                  #top .chassis-panel {
-                    height: auto !important;
-                    padding-bottom: 32px !important;
-                  }
-                }
-              `}} />
+      {/* Status bar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingTop: "16px",
+          borderTop: "1px solid var(--border-fine)",
+          marginTop: "20px",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span
+            style={{
+              display: "block",
+              width: "8px",
+              height: "8px",
+              borderRadius: "50%",
+              backgroundColor: "var(--green)",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.7rem",
+              color: "var(--text-muted)",
+            }}
+          >
+            Active
+          </span>
+        </div>
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.68rem",
+            color: "var(--text-muted)",
+          }}
+        >
+          agentic-senior-core &middot; v4.0
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
-              {/* Main Interactive Grid Canvas */}
-              <div className="canvas-inner">
-                
-                {/* Left Side: Rule Selector Pills */}
-                <div className="rule-buttons-container">
-                  {Object.keys(ruleOrigins).map((ruleId) => {
-                    const isConnected = connectedRule === ruleId;
-                    const origin = ruleOrigins[ruleId];
+// ─── HERO ─────────────────────────────────────────────────────────────────────
 
-                    return (
-                      <button
-                        key={ruleId}
-                        onClick={() => handleKeyboardConnect(ruleId)}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '10px 16px',
-                          background: isConnected ? origin.color : 'var(--bg-surface-secondary)',
-                          color: isConnected ? 'white' : 'var(--text-primary)',
-                          borderRadius: '24px',
-                          border: isConnected ? `2px solid ${origin.color}` : '2px solid var(--border-fine)',
-                          cursor: 'pointer',
-                          boxShadow: isConnected ? `0 6px 16px rgba(0,0,0,0.08)` : '0 4px 10px rgba(0,0,0,0.02)',
-                          transition: 'all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.15)',
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '0.84rem',
-                          fontWeight: 700,
-                          outline: 'none',
-                          textAlign: 'left'
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isConnected) {
-                            e.currentTarget.style.borderColor = origin.color;
-                            e.currentTarget.style.transform = 'translateY(-1px)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isConnected) {
-                            e.currentTarget.style.borderColor = 'var(--border-fine)';
-                            e.currentTarget.style.transform = 'none';
-                          }
-                        }}
-                      >
-                        {/* Dot indicator icon */}
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '18px',
-                          height: '18px',
-                          borderRadius: '50%',
-                          backgroundColor: isConnected ? 'white' : origin.color,
-                          transition: 'all 0.2s'
-                        }}>
-                          {isConnected ? (
-                            <Check size={10} style={{ color: origin.color, strokeWidth: 3 }} />
-                          ) : (
-                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'white' }} />
-                          )}
-                        </div>
-                        
-                        <span>{origin.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+export default function Hero() {
+  // Hoist CORE's scramble completion here so ScrambleLine can receive it
+  // as a prop without duplicating scramble state or using setState in an effect.
+  const { done: coreDone } = useScramble("CORE", 200, SCRAMBLE_DURATION_MS);
 
-                {/* Right Side: Animated Breathing Vector AI Companion Wrapper */}
-                <div className="companion-wrapper">
-                  {/* Speech Bubble Above AI Companion (Always centers beautifully) */}
-                  <AnimatePresence>
-                    {speechBubbleText && (
-                      <motion.div
-                        variants={speechBubbleVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                        className="speech-bubble-position"
-                      >
-                        {speechBubbleText}
-                        {/* Triangle tail for speech bubble */}
-                        <div style={{
-                          position: 'absolute',
-                          bottom: '-6px',
-                          left: '50%',
-                          transform: 'translateX(-50%) rotate(45deg)',
-                          width: '12px',
-                          height: '12px',
-                          backgroundColor: 'var(--text-primary)'
-                        }} />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+  const STAGGER = 0.15;
 
-                  <motion.div
-                    animate={!prefersReducedMotion ? {
-                      scale: [1, 1.03, 1],
-                      y: [0, -3, 0]
-                    } : {}}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
+  return (
+    <>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .hero-grid {
+              display: grid;
+              grid-template-columns: 60fr 40fr;
+              gap: 48px;
+              align-items: center;
+            }
+            .hero-right {
+              display: block;
+            }
+            @media (max-width: 768px) {
+              .hero-grid {
+                grid-template-columns: 1fr;
+              }
+              .hero-right {
+                display: none;
+              }
+            }
+            @media (min-width: 640px) and (max-width: 768px) {
+              .hero-right {
+                display: block;
+              }
+            }
+            .hero-stat-divider {
+              width: 1px;
+              align-self: stretch;
+              background: var(--border-fine);
+            }
+          `,
+        }}
+      />
+
+      <section
+        className="section"
+        style={{
+          minHeight: "calc(100vh - 60px)",
+          display: "flex",
+          alignItems: "center",
+        }}
+        aria-label="Hero — The Authored Signal"
+      >
+        <div className="container">
+          <div className="hero-grid">
+            {/* ── LEFT COLUMN ─────────────────────────────────────────── */}
+            <div>
+              {/* 1. Entry badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+                style={{ marginBottom: "28px" }}
+              >
+                <span
+                  className="badge"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span
                     style={{
-                      width: '120px',
-                      height: '120px',
-                      borderRadius: '36px',
-                      background: 'rgba(224, 242, 254, 0.95)',
-                      border: '4px solid #ffffff',
-                      boxShadow: '0 12px 32px rgba(14, 165, 233, 0.16)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative',
-                      cursor: 'pointer'
+                      display: "block",
+                      width: "6px",
+                      height: "6px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--accent)",
+                      flexShrink: 0,
                     }}
-                    onClick={() => {
-                      if (connectedRule) {
-                        handleSnap(null); // Eject snapped rules on tap
-                      }
-                    }}
-                    title={connectedRule ? "Click to eject rule badge!" : "I am your coding companion!"}
-                  >
-                    {/* Cute expression vectors */}
-                    <svg width="80" height="80" viewBox="0 0 80 80" style={{ pointerEvents: 'none' }}>
-                      {/* Soft blushing cheeks */}
-                      {connectedRule && (
-                        <>
-                          <ellipse cx="20" cy="50" rx="7" ry="4" fill="#fb7185" opacity="0.6" />
-                          <ellipse cx="60" cy="50" rx="7" ry="4" fill="#fb7185" opacity="0.6" />
-                        </>
-                      )}
-                      
-                      {/* Dynamic Eyes */}
-                      {connectedRule ? (
-                        /* Sparkly happy arched curves eyes when snapped */
-                        <>
-                          <path d="M16 42 Q20 36 24 42" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" fill="none" />
-                          <path d="M56 42 Q60 36 64 42" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" fill="none" />
-                        </>
-                      ) : isBlinking ? (
-                        /* Blinking animation lines */
-                        <>
-                          <line x1="16" y1="42" x2="28" y2="42" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" />
-                          <line x1="52" y1="42" x2="64" y2="42" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" />
-                        </>
-                      ) : (
-                        /* Idle cheerful round eyes */
-                        <>
-                          <circle cx="22" cy="42" r="5" fill="#0284c7" />
-                          <circle cx="20.5" cy="40.5" r="1.8" fill="#ffffff" />
-                          <circle cx="58" cy="42" r="5" fill="#0284c7" />
-                          <circle cx="56.5" cy="40.5" r="1.8" fill="#ffffff" />
-                        </>
-                      )}
+                    aria-hidden="true"
+                  />
+                  v4.0 &middot; 21 Rules &middot; WCAG AA
+                </span>
+              </motion.div>
 
-                      {/* Dynamic Mouth */}
-                      {connectedRule ? (
-                        /* Broad excited mouth */
-                        <path d="M32 50 Q40 62 48 50" stroke="#0284c7" strokeWidth="4" strokeLinecap="round" fill="none" />
-                      ) : (
-                        /* Peaceful happy smile */
-                        <path d="M35 50 Q40 55 45 50" stroke="#0284c7" strokeWidth="3" strokeLinecap="round" fill="none" />
-                      )}
-                    </svg>
-
-                    {/* Display Snapped badge attached directly on companion cloud */}
-                    {connectedRule && (
-                      <motion.div
-                        initial={{ scale: 0, y: 10 }}
-                        animate={{ scale: 1, y: 0 }}
-                        style={{
-                          position: 'absolute',
-                          bottom: '-12px',
-                          background: ruleOrigins[connectedRule].color,
-                          color: '#ffffff',
-                          padding: '4px 10px',
-                          borderRadius: '12px',
-                          fontSize: '0.65rem',
-                          fontWeight: 800,
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}
-                      >
-                        {ruleOrigins[connectedRule].icon}
-                        <span>{ruleOrigins[connectedRule].label}</span>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                </div>
-
+              {/* 2. Hero headline with text scramble */}
+              <div
+                style={{ marginBottom: "0" }}
+                role="heading"
+                aria-level={1}
+                aria-label="Agentic Senior Core"
+              >
+                {HERO_LINES.map((word, i) => (
+                  <ScrambleLine
+                    key={word}
+                    word={word}
+                    startDelay={0}
+                    motionDelay={i * STAGGER}
+                    isLast={i === HERO_LINES.length - 1}
+                    allDone={coreDone}
+                  />
+                ))}
               </div>
 
-              {/* Sandbox Footer Calibration Readouts */}
-              <div 
-                style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center', 
-                  borderTop: '1.5px solid var(--border-fine)', 
-                  paddingTop: '16px',
-                  fontSize: '0.72rem',
-                  color: 'var(--text-muted)',
-                  fontWeight: 500
+              {/* 3. Tagline */}
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "clamp(1.1rem, 1.8vw, 1.35rem)",
+                  color: "var(--text-muted)",
+                  maxWidth: "380px",
+                  marginTop: "24px",
+                  lineHeight: 1.4,
                 }}
               >
-                <span>AI Workspace Companion</span>
-                <div style={{ display: 'flex', gap: '14px' }}>
-                  <span>Scale: 1.0</span>
-                  {connectedRule && (
-                    <button 
-                      onClick={() => handleSnap(null)}
-                      style={{ 
-                        background: 'none', 
-                        border: 'none', 
-                        color: 'var(--color-accent)', 
-                        fontWeight: 700, 
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                    >
-                      Eject Badges ⏏
-                    </button>
-                  )}
-                </div>
-              </div>
+                Give your AI a spine.
+              </motion.p>
 
+              {/* 4. Sub-copy */}
+              <motion.p
+                className="text-lead"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+                style={{ maxWidth: "400px", marginTop: "12px" }}
+              >
+                A production-grade rules engine that enforces staff-engineer
+                architectural invariants across every AI coding session.
+              </motion.p>
+
+              {/* 5. CTA row */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  gap: "12px",
+                  marginTop: "36px",
+                }}
+              >
+                <MagneticButton href="#install" className="btn btn-primary">
+                  Get started
+                  <ArrowRight size={16} aria-hidden="true" />
+                </MagneticButton>
+
+                <MagneticButton
+                  href="https://github.com/fatidaprilian/Agentic-Senior-Core"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost"
+                >
+                  GitHub
+                  <ExternalLink size={14} aria-hidden="true" />
+                </MagneticButton>
+              </motion.div>
+
+              {/* 6. Stats row */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                style={{
+                  display: "flex",
+                  alignItems: "stretch",
+                  gap: "24px",
+                  marginTop: "36px",
+                  paddingTop: "24px",
+                  borderTop: "1px solid var(--border-subtle)",
+                }}
+              >
+                {(
+                  [
+                    { number: "21", label: "Rule layers" },
+                    { number: "80%", label: "Token reduction" },
+                    { number: "9", label: "Governance layers" },
+                  ] as const
+                ).map(({ number, label }, i) => (
+                  <>
+                    {i > 0 && (
+                      <div
+                        key={`divider-${i}`}
+                        className="hero-stat-divider"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <div key={number + label}>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 700,
+                          fontSize: "1.4rem",
+                          color: "var(--text-primary)",
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        {number}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.68rem",
+                          color: "var(--text-muted)",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.06em",
+                          marginTop: "4px",
+                        }}
+                      >
+                        {label}
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* ── RIGHT COLUMN ─────────────────────────────────────────── */}
+            <div className="hero-right">
+              <ReceiptPanel />
             </div>
           </div>
-
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

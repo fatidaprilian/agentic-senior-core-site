@@ -1,263 +1,440 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+
+// ---------------------------------------------------------------------------
+// Data
+// ---------------------------------------------------------------------------
+
+interface LogLine {
+  text: string;
+  color: string;
+}
+
+const COMPRESSED_LINES: LogLine[] = [
+  { text: "$ ascx npm run build", color: "var(--text-secondary)" },
+  {
+    text: "\u2713 Loading rule context... [ARCH, SEC, PERF]",
+    color: "var(--green)",
+  },
+  { text: "\u2713 21 layers validated.", color: "var(--green)" },
+  {
+    text: "\u2713 Compressing output... 82% overhead removed.",
+    color: "var(--green)",
+  },
+  { text: "\u2713 Build complete. [exit 0]", color: "var(--accent)" },
+];
+
+const BYPASSED_LINES: LogLine[] = [
+  { text: "$ npm run build", color: "var(--text-secondary)" },
+  { text: "> WARNING: 74,842 tokens in context", color: "var(--orange)" },
+  { text: "> Duplicate rules loaded: 14 conflicts", color: "var(--orange)" },
+  { text: "> ERROR: Context overflow. Build aborted.", color: "var(--red)" },
+  { text: "> exit code 1", color: "var(--red)" },
+];
+
+// ---------------------------------------------------------------------------
+// Dot matrix geometry
+// ---------------------------------------------------------------------------
+
+const DOT_COUNT = 64;
+const PHI = 2.39996; // golden angle in radians — deterministic spiral spread
+
+// Grid: 8x8, 22px center-to-center, 7px start offset inside a 192px container.
+const gridX = (i: number) => 7 + (i % 8) * 22;
+const gridY = (i: number) => 7 + Math.floor(i / 8) * 22;
+
+// Scatter: deterministic golden-angle spiral, contained within [16, 166].
+const scatterX = (i: number) => 91 + Math.cos(i * PHI) * 75;
+const scatterY = (i: number) => 91 + Math.sin(i * PHI) * 75;
+
+// ---------------------------------------------------------------------------
+// Framer Motion variants for log lines
+// ---------------------------------------------------------------------------
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+  exit: {
+    transition: { staggerChildren: 0.04, staggerDirection: -1 },
+  },
+};
+
+const lineVariants = {
+  hidden: { opacity: 0, x: -8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.28, ease: "easeOut" as const },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.12 },
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Section
+// ---------------------------------------------------------------------------
 
 export default function TerminalDemo() {
   const [isCompressed, setIsCompressed] = useState(true);
 
-  // Generate 64 token swatch parameters
-  const tokens = Array.from({ length: 64 }).map((_, i) => {
-    // Deterministic random coordinates for uncompressed scattering
-    const angle = (i * 2.4) % (2 * Math.PI);
-    const radius = 25 + (i * 3) % 90;
-    const scatterX = Math.round(140 + Math.cos(angle) * radius);
-    const scatterY = Math.round(60 + Math.sin(angle) * radius);
-
-    // Matrix coordinates for compressed 8x8 grid alignment
-    const gridCol = i % 8;
-    const gridRow = Math.floor(i / 8);
-    const gridX = 90 + gridCol * 20;
-    const gridY = 20 + gridRow * 20;
-
-    return {
-      id: i,
-      scatterX,
-      scatterY,
-      gridX,
-      gridY,
-      // Randomly color some tokens for extra detail when bypassed
-      colorClass: (i * 7) % 3 === 0 ? 'var(--color-red)' : 'var(--color-orange)'
-    };
-  });
+  const lines = isCompressed ? COMPRESSED_LINES : BYPASSED_LINES;
 
   return (
-    <section id="demo" className="section" aria-label="Token Optimizer" style={{ paddingBlock: '80px' }}>
+    <section id="demo" className="section">
       <div className="container">
-        
-        {/* Header Section */}
-        <div style={{ marginBottom: '48px', maxWidth: '720px', textAlign: 'left' }}>
-          <span className="mono-tag" style={{ color: 'var(--color-accent)', fontWeight: 800 }}>
-            Interactive Demo
-          </span>
-          <h2 className="heading-lg" style={{ marginTop: '12px', marginBottom: '16px' }}>
-            Prompt Token Optimizer
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          style={{ maxWidth: 640, marginBottom: "48px" }}
+        >
+          <p className="label-mono">Interactive Demo</p>
+          <h2 className="heading-lg" style={{ marginTop: "16px" }}>
+            Watch the engine work
           </h2>
-          <p className="text-lead" style={{ maxWidth: '640px' }}>
-            Watch how our engine compresses scattered instructions and redundant prompt parameters to save up to 80% context window space.
+          <p className="text-lead" style={{ marginTop: "16px" }}>
+            Toggle between raw AI prompt chaos and the compressed, validated
+            output ASCX delivers.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Specs dashboard panel */}
-        <div className="chassis-panel" style={{ padding: '0', overflow: 'hidden', borderRadius: 'var(--radius-companion)', border: '1.5px solid var(--border-fine)' }}>
-          <div className="chassis-panel-inner" />
-
-          {/* Header details */}
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            borderBottom: '1.5px solid var(--border-fine)', 
-            padding: '16px 24px',
-            background: 'var(--bg-surface-secondary)' 
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-primary)' }}>Engine Console</span>
-              <span style={{ fontSize: '0.72rem', color: isCompressed ? 'var(--color-green)' : 'var(--color-orange)', fontWeight: 700 }}>
-                {isCompressed ? '● Optimized' : '● Scattered'}
-              </span>
+        {/* Main panel */}
+        <motion.div
+          className="card"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          style={{ overflow: "hidden" }}
+        >
+          {/* ----------------------------------------------------------------
+              Panel header bar
+          ---------------------------------------------------------------- */}
+          <div
+            style={{
+              padding: "16px 24px",
+              borderBottom: "1px solid var(--border-fine)",
+              background: "var(--bg-surface)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "16px",
+            }}
+          >
+            {/* Traffic lights */}
+            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+              {["#ef4444", "#f59e0b", "#22c55e"].map((color) => (
+                <div
+                  key={color}
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    background: color,
+                    flexShrink: 0,
+                  }}
+                />
+              ))}
             </div>
-            
-            {/* Active compiler toggle indicators */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="mono-tag" style={{ fontSize: '0.65rem' }}>
-                {isCompressed ? 'Compression On' : 'Compression Bypassed'}
+
+            {/* Console label */}
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                color: "var(--text-muted)",
+              }}
+            >
+              Engine Console
+            </span>
+
+            {/* Toggle control */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              {/* BYPASS label */}
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.68rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  color: !isCompressed ? "var(--orange)" : "var(--text-muted)",
+                  transition: "color 0.2s ease",
+                  userSelect: "none",
+                }}
+              >
+                BYPASS
+              </span>
+
+              {/* Pill toggle */}
+              <button
+                onClick={() => setIsCompressed((v) => !v)}
+                aria-label={
+                  isCompressed
+                    ? "Switch to bypass mode"
+                    : "Switch to compressed mode"
+                }
+                aria-pressed={isCompressed}
+                style={{
+                  position: "relative",
+                  width: "48px",
+                  height: "24px",
+                  borderRadius: "12px",
+                  border: "none",
+                  background: isCompressed ? "var(--green)" : "var(--orange)",
+                  cursor: "pointer",
+                  transition: "background 0.25s ease",
+                  padding: 0,
+                  flexShrink: 0,
+                  outline: "none",
+                }}
+              >
+                <motion.div
+                  animate={{ x: isCompressed ? 3 : 27 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  style={{
+                    position: "absolute",
+                    top: "3px",
+                    left: 0,
+                    width: "18px",
+                    height: "18px",
+                    borderRadius: "50%",
+                    background: "#ffffff",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+                  }}
+                />
+              </button>
+
+              {/* ENGAGE label */}
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.68rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  color: isCompressed ? "var(--green)" : "var(--text-muted)",
+                  transition: "color 0.2s ease",
+                  userSelect: "none",
+                }}
+              >
+                ENGAGE
               </span>
             </div>
           </div>
 
-          {/* Responsive Console Separator override */}
-          <style dangerouslySetInnerHTML={{__html: `
-            .console-left-pane {
-              border-right: 1.5px solid var(--border-fine);
-            }
-            @media (max-width: 768px) {
-              .console-left-pane {
-                border-right: none !important;
-                border-bottom: 1.5px solid var(--border-fine) !important;
-              }
-            }
-          `}} />
-
-          {/* Interactive Core Panel grid */}
-          <div className="bento-grid" style={{ gap: '0' }}>
-            
-            {/* Left Console: Guidelines Diagnostic */}
-            <div 
-              className="bento-span-6 console-left-pane" 
-              style={{ 
-                padding: '24px', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: '16px',
-                textAlign: 'left'
+          {/* ----------------------------------------------------------------
+              Two-column panel body
+          ---------------------------------------------------------------- */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              minHeight: "260px",
+            }}
+          >
+            {/* Left — Build output */}
+            <div
+              style={{
+                borderRight: "1px solid var(--border-fine)",
+                padding: "0",
               }}
             >
-              <span style={{ fontSize: '0.76rem', fontWeight: 700, color: 'var(--text-primary)' }}>Diagnostic Log</span>
-              
-              <div className="inset-console" style={{ flexGrow: 1, minHeight: '180px', display: 'flex', flexDirection: 'column', gap: '8px', borderRadius: '12px' }}>
-                <div style={{ color: 'var(--text-muted)' }}>$ ascx npm run build</div>
-                
+              <div
+                style={{
+                  padding: "8px 20px 8px",
+                  borderBottom: "1px solid var(--border-fine)",
+                  background: "var(--bg-surface)",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.68rem",
+                    fontWeight: 500,
+                    color: "var(--text-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  Build Output
+                </span>
+              </div>
+
+              <div
+                className="inset-terminal"
+                style={{
+                  borderRadius: 0,
+                  border: "none",
+                  minHeight: "220px",
+                  padding: "20px",
+                  lineHeight: 1.7,
+                }}
+              >
                 <AnimatePresence mode="wait">
-                  {isCompressed ? (
-                    <motion.div
-                      key="comp"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}
-                    >
-                      <div style={{ color: 'var(--color-green)', fontWeight: 600 }}>✓ 21 active rule layers parsed successfully.</div>
-                      <div style={{ color: 'var(--color-green)', fontWeight: 600 }}>✓ Compressed: 82% prompt parameters sanitized.</div>
-                      <div style={{ color: 'var(--color-accent)', marginTop: '8px', borderTop: '1px solid var(--border-fine)', paddingTop: '8px', fontSize: '0.72rem' }}>
-                        [Optimization Complete // exit: 0]
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="raw"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.78rem', color: 'var(--color-red)' }}
-                    >
-                      <div>&gt; compiling rule parameters... (74,000 messy tokens)</div>
-                      <div>&gt; [WARNING] Duplicate code layers loaded redundantly.</div>
-                      <div>&gt; [ERROR] Prompt context overflow. Compile aborted.</div>
-                    </motion.div>
-                  )}
+                  <motion.div
+                    key={isCompressed ? "compressed" : "bypassed"}
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    {lines.map((line, i) => (
+                      <motion.div
+                        key={i}
+                        variants={lineVariants}
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.8rem",
+                          color: line.color,
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {line.text}
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </AnimatePresence>
               </div>
             </div>
 
-            {/* Right Panel: Token Visualizer */}
-            <div 
-              className="bento-span-6" 
-              style={{ 
-                padding: '24px', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'space-between',
-                gap: '20px'
-              }}
-            >
-              <span style={{ fontSize: '0.76rem', fontWeight: 700, color: 'var(--text-primary)', textAlign: 'left' }}>Token Visualizer</span>
-
-              {/* Dynamic Swatch matrix playground container */}
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                height: '180px',
-                background: 'var(--bg-surface-tertiary)',
-                border: '1.5px solid var(--border-fine)',
-                borderRadius: '12px',
-                overflow: 'hidden'
-              }}>
-                {/* Dotted target bounds */}
-                <div style={{
-                  position: 'absolute',
-                  inset: '16px',
-                  border: '1.5px dashed var(--border-fine)',
-                  borderRadius: '8px',
-                  pointerEvents: 'none'
-                }} />
-
-                {/* Render animating swatches dots */}
-                {tokens.map((token) => (
-                  <motion.div
-                    key={token.id}
-                    animate={{
-                      x: isCompressed ? token.gridX : token.scatterX,
-                      y: isCompressed ? token.gridY : token.scatterY,
-                      scale: isCompressed ? 0.9 : 1
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: isCompressed ? 350 : 120,
-                      damping: isCompressed ? 28 : 12,
-                      delay: isCompressed ? (token.id % 8) * 0.008 : 0
-                    }}
-                    style={{
-                      position: 'absolute',
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      backgroundColor: isCompressed ? 'var(--color-green)' : token.colorClass,
-                      boxShadow: isCompressed ? '0 0 6px var(--color-green)' : 'none'
-                    }}
-                  />
-                ))}
+            {/* Right — Token visualizer */}
+            <div style={{ padding: "0" }}>
+              <div
+                style={{
+                  padding: "8px 20px 8px",
+                  borderBottom: "1px solid var(--border-fine)",
+                  background: "var(--bg-surface)",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.68rem",
+                    fontWeight: 500,
+                    color: "var(--text-muted)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  Token Visualizer
+                </span>
               </div>
 
-              {/* Slider switch dial selector */}
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center', 
-                borderTop: '1.5px solid var(--border-fine)', 
-                paddingTop: '16px' 
-              }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px', textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-primary)' }}>Optimizer Control</span>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                    {isCompressed ? '5.6K optimized tokens active' : '28.4K uncalibrated tokens'}
-                  </span>
-                </div>
-                
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '0.68rem', color: !isCompressed ? 'var(--color-orange)' : 'var(--text-muted)', fontWeight: 700 }}>BYPASS</span>
-                  
-                  {/* Sliding switch button */}
-                  <button
-                    onClick={() => setIsCompressed(!isCompressed)}
-                    aria-label="Toggle token optimizer"
-                    title={isCompressed ? "Bypass prompt compiler" : "Engage prompt compiler"}
-                    style={{
-                      width: '44px',
-                      height: '22px',
-                      borderRadius: '11px',
-                      backgroundColor: 'var(--bg-surface-tertiary)',
-                      border: '1.5px solid var(--border-fine)',
-                      cursor: 'pointer',
-                      position: 'relative',
-                      display: 'flex',
-                      alignItems: 'center',
-                      padding: '2px',
-                      outline: 'none'
-                    }}
-                  >
-                    <motion.div
-                      animate={{ x: isCompressed ? 22 : 0 }}
-                      transition={{ type: 'spring', stiffness: 450, damping: 25 }}
-                      style={{
-                        width: '16px',
-                        height: '16px',
-                        borderRadius: '50%',
-                        backgroundColor: isCompressed ? 'var(--color-green)' : 'var(--color-orange)',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
-                        filter: isCompressed ? 'drop-shadow(0 0 4px var(--color-green))' : 'drop-shadow(0 0 4px var(--color-orange))'
-                      }}
-                    />
-                  </button>
-
-                  <span style={{ fontSize: '0.68rem', color: isCompressed ? 'var(--color-green)' : 'var(--text-muted)', fontWeight: 700 }}>ENGAGE</span>
+              <div
+                className="inset-terminal"
+                style={{
+                  borderRadius: 0,
+                  border: "none",
+                  minHeight: "220px",
+                  padding: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {/* Dot matrix container: 192x192px, dots positioned via x/y transforms */}
+                <div
+                  style={{
+                    position: "relative",
+                    width: "192px",
+                    height: "192px",
+                    flexShrink: 0,
+                  }}
+                >
+                  {Array.from({ length: DOT_COUNT }, (_, i) => {
+                    const isRed = i % 3 === 0;
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{
+                          x: gridX(i),
+                          y: gridY(i),
+                          backgroundColor: "#22c55e",
+                          boxShadow: "0 0 5px rgba(34, 197, 94, 0.45)",
+                          opacity: 0,
+                        }}
+                        animate={{
+                          x: isCompressed ? gridX(i) : scatterX(i),
+                          y: isCompressed ? gridY(i) : scatterY(i),
+                          backgroundColor: isCompressed
+                            ? "#22c55e"
+                            : isRed
+                              ? "#ef4444"
+                              : "#f97316",
+                          boxShadow: isCompressed
+                            ? "0 0 5px rgba(34, 197, 94, 0.45)"
+                            : "0 0 0px rgba(0,0,0,0)",
+                          opacity: 1,
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 180,
+                          damping: 22,
+                          delay: i * 0.005,
+                          opacity: { duration: 0.3 },
+                        }}
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "10px",
+                          height: "10px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
-
             </div>
-
           </div>
 
-        </div>
-
+          {/* ----------------------------------------------------------------
+              Stat footer
+          ---------------------------------------------------------------- */}
+          <div
+            style={{
+              padding: "12px 24px",
+              borderTop: "1px solid var(--border-fine)",
+              background: "var(--bg-surface)",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={isCompressed ? "stat-on" : "stat-off"}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.72rem",
+                  color: isCompressed ? "var(--green)" : "var(--orange)",
+                }}
+              >
+                {isCompressed
+                  ? "5,400 tokens active \u00b7 82% saved"
+                  : "28,400 tokens unfiltered"}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
