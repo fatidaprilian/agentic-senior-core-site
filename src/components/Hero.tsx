@@ -3,7 +3,7 @@ import { Check, Copy, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
 const INIT_COMMAND = "npx @ryuenn3123/agentic-senior-core init";
-const FALLBACK_VERSION = "v4.2.0";
+const FALLBACK_VERSION = "v4.3.8";
 
 type NpmLatestResponse = {
   version?: string;
@@ -80,7 +80,7 @@ export default function Hero() {
                     : "Fallback"}{" "}
                 · {version}
               </span>
-              <span className="badge badge-violet">21 Rules</span>
+              <span className="badge badge-violet">18 Rules</span>
               <span className="badge">Open Source</span>
             </div>
 

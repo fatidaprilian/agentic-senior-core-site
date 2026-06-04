@@ -25,7 +25,7 @@ const docs = [
 ] as const;
 
 const groups = {
-  Architecture: ["ARCH-*", "NAME-*", "API-*"],
+  Architecture: ["ARCH-*", "API-*"],
   Security: ["SEC-*", "CFG-*", "DOCK-*"],
   Performance: ["PERF-*", "TEST-*", "RES-*"],
   Data: ["DATA-*", "MIG-*", "SVC-*"],
