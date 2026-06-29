@@ -5,21 +5,21 @@ import { motion } from "motion/react";
 const steps = [
   {
     number: "01",
-    title: "Initialize the repo",
-    body: "Adds the governance files, active memory, and rule directories.",
-    command: "npx @ryuenn3123/agentic-senior-core init",
+    title: "Check IDE Status",
+    body: "Run status to auto-detect your editors and see installation hints.",
+    command: "npx @ryuenn3123/agentic-senior-core status",
   },
   {
     number: "02",
-    title: "Generate editor sync",
-    body: "Creates MCP configuration for Cursor, VS Code, Windsurf, or Claude Code.",
-    command: "npx @ryuenn3123/agentic-senior-core init --mcp-template",
+    title: "Adapter Install",
+    body: "Generate the instruction-tier adapter file for your project (e.g., Cursor, Windsurf).",
+    command: "npx @ryuenn3123/agentic-senior-core adapter --all",
   },
   {
     number: "03",
-    title: "Upgrade rules later",
-    body: "Refreshes rule presets and removes stale governance files.",
-    command: "npx @ryuenn3123/agentic-senior-core upgrade --yes",
+    title: "Clean Legacy Files",
+    body: "If upgrading from v4, remove legacy per-project artifacts and bridge files.",
+    command: "npx @ryuenn3123/agentic-senior-core clean",
   },
 ];
 
@@ -78,8 +78,8 @@ export default function Installation() {
               Install when the value is clear.
             </h2>
             <p className="text-lead">
-              Keep setup boring: run one command, connect your editor when
-              needed, and upgrade the rule pack later.
+              Keep setup boring: use plugin marketplace for native integration,
+              or generate a single adapter file for instruction-tier IDEs.
             </p>
             <div
               className="neo-card"

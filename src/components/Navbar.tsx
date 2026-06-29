@@ -46,7 +46,7 @@ export default function Navbar() {
             className="badge badge-live"
             style={{ minHeight: 24, fontSize: "0.66rem" }}
           >
-            v4
+            v5
           </span>
         </a>
 

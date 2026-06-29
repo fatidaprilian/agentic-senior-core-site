@@ -3,36 +3,26 @@ import { motion } from "motion/react";
 
 const docs = [
   [
-    "FAQ",
-    "Workspace setup, backups, and rule verification errors",
-    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/faq.md",
+    "Agent Portability",
+    "ASC supports 23+ AI coding hosts at two tiers (plugin and instruction).",
+    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/agent-portability.md",
   ],
   [
-    "Deep Dive",
-    "Architecture notes for memory, prompts, and wrappers",
-    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/deep-dive.md",
-  ],
-  [
-    "Integration",
-    "Editor sync setup for Cursor, VS Code, Windsurf, and Claude Code",
-    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/integration-playbook.md",
-  ],
-  [
-    "Benchmarks",
-    "Token savings and command compression references",
-    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/benchmark-reference.md",
+    "Architecture",
+    "Plugin architecture, hook event mapping, and token budgeting details.",
+    "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/architecture.md",
   ],
 ] as const;
 
 const groups = {
-  Architecture: ["ARCH-*", "API-*"],
-  Security: ["SEC-*", "CFG-*", "DOCK-*"],
-  Performance: ["PERF-*", "TEST-*", "RES-*"],
-  Data: ["DATA-*", "MIG-*", "SVC-*"],
+  Core: ["Code Quality", "Response Style", "Testing"],
+  Design: ["Architecture", "API Design", "Frontend"],
+  Systems: ["Database", "Infrastructure", "Resilience", "Async and Events"],
+  Safety: ["Security", "Error Handling"],
 };
 
 export default function Documentation() {
-  const [active, setActive] = useState<keyof typeof groups>("Architecture");
+  const [active, setActive] = useState<keyof typeof groups>("Core");
 
   return (
     <section id="docs" className="section" aria-label="Documentation">
@@ -115,8 +105,7 @@ export default function Documentation() {
                 >
                   <span className="badge badge-live">{rule}</span>
                   <p className="text-body" style={{ marginTop: 10 }}>
-                    Loaded only when the task scope needs this governance
-                    family.
+                    Universal invariant rule injected on every session start.
                   </p>
                 </div>
               ))}
