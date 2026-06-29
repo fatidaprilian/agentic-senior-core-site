@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
-const INIT_COMMAND = "npx @ryuenn3123/agentic-senior-core init";
-const FALLBACK_VERSION = "v4.3.8";
+const INIT_COMMAND = "npx @ryuenn3123/agentic-senior-core status";
+const FALLBACK_VERSION = "v5.3.0";
 
 type NpmLatestResponse = {
   version?: string;
@@ -80,7 +80,7 @@ export default function Hero() {
                     : "Fallback"}{" "}
                 · {version}
               </span>
-              <span className="badge badge-violet">18 Rules</span>
+              <span className="badge badge-violet">23+ Hosts</span>
               <span className="badge">Open Source</span>
             </div>
 
@@ -140,11 +140,10 @@ export default function Hero() {
             </div>
 
             <h2 className="heading-md">
-              Initialize the rules engine in one command.
+              Check editor status and get install hints.
             </h2>
             <p className="text-body">
-              Creates `.agent-context`, rule files, memory registries, and the
-              default governance prompts for your workspace.
+              Installs globally via plugin marketplace, or generates a single instruction-tier adapter file for your project.
             </p>
 
             <div className="command-box">
@@ -190,9 +189,9 @@ export default function Hero() {
                   gap: 6,
                 }}
               >
-                <li>scope-resolved rules</li>
-                <li>compact response contract</li>
-                <li>validation plan before completion</li>
+                <li>always-on invariants</li>
+                <li>on-demand skills</li>
+                <li>hook-injected context</li>
               </ul>
             </div>
           </motion.aside>

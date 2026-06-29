@@ -1,49 +1,50 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 
-const compactLines = [
-  "$ ascx npm run build",
-  "✓ context selected: FE + API",
-  "✓ noisy output compressed",
-  "✓ validation summary preserved",
-  "exit 0",
+const pluginLines = [
+  "Host: Claude Code",
+  "Event: SessionStart",
+  "✓ Detected Agentic-Senior-Core plugin",
+  "✓ Injected 12 universal invariants",
+  "✓ Registered skills directory",
+  "Ready to code like a staff engineer."
 ];
 
-const rawLines = [
-  "$ npm run build",
-  "> verbose transform output x 2149 modules",
-  "> repeated plugin logs and warnings",
-  "> useful result buried below noise",
-  "exit 0",
+const adapterLines = [
+  "Host: Cursor",
+  "✓ Found .cursor/rules/agentic-senior-core.mdc",
+  "✓ alwaysApply: true",
+  "✓ Loaded universal invariants",
+  "Ready to code like a staff engineer."
 ];
 
 export default function TerminalDemo() {
-  const [compact, setCompact] = useState(true);
-  const lines = compact ? compactLines : rawLines;
+  const [plugin, setPlugin] = useState(true);
+  const lines = plugin ? pluginLines : adapterLines;
 
   return (
     <section id="demo" className="section" aria-label="ASCX Demo">
       <div className="container">
         <div className="grid-12" style={{ alignItems: "start" }}>
           <div className="col-5">
-            <span className="label-mono">Demo</span>
+            <span className="label-mono">Integration</span>
             <h2
               className="heading-lg"
               style={{ marginTop: 10, marginBottom: 14 }}
             >
-              Cleaner command output.
+              Zero-config deployment.
             </h2>
             <p className="text-lead">
-              ASCX keeps the important evidence and removes repetitive terminal
-              noise before it fills the AI context.
+              Use native plugins for hosts like Claude Code, or generate a single
+              adapter file for instruction-tier IDEs like Cursor.
             </p>
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => setCompact((value) => !value)}
+              onClick={() => setPlugin((value) => !value)}
               style={{ marginTop: 24 }}
             >
-              Show {compact ? "raw" : "ASCX"} output
+              Show {plugin ? "Adapter" : "Plugin"} boot
             </button>
           </div>
 
@@ -66,9 +67,9 @@ export default function TerminalDemo() {
                 background: "var(--bg-muted)",
               }}
             >
-              <span className="label-mono">Engine Output</span>
-              <span className={compact ? "badge badge-live" : "badge"}>
-                {compact ? "ASCX" : "RAW"}
+              <span className="label-mono">Engine Boot</span>
+              <span className={plugin ? "badge badge-live" : "badge badge-violet"}>
+                {plugin ? "PLUGIN" : "ADAPTER"}
               </span>
             </div>
             <pre
@@ -87,7 +88,7 @@ export default function TerminalDemo() {
             >
               {lines.map((line, index) => (
                 <motion.div
-                  key={`${compact}-${line}`}
+                  key={`${plugin}-${line}`}
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.16, delay: index * 0.035 }}

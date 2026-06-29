@@ -2,28 +2,28 @@ import { motion } from "motion/react";
 
 const features = [
   {
-    code: "ARCH-001",
-    title: "Loads only the right rules",
-    body: "The context command selects the smallest relevant rule set for the current task instead of flooding the agent with every policy file.",
-    metric: "9 layers",
+    code: "PLUG-001",
+    title: "Universal Plugin System",
+    body: "Supports 23+ AI coding hosts at two tiers. Plugin-tier hosts get automatic hook injection, while instruction-tier hosts get a single adapter file.",
+    metric: "23+ hosts",
+  },
+  {
+    code: "CORE-001",
+    title: "Always-on Invariants",
+    body: "Short, high-signal rules injected on every session start. Enforces code quality, security, and response compactness without burning token budget.",
+    metric: "~1.2k tokens",
+  },
+  {
+    code: "SKIL-001",
+    title: "On-demand Skills",
+    body: "Long-form workflow guidance is kept out of the main prompt and only loaded when explicitly invoked via the skills directory.",
+    metric: "zero idle cost",
   },
   {
     code: "PERF-001",
-    title: "Compresses noisy command output",
-    body: "ASCX wrappers keep terminal output readable and compact, so builds and tests do not waste the agent context window.",
-    metric: "up to 80% less noise",
-  },
-  {
-    code: "TEST-001",
-    title: "Forces validation before done",
-    body: "Every meaningful change carries a validation plan, and completion requires the relevant checks instead of vibes-based confidence.",
-    metric: "validation gate",
-  },
-  {
-    code: "FE-015",
-    title: "Keeps responses usable",
-    body: "Compact-natural-mode removes filler while preserving exact commands, file paths, assumptions, and validation evidence.",
-    metric: "less slop",
+    title: "Caching Optimized",
+    body: "Consolidating universal rules into a single always-on file maximizes prompt cache hits across subagents, reducing API costs.",
+    metric: "cost savings",
   },
 ];
 
