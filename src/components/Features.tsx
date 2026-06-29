@@ -3,27 +3,27 @@ import { motion } from "motion/react";
 const features = [
   {
     code: "PLUG-001",
-    title: "Universal Plugin System",
-    body: "Supports 23+ AI coding hosts at two tiers. Plugin-tier hosts get automatic hook injection, while instruction-tier hosts get a single adapter file.",
+    title: "Plugin-tier delivery",
+    body: "Claude Code, Codex CLI, Copilot CLI, Gemini CLI, Devin, Hermes, OpenCode, OpenClaw, and Antigravity get native plugin or extension surfaces.",
     metric: "23+ hosts",
   },
   {
     code: "CORE-001",
-    title: "Always-on Invariants",
-    body: "Short, high-signal rules injected on every session start. Enforces code quality, security, and response compactness without burning token budget.",
+    title: "Small always-on core",
+    body: "AGENTS.md stays around 1,200 tokens and keeps the decision ladder, security floor, testing stance, and response compactness active.",
     metric: "~1.2k tokens",
   },
   {
     code: "SKIL-001",
-    title: "On-demand Skills",
-    body: "Long-form workflow guidance is kept out of the main prompt and only loaded when explicitly invoked via the skills directory.",
-    metric: "zero idle cost",
+    title: "Skills and commands",
+    body: "Detailed review, audit, refactor, and adapter workflows live in skills and /asc-* commands, so long procedures load only when invoked.",
+    metric: "on demand",
   },
   {
-    code: "PERF-001",
-    title: "Caching Optimized",
-    body: "Consolidating universal rules into a single always-on file maximizes prompt cache hits across subagents, reducing API costs.",
-    metric: "cost savings",
+    code: "ASCX-001",
+    title: "Output compression",
+    body: "ascx wraps commands such as git status, npm test, npm run build, tsc, rg, and npm install to preserve evidence while cutting noisy output.",
+    metric: "safe tee",
   },
 ];
 
@@ -43,11 +43,12 @@ export default function Features() {
             className="heading-lg"
             style={{ marginTop: 10, marginBottom: 14 }}
           >
-            What the engine does
+            Current product surface
           </h2>
           <p className="text-lead">
-            Four practical systems working together to strip noise, enforce
-            structure, and keep AI responses accurate and lean.
+            The repo is now a universal plugin package: short rules always on,
+            longer workflows on demand, and utilities for setup, cleanup, status,
+            MCP, and token-aware command output.
           </p>
         </motion.div>
 

@@ -21,7 +21,7 @@ function GitHubMark({ size = 18 }: { size?: number }) {
 const links = [
   { href: "#features", label: "Capabilities" },
   { href: "#install", label: "Install" },
-  { href: "#demo", label: "Demo" },
+  { href: "#demo", label: "CLI" },
   { href: "#docs", label: "Docs" },
 ];
 
@@ -37,7 +37,7 @@ export default function Navbar() {
             gap: 10,
             textDecoration: "none",
             fontFamily: "var(--font-display)",
-            letterSpacing: "-0.04em",
+            letterSpacing: 0,
             textTransform: "uppercase",
           }}
         >
@@ -46,7 +46,7 @@ export default function Navbar() {
             className="badge badge-live"
             style={{ minHeight: 24, fontSize: "0.66rem" }}
           >
-            v5
+            v5.4
           </span>
         </a>
 

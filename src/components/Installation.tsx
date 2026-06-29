@@ -5,21 +5,27 @@ import { motion } from "motion/react";
 const steps = [
   {
     number: "01",
-    title: "Check IDE Status",
-    body: "Run status to auto-detect your editors and see installation hints.",
-    command: "npx @ryuenn3123/agentic-senior-core status",
+    title: "Install package",
+    body: "Install the global CLI once so asc, agentic-senior-core, and ascx are available.",
+    command: "npm install -g @ryuenn3123/agentic-senior-core",
   },
   {
     number: "02",
-    title: "Adapter Install",
-    body: "Generate the instruction-tier adapter file for your project (e.g., Cursor, Windsurf).",
-    command: "npx @ryuenn3123/agentic-senior-core adapter --all",
+    title: "Native plugin",
+    body: "For Codex CLI, install the plugin so rules load through SessionStart hooks.",
+    command: "codex plugins install agentic-senior-core",
   },
   {
     number: "03",
-    title: "Clean Legacy Files",
-    body: "If upgrading from v4, remove legacy per-project artifacts and bridge files.",
-    command: "npx @ryuenn3123/agentic-senior-core clean",
+    title: "IDE adapters",
+    body: "For instruction-tier IDEs, generate one rules file in the current project.",
+    command: "asc adapter --all",
+  },
+  {
+    number: "04",
+    title: "Verify setup",
+    body: "Detect installed hosts and get host-specific install hints.",
+    command: "asc status",
   },
 ];
 
@@ -75,19 +81,20 @@ export default function Installation() {
               className="heading-lg"
               style={{ marginTop: 10, marginBottom: 14 }}
             >
-              Install when the value is clear.
+              Install once, route by host.
             </h2>
             <p className="text-lead">
-              Keep setup boring: use plugin marketplace for native integration,
-              or generate a single adapter file for instruction-tier IDEs.
+              Terminal agents use plugin bundles with hooks. IDE agents use one
+              adapter file per project. v4 projects can clean old bridge files
+              with <code>asc clean</code>.
             </p>
             <div
               className="neo-card"
               style={{ marginTop: 28, padding: 18, display: "inline-block" }}
             >
-              <div className="heading-md">30s</div>
+              <div className="heading-md">v5</div>
               <div className="label-mono" style={{ marginTop: 8 }}>
-                average setup path
+                universal plugin system
               </div>
             </div>
           </motion.div>

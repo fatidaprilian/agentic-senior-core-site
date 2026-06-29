@@ -4,25 +4,45 @@ import { motion } from "motion/react";
 const docs = [
   [
     "Agent Portability",
-    "ASC supports 23+ AI coding hosts at two tiers (plugin and instruction).",
+    "Plugin-tier hosts, instruction-tier adapters, hook mapping, and Antigravity format.",
     "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/agent-portability.md",
   ],
   [
     "Architecture",
-    "Plugin architecture, hook event mapping, and token budgeting details.",
+    "Layered delivery, SessionStart/SubagentStart hooks, skills, commands, and token budget.",
     "https://github.com/fatidaprilian/Agentic-Senior-Core/blob/main/docs/architecture.md",
   ],
 ] as const;
 
 const groups = {
-  Core: ["Code Quality", "Response Style", "Testing"],
-  Design: ["Architecture", "API Design", "Frontend"],
-  Systems: ["Database", "Infrastructure", "Resilience", "Async and Events"],
-  Safety: ["Security", "Error Handling"],
-};
+  Rules: [
+    ["Decision ladder", "Reuse first, use standard tools, then write the smallest working code."],
+    ["Security floor", "Validate boundaries, protect secrets, authorize resources, and avoid unsafe shell/query interpolation."],
+    ["Testing stance", "Cover business behavior, boundary failures, edge cases, and critical data paths."],
+    ["Response style", "Keep answers compact while preserving exact paths, commands, errors, risks, and validation status."],
+  ],
+  Plugins: [
+    ["Claude Code", "Plugin hooks load AGENTS.md at SessionStart and SubagentStart."],
+    ["Codex CLI", "Codex plugin manifest points to the same hooks, skills, and commands."],
+    ["Gemini CLI", "gemini-extension.json loads AGENTS.md and TOML command metadata."],
+    ["Copilot CLI", "GitHub plugin files use Copilot hook casing and command metadata."],
+  ],
+  Adapters: [
+    ["Cursor", "asc adapter --cursor writes .cursor/rules/agentic-senior-core.mdc."],
+    ["Devin Desktop", "asc adapter --devin is the preferred path over legacy Windsurf."],
+    ["GitHub Copilot", "asc adapter --copilot writes .github/copilot-instructions.md."],
+    ["OpenHands", "asc adapter --openhands writes a microagent instruction file."],
+  ],
+  Utilities: [
+    ["asc status", "Detect installed hosts and print install hints."],
+    ["asc clean", "Remove v4 .agent-context and bridge artifacts from older projects."],
+    ["ascx", "Compress noisy command output while preserving exit code and raw-output safety tee behavior."],
+    ["asc mcp", "Start the MCP stdio server with validation, rule lookup, audit, fetch, trend, and state tools."],
+  ],
+} as const;
 
 export default function Documentation() {
-  const [active, setActive] = useState<keyof typeof groups>("Core");
+  const [active, setActive] = useState<keyof typeof groups>("Rules");
 
   return (
     <section id="docs" className="section" aria-label="Documentation">
@@ -33,11 +53,11 @@ export default function Documentation() {
             className="heading-lg"
             style={{ marginTop: 10, marginBottom: 14 }}
           >
-            Rules and references.
+            Rules, hosts, and utilities.
           </h2>
           <p className="text-lead">
-            Jump into the documents or inspect the rule families that shape the
-            agent behavior.
+            The source repo now documents portability and architecture directly.
+            Use these references to inspect what ships in the npm package.
           </p>
         </div>
 
@@ -97,15 +117,15 @@ export default function Documentation() {
             </div>
 
             <div style={{ display: "grid", gap: 12 }}>
-              {groups[active].map((rule) => (
+              {groups[active].map(([name, body]) => (
                 <div
-                  key={rule}
+                  key={name}
                   className="neo-card-soft"
                   style={{ padding: 16 }}
                 >
-                  <span className="badge badge-live">{rule}</span>
+                  <span className="badge badge-live">{name}</span>
                   <p className="text-body" style={{ marginTop: 10 }}>
-                    Universal invariant rule injected on every session start.
+                    {body}
                   </p>
                 </div>
               ))}

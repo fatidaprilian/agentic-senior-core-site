@@ -1,121 +1,77 @@
 # Design Contract: Restrained Neo-Brutal Product Sheet
 
-Version 3.0 — Full redesign from the previous animated studio direction.
-
----
-
 ## 1. Design Intent
 
-The site presents Agentic-Senior-Core as a useful open-source tool with a confident product identity. The first screen must avoid AI-startup theatrics and avoid terminal-only developer cliches. The desired impression is direct, memorable, and immediately usable: users can read the value, see the current package version, and copy the init command without hunting.
+The site presents Agentic-Senior-Core as a useful open-source tool, not a generic AI startup page. The first viewport should make the product obvious: current package version, host support, setup command, and the core promise.
 
-The direction uses restrained neo-brutalism: visible structure, thick borders, strong typography, flat surfaces, and deliberate color. It rejects pure brutalism's hostility and keeps modern UX clarity.
+The visual direction uses restrained neo-brutalism: visible structure, thick borders, hard shadows, large display type, flat surfaces, and a small set of saturated accents. Motion supports state changes and section entry only.
 
----
+## 2. Product Anchors
 
-## 2. Research Summary
+- Product name in the hero headline: `Agentic Senior Core`.
+- Primary command: `npm install -g @ryuenn3123/agentic-senior-core`.
+- Current repo context: v5.4.0 universal plugin system.
+- Key surfaces: `AGENTS.md`, plugin manifests, adapters, skills, `/asc-*` commands, `ascx`, and `asc mcp`.
+- Source docs: `docs/agent-portability.md` and `docs/architecture.md` in the source repo.
 
-Brutalism is not obsolete, but pure web brutalism is a narrow fit. Current commercial usage is mostly **neo-brutalism**: blunt visual structure with polished usability underneath. Research sources consistently distinguish:
+## 3. Typography
 
-- Pure brutalism: raw HTML, awkward layouts, anti-polish, often hard to use.
-- Neo-brutalism: thick borders, hard shadows, bold type, flat color blocks, clearer navigation, and accessible product UX.
+- Display: Archivo Black.
+- Body: DM Sans.
+- Metadata and commands: Geist Mono.
+- Letter spacing stays at `0` for readable, stable headings.
 
-For this project, use neo-brutalism only as a structure language. Do not use chaotic anti-design, glitch effects, scroll-jacking, or dark default styling.
-
----
-
-## 3. Defaults Rejected
-
-1. **AI startup default:** gradient hero, glass cards, vague copy. Rejected because it would make the tool look like a generic AI wrapper.
-2. **Terminal/dev-tool default:** dark console as the whole site. Rejected because dark terminal-first UI reads like every CLI project and hides the product value behind aesthetics.
-3. **Fully animated studio default:** text scramble, custom cursor, pinned scroll, heavy transitions. Rejected because the user wants animation as support, not the main product.
-
----
-
-## 4. Anchor
-
-**Anchor: product launch tear sheet / zine-style software card.**
-
-Borrowed mechanics:
-- Above-the-fold command block as the primary interaction.
-- Exposed grid and thick borders to make content feel deliberately assembled.
-- Oversized editorial headline paired with compact metadata.
-- Section cards that read like product facts, not decorative feature tiles.
-
-Not borrowed:
-- Chaotic anti-design layouts.
-- Pure black-and-white harshness.
-- Glitch, custom cursor, or pinned horizontal scroll.
-
----
-
-## 5. Creative Commitments
-
-### Typography
-
-- Display: **Archivo Black** for large product headlines and section titles.
-- Body: **DM Sans** for readable public copy.
-- Metadata and command text: **Geist Mono**.
-
-Avoid Inter, Roboto, Arial, Space Grotesk, and previous Outfit usage.
-
-### Color
+## 4. Color
 
 Light mode is default.
 
-- Light base: `#fff7df` warm paper.
-- Light surface: `#ffffff`.
-- Ink: `#111111`.
-- Muted ink: `#5f5a4f`.
-- Primary accent: `#ff6b35` safety orange for CTA and command emphasis.
-- Secondary accent: `#96f550` lime for live version/status.
-- Tertiary accent: `#7b61ff` violet for selected rule metadata.
+- Base: `#f7f8fb`
+- Surface: `#ffffff`
+- Muted surface: `#e7edf3`
+- Ink: `#111111`
+- Muted ink: `#566170`
+- Primary accent: `#ff6b35`
+- Live accent: `#96f550`
+- Secondary accent: `#7b61ff`
 
-Dark mode is optional through the theme toggle and must re-derive surfaces instead of simply inverting.
+Dark mode is opt-in through the theme toggle.
 
-- Dark base: `#151515`.
-- Dark surface: `#222222`.
-- Dark ink: `#f7f1df`.
-- Dark muted: `#c0b7a4`.
+- Base: `#151515`
+- Surface: `#222222`
+- Muted surface: `#2f2f2f`
+- Ink: `#f7f1df`
+- Muted ink: `#c0b7a4`
 
-### Motion
+## 5. Motion
 
-Use only supportive motion:
-- One short fade/slide on section entry.
-- Command copy state feedback.
+Use supportive motion only:
+
+- Short fade/slide section entry.
+- Copy button state feedback.
 - Theme icon transition.
-- No text scramble, custom cursor, pinned scroll, or continuous animations.
+- Terminal sample line reveal.
 
-### Composition
+Avoid continuous animation, text scramble, custom cursor, scroll-jacking, and large decorative motion.
 
-- Hero is a two-column exposed grid: left is the product statement, right is the install command and live package facts.
-- Capabilities appear before Quick Start because users should understand the tool before installation.
-- Cards use thick borders and hard offset shadows, but remain responsive and readable.
-- No dark default. Dark is a mode only.
+## 6. Composition
 
----
+- Hero uses a two-column product sheet: product statement on the left, install command and package facts on the right.
+- Capabilities precede installation so users understand the surface before setup.
+- CLI sample shows `asc status` and `ascx`, not imaginary boot logs.
+- Documentation section links directly to source repo docs and summarizes current rule/host/utility groups.
 
-## 6. Responsive Rules
+## 7. Responsive Rules
 
-- Mobile: one-column layout, full-width command block, nav links hidden, cards stack vertically.
-- Tablet: two-column feature grid where space permits.
-- Desktop: asymmetric hero grid and 2x2 capability grid.
-- Never require horizontal scrolling.
-- Maintain touch targets at 44px minimum.
+- Mobile: one-column layout, full-width command blocks, nav links hidden, stacked cards.
+- Tablet: cards reflow through responsive grid tracks.
+- Desktop: exposed 12-column grid.
+- No horizontal scrolling.
+- Touch targets stay at least 44px.
 
----
-
-## 7. Accessibility
+## 8. Accessibility
 
 - WCAG 2.2 AA is mandatory.
-- Focus states use a visible orange outline.
-- Command copy buttons announce state through visible text changes.
-- Color is never the only meaning carrier; labels accompany status.
-- Reduced-motion users receive instant state changes.
-
----
-
-## 8. Post-Implementation Checks
-
-1. If the product name were removed, the NPM version, init command, rule IDs, and ASCX references still identify the tool category.
-2. The primary viewport avoids centered-everything: it uses an exposed two-column product sheet.
-3. The rejected default was fully animated studio UI. The shipped direction uses restrained motion and prioritizes install clarity.
+- Focus states use a visible accent outline.
+- Copy buttons expose visible copied state.
+- Color is never the only status carrier.
+- Reduced-motion users receive near-instant transitions.

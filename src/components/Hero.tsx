@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
 
-const INIT_COMMAND = "npx @ryuenn3123/agentic-senior-core status";
-const FALLBACK_VERSION = "v5.3.0";
+const INSTALL_COMMAND = "npm install -g @ryuenn3123/agentic-senior-core";
+const FALLBACK_VERSION = "v5.4.0";
 
 type NpmLatestResponse = {
   version?: string;
@@ -47,7 +47,7 @@ export default function Hero() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(INIT_COMMAND);
+    await navigator.clipboard.writeText(INSTALL_COMMAND);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
@@ -56,10 +56,10 @@ export default function Hero() {
     <section
       id="top"
       style={{
-        minHeight: "calc(100vh - 64px)",
+        minHeight: "calc(92vh - 64px)",
         display: "flex",
         alignItems: "flex-start",
-        paddingBlock: "clamp(56px, 8vw, 96px)",
+        paddingBlock: "clamp(44px, 7vw, 84px)",
       }}
     >
       <div className="container">
@@ -81,19 +81,19 @@ export default function Hero() {
                 · {version}
               </span>
               <span className="badge badge-violet">23+ Hosts</span>
-              <span className="badge">Open Source</span>
+              <span className="badge">Plugin + Adapter</span>
             </div>
 
             <h1 className="display-hero">
-              Rules for
+              Agentic
               <br />
-              AI that ships.
+              Senior Core
             </h1>
 
             <p className="text-lead">
-              Agentic-Senior-Core gives your coding agent a strict operating
-              contract: scoped rules, compact responses, validation gates, and
-              cleaner command output.
+              Universal AI coding rules for agents that need to stay small,
+              secure, and maintainable. Install once for plugin hosts, or add
+              one adapter file per IDE project.
             </p>
 
             <div
@@ -136,22 +136,48 @@ export default function Hero() {
               }}
             >
               <span className="label-mono">Start here</span>
+              <img
+                src="/logo.png"
+                alt=""
+                width="56"
+                height="56"
+                style={{
+                  width: 56,
+                  height: 56,
+                  objectFit: "cover",
+                  border: "3px solid var(--border-strong)",
+                  background: "var(--bg-surface)",
+                }}
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 16,
+              }}
+            >
+              <span className="badge">NPM package</span>
               <span className="badge badge-live">{version}</span>
             </div>
 
             <h2 className="heading-md">
-              Check editor status and get install hints.
+              One global package, many agent surfaces.
             </h2>
             <p className="text-body">
-              Installs globally via plugin marketplace, or generates a single instruction-tier adapter file for your project.
+              Ships native plugin bundles for terminal agents, adapter files for
+              IDE agents, on-demand skills, command metadata, ASCX, and an MCP
+              stdio server.
             </p>
 
             <div className="command-box">
-              <code>{INIT_COMMAND}</code>
+              <code>{INSTALL_COMMAND}</code>
               <button
                 type="button"
                 onClick={handleCopy}
-                aria-label="Copy init command"
+                aria-label="Copy install command"
               >
                 {copied ? (
                   <span
@@ -189,9 +215,9 @@ export default function Hero() {
                   gap: 6,
                 }}
               >
-                <li>always-on invariants</li>
-                <li>on-demand skills</li>
-                <li>hook-injected context</li>
+                <li>AGENTS.md always-on rules</li>
+                <li>/asc-review, /asc-audit, /asc-refactor</li>
+                <li>asc adapter, asc status, ascx wrapper</li>
               </ul>
             </div>
           </motion.aside>

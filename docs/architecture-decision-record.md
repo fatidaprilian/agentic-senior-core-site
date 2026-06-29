@@ -1,19 +1,22 @@
-# Architecture Decision Record (ADR): Modular Audio-Chassis Console Redesign
+# Architecture Decision Record: v5 Product-Sheet Refresh
 
 ## Context
-The landing page previously experimented with a technical drafting blueprint theme. While distinct, the blueprint coordinates and drafting caliper lines felt too complex and dry for a general audience. To achieve the user's goal of a stunning, premium, fully animated, and interactive layout that instantly makes developers think "Wow! Beautiful web design, is this using the repo? Let me try it too," we need a theme that merges ultimate technical depth with playful, high-tactility interactive elements.
 
-The user explicitly requested a complete redesign from zero, fully animated, with custom copy crafted from scratch.
+The source project at `E:\Project\Agentic-Senior-Core` changed from the older per-project scaffolding direction into a v5 universal plugin package. The site had visible copy close to v5, but supporting docs still described obsolete setup and visual decisions.
 
 ## Decision
-We decided to completely reset the visual identity and composition framework to a **Tactile Modular Synthesizer & Patchbay Platform (Teenage Engineering & Eurorack inspired)**:
-1.  **Tactile Cable Physics**: Implement an interactive, spring-driven SVG patchbay deck where users can drag patch cables from rules module connectors to the developer target codebase, magnetic-snapping on connection to activate live features.
-2.  **Modular Hardware Racks**: Segment the single-page layout into horizontal racks styled like physical matte metal equipment chassis with inset borders, screw anchors, illuminated status LEDs, and parameter dial controllers.
-3.  **Active Waveform Visualizer**: Integrate a dynamic HTML5 Canvas soundwave monitor that visually flattens and tightens to demonstrate the ASCX token compression wrapper (-80% token load) in action.
-4.  **Calibrated Typography**: Pair mechanical display sans (Outfit) with readable geometric copy (Inter) and hardware labels (JetBrains Mono) to establish distinct, high-impact hierarchy.
+
+Keep the restrained neo-brutal product sheet and update the content model around the current package:
+
+1. Hero headline uses the product name and the current install command.
+2. Capabilities describe plugin-tier delivery, the small `AGENTS.md` core, on-demand skills/commands, and `ascx`.
+3. Quick start follows README setup order: global npm install, plugin install, adapter generation, status check.
+4. CLI demo uses `asc status` and `ascx` samples instead of imagined plugin boot output.
+5. Docs section links to source repo portability and architecture docs.
 
 ## Consequences
-*   **Distinctiveness**: The modular synthesizer aesthetic is completely unique, visually jaw-dropping, and invites immediate user interaction.
-*   **Motion Quality**: Dangling gravimetric strings and spring-calibrated dials provide high-fidelity sensory feedback.
-*   **Performance & Bundle Stability**: All dragging mechanics and canvas waveform render loops are lightweight, compiling with zero TS or Vite defects and maintaining a smooth 60fps refresh.
-*   **Accessibility Integrity**: Fully satisfies WCAG 2.2 AA contrast floors using accessible text-on-color layers and automated reduced-motion fallbacks that render static connectors immediately.
+
+- The page is closer to the actual repo and easier to maintain after package changes.
+- The visual identity stays distinct without a large rebuild.
+- The site no longer implies the v4 `.agent-context` scaffold is the main product.
+- Future updates should start by checking `package.json`, `README.md`, `docs/agent-portability.md`, and `docs/architecture.md` in the source repo.

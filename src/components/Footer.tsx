@@ -12,8 +12,8 @@ export default function Footer() {
           <div className="col-7">
             <div className="heading-md">Agentic-Senior-Core</div>
             <p className="text-body" style={{ marginTop: 10, maxWidth: 520 }}>
-              Production-grade rules engine for AI coding agents. Light by
-              default, strict by contract.
+              Universal plugin package for AI coding agents. Small always-on
+              rules, deeper workflows on demand, and practical CLI utilities.
             </p>
           </div>
           <div
@@ -52,9 +52,9 @@ export default function Footer() {
             justifyContent: "space-between",
           }}
         >
-          <span className="label-mono">© {year} MIT License</span>
+          <span className="label-mono">(c) {year} MIT License</span>
           <span className="label-mono">
-            Built for the Agentic-Senior-Core repo
+            Synced with Agentic-Senior-Core v5.4.0
           </span>
         </div>
       </div>
